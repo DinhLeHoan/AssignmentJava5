@@ -41,4 +41,7 @@ public class Staff {
 
 	@Column(name = "salary", nullable = false)
 	private double salary;
+	
+	@Column(name = "phone")
+	private String phone;
 }

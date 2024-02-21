@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pc05401.assignment.entity.Staff;
 import pc05401.assignment.repository.StaffRepository;
+import pc05401.assignment.service.SessionService;
 
 @Controller
 public class LoginController {
@@ -18,6 +19,9 @@ public class LoginController {
 	@Autowired
 	private StaffRepository staffRepository;
 
+	@Autowired
+	SessionService session;
+	
 	@GetMapping("login")
 	public String showLoginForm() {
 
@@ -47,6 +51,7 @@ public class LoginController {
 			default:
 				Staff staff = staffRepository.findByUsernameAndPassword(username, password);
 				if (staff != null) {
+					session.set("staff", staff);
 					return "redirect:/home";
 				} else {
 					model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
@@ -54,11 +59,6 @@ public class LoginController {
 				}
 		}
 
-	}
-
-	@GetMapping("home")
-	public String showHome() {
-		return "home";
 	}
 
 	public int validateForm(String username, String password) {

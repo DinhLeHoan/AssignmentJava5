@@ -12,8 +12,8 @@
     <div style="color: red">${error}</div>
 </c:if>
 <form action="/login" method="post">
-    Tên đăng nhập: <input type="text" name="username" required><br>
-    Mật khẩu: <input type="password" name="password" required><br>
+    Tên đăng nhập: <input type="text" name="username"><br>
+    Mật khẩu: <input type="password" name="password"><br>
     <input type="submit" value="Đăng nhập">
 </form>
 </body>

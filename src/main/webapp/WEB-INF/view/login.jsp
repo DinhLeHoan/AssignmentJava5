@@ -18,17 +18,6 @@
 </style>
 </head>
 <body>
-
-<h2>Đăng nhập</h2>
-<c:if test="${not empty error}">
-    <div style="color: red">${error}</div>
-</c:if>
-<form action="/login" method="post">
-    Tên đăng nhập: <input type="text" name="username"><br>
-    Mật khẩu: <input type="password" name="password"><br>
-    <input type="submit" value="Đăng nhập">
-</form>
-=======
 	<div
 		class="container-fluid full-height d-flex flex-column justify-content-center">
 		<div class="row justify-content-center">
@@ -40,18 +29,16 @@
 						</div>
 						<h3 class="h1 text-center mb-4" style="color: #264653;">Đăng
 							nhập</h3>
-						<form action="<c:url value='/login' />" method="post">
+						<form action="login" method="post">
 							<div class="mb-2">
-								<label for="username" class="form-label"
-									style="color: #264653;">Username</label> <input type="text"
-									class="form-control"  name="username" id="username"
-									placeholder="Enter your username">
+								<label for="username" class="form-label" style="color: #264653;">Username</label>
+								<input type="text" class="form-control" name="username"
+									id="username" placeholder="Enter your username">
 							</div>
 							<div class="mb-3">
-								<label for="password"  class="form-label"
-									style="color: #264653;">Password</label> <input type="password"
-									class="form-control" name="password" id="password"
-									placeholder="Enter your password">
+								<label for="password" class="form-label" style="color: #264653;">Password</label>
+								<input type="password" class="form-control" name="password"
+									id="password" placeholder="Enter your password">
 							</div>
 							<div class="row mb-1">
 								<div class="col">
@@ -66,7 +53,7 @@
 								<div style="color: red">${error}</div>
 							</c:if>
 							<button type="submit" class="btn btn-primary w-100 mb-4"
-								style="background-color: #264653;">Login</button>
+								style="background-color: #264653;">Đăng Nhập</button>
 						</form>
 					</div>
 				</div>

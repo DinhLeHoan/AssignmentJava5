@@ -18,6 +18,17 @@
 </style>
 </head>
 <body>
+
+<h2>Đăng nhập</h2>
+<c:if test="${not empty error}">
+    <div style="color: red">${error}</div>
+</c:if>
+<form action="/login" method="post">
+    Tên đăng nhập: <input type="text" name="username"><br>
+    Mật khẩu: <input type="password" name="password"><br>
+    <input type="submit" value="Đăng nhập">
+</form>
+=======
 	<div
 		class="container-fluid full-height d-flex flex-column justify-content-center">
 		<div class="row justify-content-center">
@@ -66,5 +77,6 @@
 	<!-- Include Bootstrap JS (optional) -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

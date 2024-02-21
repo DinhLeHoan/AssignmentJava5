@@ -36,6 +36,10 @@ public class Product {
     @Nationalized
     private String note;
     
+    @Column(name = "image", unique = true, nullable = false)
+    @Nationalized
+    private String image;
+    
     @ManyToOne
     @JoinColumn(name = "tagId", nullable = false)
     private TagProduct tag;

@@ -22,5 +22,7 @@ public class BillModel {
 
     private String customerType;
 
-    private StaffModel staff;
+    private Integer staffId;
+    
+    private Boolean isPaid;
 }

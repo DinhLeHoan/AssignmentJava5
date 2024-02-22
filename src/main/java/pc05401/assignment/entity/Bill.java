@@ -47,4 +47,7 @@ public class Bill {
     @ManyToOne
     @JoinColumn(name = "staffId", nullable = false)
     private Staff staff;
+    
+    @Column(name = "isPaid", nullable = false)
+    private Boolean isPaid;
 }

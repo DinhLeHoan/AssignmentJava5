@@ -39,4 +39,8 @@ public class Ingredient {
 
     @Column(name = "note")
     private String note;
+    
+    @Column(name = "image")
+    @Nationalized
+    private String image;
 }

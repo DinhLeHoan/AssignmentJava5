@@ -18,17 +18,31 @@ public class MaterialController {
 		
 		
 		
-		return checkStaff("checkMaterials") ;
+		return checkAdmin("checkMaterials") ;
 	}
 	
 	@GetMapping("materialManager")
 	public String materialManager() {
 		
 		
-		return checkStaff("materialManager") ;
+		return checkAdmin("materialManager") ;
 	}
 	
-	public String checkStaff(String path) {
+	@GetMapping("materialAdd")
+	public String showMaterialAdd() {
+		
+		
+		return checkAdmin("materialAdd") ;
+	}
+	
+	@GetMapping("materialUpdate")
+	public String showMaterialUpdate() {
+		
+		
+		return checkAdmin("materialUpdate") ;
+	}
+	
+	public String checkAdmin(String path) {
 		StaffModel account = session.get("staff") ;
 		if(account == null) {
 			return "redirect:/login" ;
@@ -38,5 +52,7 @@ public class MaterialController {
 		}
 		return path;
 	}
+	
+	
 	
 }

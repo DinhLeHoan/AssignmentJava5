@@ -284,65 +284,55 @@ a.sidebar-link:hover {
 
 	<div class="wrapper">
 		<aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="/home">Súp Trần Gia</a>
-                </div>
-            </div>
-            <div class="sidebar-logo">
-                <img
-                    src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
-                    style="width: 50%; margin-left: 50px;" alt="">
-                <h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
-            </div>
-            <div class="sidebar-profile"></div>
-            <ul class="sidebar-nav">
-                <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
-                                lý kho</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
-                                lý nhân viên</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
-                        <span>Lịch làm việc</span>
-                </a></li>
-                <li class="sidebar-item"><a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/home" class="sidebar-link">
-                        <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
-                            sử hóa đơn</span>
-                </a></li>
-            </ul>
-            <div class="sidebar-footer">
+			<div class="d-flex">
+				<button class="toggle-btn" type="button">
+					<i class="lni lni-grid-alt"></i>
+				</button>
+				<div class="sidebar-logo">
+					<a href="#">Súp Trần Gia</a>
+				</div>
+			</div>
+			<div class="sidebar-logo">
+				<img
+					src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
+					style="width: 50%; margin-left: 50px;" alt="">
+				<h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
+			</div>
+			<div class="sidebar-profile"></div>
+			<ul class="sidebar-nav">
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-house-lock"></i> <span>Quản lý kho</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-people"></i> <span>Quản lý nhân viên</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="lni lni-agenda"></i> <span>Quản lý sản phẩm</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-calendar-check-fill"></i> <span>Lịch làm
+							việc</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-bell"></i> <span>Thông báo</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-clock-history"></i> <span>Lịch sử hóa đơn</span>
+				</a></li>
+			</ul>
+			<div class="sidebar-footer">
 
 
-                <a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
-                        đặt</span>
-                </a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </aside>
+				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
+						đặt</span>
+				</a> <a href="#" class="sidebar-link"> <i class="lni lni-exit"></i>
+					<span>Logout</span>
+				</a>
+			</div>
+		</aside>
 		<div class="main p-3">
 			<div class="text-center">
 				<h1 class="my-5">Sản phẩm</h1>

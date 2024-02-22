@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pc05401.assignment.entity.Staff;
+import pc05401.assignment.model.StaffModel;
 import pc05401.assignment.repository.StaffRepository;
+import pc05401.assignment.service.SessionService;
 
 @Controller
 public class RegisterController {
-
+	
+	@Autowired
+	SessionService session;
+	
 	String regex = "^[a-zA-Z0-9]+$";
 	String regexPhone = "^0\\d{9}$";
 	String regexName = "^[\\p{L} ]+$";
@@ -22,6 +27,15 @@ public class RegisterController {
 
 	@GetMapping("register")
 	public String showRegistrationForm() {
+		
+		StaffModel account = session.get("staff") ;
+		if(account == null) {
+			return "redirect:/login" ;
+		}
+		if (account.getRole().equals("USER") || account.getRole().equals("CASHIER")) {
+			return "redirect:/home" ;
+		}
+		
 		return "register";
 	}
 

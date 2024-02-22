@@ -29,6 +29,12 @@ public class HomeController {
 
 	@GetMapping("home")
 	public String showHome(Model model) {
+		
+		StaffModel account = session.get("staff") ;
+		if(account == null) {
+			return "redirect:/login" ;
+		}
+		
 		model.addAttribute("staff", session.get("staff"));
 
 		List<Bill> unpaidBills = billRepository.findAllByIsPaidFalse();

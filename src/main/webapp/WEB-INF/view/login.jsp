@@ -43,7 +43,8 @@
 							<div class="row mb-1">
 								<div class="col">
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input"
+										<input type="checkbox" class="form-check-input" name="rememberMe"
+											
 											id="rememberMe"> <label class="form-check-label"
 											for="rememberMe" style="color: #264653;">Nhớ mật khẩu</label>
 									</div>

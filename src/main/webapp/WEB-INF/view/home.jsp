@@ -238,7 +238,7 @@ a.sidebar-link:hover {
 				<img
 					src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
 					style="width: 50%; margin-left: 50px;" alt="">
-				<h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
+				<h6 style="color: white; margin-left: 50px; margin-top: 10px">${staff.name}</h6>
 			</div>
 			<div class="sidebar-profile"></div>
 			<ul class="sidebar-nav">
@@ -270,7 +270,7 @@ a.sidebar-link:hover {
 
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
-				</a> <a href="#" class="sidebar-link"> <i class="lni lni-exit"></i>
+				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
 					<span>Logout</span>
 				</a>
 			</div>
@@ -290,7 +290,7 @@ a.sidebar-link:hover {
 											<div class="title-box">Hóa đơn 1</div>
 											<div class="square-content p-3">
 												<div class="square-content-money text-center">
-													<h2>1.000.000 VND</h2>
+													<h2>${bill.total}VND</h2>
 												</div>
 												<div class="d-flex flex-row-reverse">
 													<button
@@ -302,96 +302,6 @@ a.sidebar-link:hover {
 										</div>
 									</div>
 
-									<div
-										class="col-12 col-md-6 col-lg-6 custom-col-sm custom-col-md custom-col-lg mb-3">
-										<!-- Thêm lớp custom-col -->
-										<div class="square-box">
-											<div class="title-box">Hóa đơn 2</div>
-											<div class="square-content p-3">
-												<div class="square-content-money text-center">
-													<h2>100 VND</h2>
-												</div>
-												<div class="d-flex flex-row-reverse">
-													<button
-														class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
-													<button
-														class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										class="col-12 col-md-6 col-lg-6 custom-col-sm custom-col-md custom-col-lg mb-3">
-										<!-- Thêm lớp custom-col -->
-										<div class="square-box">
-											<div class="title-box">Hóa đơn 3</div>
-											<div class="square-content p-3">
-												<div class="square-content-money text-center">
-													<h2>1.000 VND</h2>
-												</div>
-												<div class="d-flex flex-row-reverse">
-													<button
-														class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
-													<button
-														class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										class="col-12 col-md-6 col-lg-6 custom-col-sm custom-col-md custom-col-lg mb-3">
-										<!-- Thêm lớp custom-col -->
-										<div class="square-box">
-											<div class="title-box">Hóa đơn 4</div>
-											<div class="square-content p-3">
-												<div class="square-content-money text-center">
-													<h2>100.000 VND</h2>
-												</div>
-												<div class="d-flex flex-row-reverse">
-													<button
-														class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
-													<button
-														class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										class="col-12 col-md-6 col-lg-6 custom-col-sm custom-col-md custom-col-lg mb-3">
-										<!-- Thêm lớp custom-col -->
-										<div class="square-box">
-											<div class="title-box">Hóa đơn 5</div>
-											<div class="square-content p-3">
-												<div class="square-content-money text-center">
-													<h2>10.000 VND</h2>
-												</div>
-												<div class="d-flex flex-row-reverse">
-													<button
-														class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
-													<button
-														class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										class="col-12 col-md-6 col-lg-6 custom-col-sm custom-col-md custom-col-lg mb-3">
-										<!-- Thêm lớp custom-col -->
-										<div class="square-box">
-											<div class="title-box">Hóa đơn 6</div>
-											<div class="square-content p-3">
-												<div class="square-content-money text-center">
-													<h2>10.000.000 VND</h2>
-												</div>
-												<div class="d-flex flex-row-reverse">
-													<button
-														class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
-													<button
-														class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>

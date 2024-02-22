@@ -89,7 +89,7 @@ public class RegisterController {
 				staff.setSalary(0.0);
 				staff.setPhone(phone);
 				staffRepository.save(staff);
-				return "redirect:/home";
+				return "redirect:/employeeManager";
 			} catch (Exception e) {
 				return "register";
 			}

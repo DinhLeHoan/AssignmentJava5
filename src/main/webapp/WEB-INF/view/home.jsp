@@ -238,7 +238,7 @@ a.sidebar-link:hover {
 				<img
 					src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
 					style="width: 50%; margin-left: 50px;" alt="">
-				<h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
+				<h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
 			</div>
 			<div class="sidebar-profile"></div>
 			<ul class="sidebar-nav">

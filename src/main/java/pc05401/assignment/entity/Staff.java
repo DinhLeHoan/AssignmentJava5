@@ -44,4 +44,7 @@ public class Staff {
 	
 	@Column(name = "phone",  unique = true, nullable = false)
 	private String phone;
+	
+    @Column(name = "rememberMeToken")
+    private String rememberMeToken; 
 }

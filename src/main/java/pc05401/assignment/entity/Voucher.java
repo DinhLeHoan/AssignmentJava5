@@ -33,8 +33,8 @@ public class Voucher {
     @Column(name = "discount")
     private double discount;
 
-    @Column(name = "percentDiscount")
-    private double percentDiscount;
+    @Column(name = "percentage")
+    private double percentage;
 
     @Column(name = "createDate", nullable = false)
     private Date createDate;

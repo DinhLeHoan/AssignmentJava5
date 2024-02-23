@@ -227,7 +227,7 @@
                     <i class="lni lni-grid-alt"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#">Súp Trần Gia</a>
+                    <a href="/home">Súp Trần Gia</a>
                 </div>
             </div>
             <div class="sidebar-logo">
@@ -240,25 +240,25 @@
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/checkMaterials" class="sidebar-link">
                         <i class="bi bi-house-lock"></i>
                         <span>Quản lý kho</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/employeeManager" class="sidebar-link">
                         <i class="bi bi-people"></i>
                         <span>Quản lý nhân viên</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/productManager" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Quản lý sản phẩm</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/registerShift" class="sidebar-link">
                         <i class="bi bi-calendar-check-fill"></i>
                         <span>Lịch làm việc</span>
                     </a>
@@ -270,13 +270,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/home" class="sidebar-link">
                         <i class="bi bi-receipt-cutoff"></i>
                         <span>Hóa đơn</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/historyInvoice" class="sidebar-link">
                         <i class="bi bi-clock-history"></i>
                         <span>Lịch sử hóa đơn</span>
                     </a>
@@ -290,7 +290,7 @@
                     <span>Cài đặt</span>
                 </a>
 
-                <a href="#" class="sidebar-link">
+                <a href="/logout" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>

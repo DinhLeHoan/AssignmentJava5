@@ -344,73 +344,92 @@ a.sidebar-link:hover {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí nhân viên</h1>
-				<div class="container-fluid d-flex flex-column">
-					<div class="row justify-content-center">
-						<div class="col-md-12 col-lg-10 col-xl-8">
-							<div class="container">
-
-								<!-- Tabs Content -->
-								
-										<table class="table table-0">
-											<tr>
-												<th>Tên nhân viên</th>
-												<th>Tài khoản đăng nhập</th>
-												<th>Số điện thoại</th>
-												<th>Lương</th>
-												<th>Trạng thái</th>
-												<th>Loại tài khoản</th>
-												<th></th>
-												<th></th>
-											</tr>
-											<c:forEach var="staff" items="${staffList}">
-												<tr>
-													<td>${staff.name}</td>
-													<td>${staff.username}</td>
-													<td>${staff.phone}</td>
-													<td>${staff.salary}</td>
-													<td>${staff.active?'On':'Off'}</td>
-													<td>${staff.role}</td>
-													<td>
-														<a href="${pageContext.request.contextPath}/employeeUpdate?staffId=${staff.staffId}" type="button" class="btn btn-sm btn-secondary">Sửa</a>
-													</td>
-													<td>
-                                                        <a href="${pageContext.request.contextPath}/deleteStaff?id=${staff.staffId}" type="button" class="btn btn-sm btn-danger">Xóa</a>
-                                                    </td>
-												</tr>
-											</c:forEach>
-											<tr>
-											      <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-											      <td><a href="${pageContext.request.contextPath}/register" type="button" class="btn btn-primary">Thêm nhân viên mới</a></td>   
-											      
-											</tr>
-										</table>			
+				<form class="py-3" action="employeeUpdate" method="post">
+					<h1 class="my-3">Chỉnh sửa nhân viên</h1>
+					<input type="hidden" name="staffId" value="${staffEdit.staffId}">
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1"><i
+							class="fas fa-user" style="color: #264653;"></i></span> <input
+							type="text" class="form-control" placeholder="Họ và tên"
+							name="name" value="${staffEdit.name}" aria-label="FullName"
+							aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon3"><i
+							class="fas fa-phone-alt" style="color: #264653;"></i></span> <input
+							type="text" class="form-control" placeholder="Số điện thoại"
+							aria-label="PhoneNumber" name="phone" value="${staffEdit.phone}"
+							aria-describedby="basic-addon3">
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon4"><i
+							class="fas fa-user" style="color: #264653;"></i></span> <input
+							type="text" class="form-control" placeholder="Tên đăng nhập"
+							aria-label="Username" name="username"
+							value="${staffEdit.username}" aria-describedby="basic-addon4">
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon5"><i
+							class="fas fa-lock" style="color: #264653;"></i></span> <input
+							type="password" class="form-control" placeholder="Mật khẩu"
+							value="${staffEdit.password}" aria-label="Password" name="password"
+							aria-describedby="basic-addon5">
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon5"><i
+							class="bi bi-cash-coin"></i></span> <input type="number"
+							class="form-control" placeholder="Lương" name="salary"
+							value="${staffEdit.salary}" aria-label="number"
+							aria-describedby="basic-addon5">
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="active"
+									id="activeOn" value="true" ${staff.active ? 'checked' : ''}>
+								<label class="form-check-label" for="activeOn">Active</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="active"
+									id="activeOff" value="false" ${!staff.active ? 'checked' : ''}>
+								<label class="form-check-label" for="activeOff">Inactive</label>
 							</div>
 						</div>
 					</div>
-				</div>
+
+					<div class="input-group mb-3">
+						<label for="role" class="input-group-text">Role</label> <select
+							class="form-select" id="role" name="role">
+							<option value="USER" ${staff.role == 'USER' ? 'selected' : ''}>User</option>
+							<option value="CASHIER"
+								${staff.role == 'CASHIER' ? 'selected' : ''}>Cashier</option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary w-100 mb-3"
+						style="background-color: #264653;">Chỉnh sửa</button>
+				</form>
 			</div>
 		</div>
+	</div>
+	</div>
+	</div>
+	</div>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
-		<script>
-			const hamBurger = document.querySelector(".toggle-btn");
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+	<script>
+		const hamBurger = document.querySelector(".toggle-btn");
 
-			hamBurger.addEventListener("click", function() {
-				document.querySelector("#sidebar").classList.toggle("expand");
-			});
-		</script>
+		hamBurger.addEventListener("click", function() {
+			document.querySelector("#sidebar").classList.toggle("expand");
+		});
+	</script>
 </body>
 
 </html>

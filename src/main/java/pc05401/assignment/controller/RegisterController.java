@@ -28,15 +28,13 @@ public class RegisterController {
 	@GetMapping("register")
 	public String showRegistrationForm() {
 		
-		StaffModel account = session.get("staff") ;
-		if(account == null) {
-			return "redirect:/login" ;
-		}
-		if (account.getRole().equals("USER") || account.getRole().equals("CASHIER")) {
-			return "redirect:/home" ;
-		}
+		return checkStaff("register");
+	}
+	
+	@GetMapping("registerShift")
+	public String showRegisterShift() {
 		
-		return "register";
+		return checkStaff("registerShift");
 	}
 
 	@PostMapping("register")
@@ -124,5 +122,18 @@ public class RegisterController {
 		}
 		
 		return -1;
+	}
+	
+	public String checkStaff(String path) {
+		
+		StaffModel account = session.get("staff") ;
+		if(account == null) {
+			return "redirect:/login" ;
+		}
+		if (account.getRole().equals("USER") || account.getRole().equals("CASHIER")) {
+			return "redirect:/home" ;
+		}
+		
+		return path ;
 	}
 }

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí sản phẩm</title>
+    <title>Quản lí nguyên liệu</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -369,102 +369,59 @@
         <div class="main p-3">
             <div class="text-center">
                 <h1 class="my-5">
-                    Quản lí kho
+                    Quản lí nguyên liệu
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
-                        <div class="col-lg-1"></div>
                         <div class="col-md-12 col-lg-10 col-xl-8">
-                            <div class="card col-lg-10 mb-3" style="height: 85%;">
-                                <div class="card-header">
-                                    Danh sách nguyên liệu
-                                </div>
-    
-                                <div>
-                                    <table class="table table-responsive">
-                                        <thead>
-                                            <tr>
-                                                <th>STT</th>
-                                                <th>Tên nguyên liệu</th>
-                                                <th>Đơn vị</th>
-                                                <th>Tăng</th>
-                                                <th>Số lượng</th>
-                                                <th>Giảm</th>
-                                            </tr>
-                                        </thead>
-    
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Bào ngư</td>
-                                                <td>Kg</td>
-                                                <td> <a href="javascript:;" class="btn btn-primary mx-2">+</a></td>
-                                                <td>100</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-danger mx-2">-</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href="${pageContext.request.contextPath}/materialManager" type="button" class="btn btn-primary">Chỉnh sửa nguyên liệu</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-2"></div>
+                                            <form action="materialAdd" class="col-lg-6 col-md-8" method="post">
+                                                <h1 class="my-3">
+                                                    Thêm nguyên liệu
+                                                </h1>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Tên nguyên liệu"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="name">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="lni lni-agenda"></i></span>
+                                                    <select class="form-select" id="country" name="country" >
+                                                        <option selected>Đơn vị</option>
+                                                        <option value="1">Kg</option>
+                                                        <option value="2">Cái</option>
+                                                        <option value="3">Quả</option>
+                                                    </select>
+                                                </div>                                               
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
+                                                    <input type="number" class="form-control" placeholder="Số lượng"
+                                                        aria-label="text" aria-describedby="basic-addon5" name="amount">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="productImage"
+                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
+                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
+                                                        phẩm</label>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
+                                                    <input type="number" class="form-control" placeholder="Số lượng tối thiểu"
+                                                        aria-label="text" aria-describedby="basic-addon5" name="minAmount">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-bookmark"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Ghi chú"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="note">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mb-3"
+                                                    style="background-color: #264653;">Thêm nguyên liệu</button>
+                                            </form>
+                                        </div>
+
                             </div>
                         </div>
                     </div>

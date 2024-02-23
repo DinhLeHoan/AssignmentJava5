@@ -23,4 +23,24 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
 	@Modifying
 	@Query("DELETE FROM Bill b WHERE b.billId = :billId")
 	void deleteBillById(@Param("billId") int billId);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Bill b SET b.total = b.total + :price WHERE b.billId = :billId")
+	void updateTotalByAddingPrice(@Param("billId") int billId, @Param("price") double price);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Bill b SET b.totalWithVoucher = b.totalWithVoucher + :price WHERE b.billId = :billId")
+	void updateTotalWithVoucherByAddingPrice(@Param("billId") int billId, @Param("price") double price);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Bill b SET b.total = b.total - :price WHERE b.billId = :billId")
+	void updateTotalBySubtractingPrice(@Param("billId") int billId, @Param("price") double price);
+
+	@Transactional
+	@Modifying
+	@Query("UPDATE Bill b SET b.totalWithVoucher = b.totalWithVoucher - :price WHERE b.billId = :billId")
+	void updateTotalWithVoucherBySubtractingPrice(@Param("billId") int billId, @Param("price") double price);
 }

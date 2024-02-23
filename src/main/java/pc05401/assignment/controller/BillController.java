@@ -101,15 +101,37 @@ public class BillController {
 
 	@PostMapping("addProductToBill/{billId}/{productId}")
 	public String addProductToBill(@PathVariable int billId, @PathVariable int productId,
-			@RequestParam Integer amount) {
-		for (int i = 0; i < amount; i++) {
-			BillDetail billDetail = new BillDetail();
-			billDetail.setBill(billRepository.findById(billId).orElse(null));
-			billDetail.setProduct(productRepository.findById(productId).orElse(null));
+	        @RequestParam Integer amount) {
+	    Bill bill = billRepository.findById(billId).orElse(null);
 
-			billDetailRepository.save(billDetail);
-		}
-		return "redirect:/bill/menu/" + billId + "/0";
+	    for (int i = 0; i < amount; i++) {
+	        BillDetail billDetail = new BillDetail();
+	        billDetail.setBill(bill);
+	        billDetail.setProduct(productRepository.findById(productId).orElse(null));
+
+	        billDetailRepository.save(billDetail);
+
+	        double productPrice = billDetail.getProduct().getPrice();
+	        billRepository.updateTotalByAddingPrice(billId, productPrice);
+	        billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
+	    }
+
+	    return "redirect:/bill/menu/" + billId + "/0";
+	}
+
+	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
+	public String minusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
+	    Bill bill = billRepository.findById(billId).orElse(null);
+
+	    for (int i = 0; i < amount; i++) {
+	        billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
+
+	        double productPrice = productRepository.findById(productId).orElse(null).getPrice();
+	        billRepository.updateTotalBySubtractingPrice(billId, productPrice);
+	        billRepository.updateTotalWithVoucherBySubtractingPrice(billId, productPrice);
+	    }
+
+	    return "redirect:/bill/view/" + billId;
 	}
 
 	@PostMapping("/plusProduct/{billId}/{productId}")
@@ -123,16 +145,16 @@ public class BillController {
 
 	}
 
-	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
-	public String plusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
-
-		for (int i = 0; i < amount; i++) {
-			billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
-
-		}
-		return "redirect:/bill/view/" + billId;
-
-	}
+//	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
+//	public String plusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
+//
+//		for (int i = 0; i < amount; i++) {
+//			billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
+//
+//		}
+//		return "redirect:/bill/view/" + billId;
+//
+//	}
 
 	@GetMapping("/home/{billId}")
 	public String paid(@PathVariable int billId) {

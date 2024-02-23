@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -375,7 +377,7 @@ th, td {
 								<div class="row">
 									<div class="col-lg-1"></div>
 									<div class="col-lg-10">
-										<div >
+										<div>
 											<table class="table table-responsive">
 												<tr>
 													<th>STT</th>
@@ -384,16 +386,19 @@ th, td {
 													<th>Số lượng</th>
 													<th></th>
 												</tr>
-												<tr>
-													<td>1</td>
-													<td>Cua</td>
-													<td>Kg</td>
-													<td>100</td>
-													<th>
-														<a href="/materialUpdate" type="button" class="btn btn-success">Sửa</a>
-														<a href="" type="button" class="btn btn-danger">Xóa</a>
-													</th>
-												</tr>
+												<c:forEach var="item" items="${listItem}">
+
+													<tr>
+														<td>${item.ingredientId }</td>
+														<td>${item.name }</td>
+														<td>${item.unit }</td>
+														<td>${item.amount }</td>
+														<th><a href="/materialUpdate/${item.ingredientId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="/deleteMaterial/${item.ingredientId}" type="button"
+															class="btn btn-danger">Xóa</a></th>
+													</tr>
+												</c:forEach>
 												<tr>
 													<td></td>
 													<td></td>

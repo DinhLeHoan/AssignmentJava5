@@ -389,9 +389,9 @@
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="country" >
-                                                        <option selected>Đơn vị</option>
-                                                        <option value="1">Kg</option>
+                                                    <select class="form-select" id="country" name="unit" >
+                                                        <option >Đơn vị</option>
+                                                        <option selected value="1">Kg</option>
                                                         <option value="2">Cái</option>
                                                         <option value="3">Quả</option>
                                                     </select>
@@ -401,12 +401,7 @@
                                                     <input type="number" class="form-control" placeholder="Số lượng"
                                                         aria-label="text" aria-describedby="basic-addon5" name="amount">
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="productImage"
-                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
-                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
-                                                        phẩm</label>
-                                                </div>
+
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
                                                     <input type="number" class="form-control" placeholder="Số lượng tối thiểu"

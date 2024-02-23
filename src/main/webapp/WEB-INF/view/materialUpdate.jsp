@@ -402,12 +402,7 @@
                                                     <input type="number" class="form-control" placeholder="Số lượng"
                                                         aria-label="text" aria-describedby="basic-addon5" name="amount" value="${ingredientEdit.amount}">
                                                 </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="productImage"
-                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
-                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
-                                                        phẩm</label>
-                                                </div>
+                                      
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
                                                     <input type="number" class="form-control" placeholder="Số lượng tối thiểu"

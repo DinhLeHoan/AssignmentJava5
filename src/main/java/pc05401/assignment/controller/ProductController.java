@@ -16,6 +16,31 @@ public class ProductController {
 	@GetMapping("productManager") 
 	public String showProductManager() {
 		
+		return checkAdmin("productManager") ;
+	}
+	
+	@GetMapping ("productUpdate")
+	public String showProductUpdate() {
+		return checkAdmin("productUpdate") ;
+	}
+	
+	@GetMapping ("productAdd")
+	public String showProductAdd() {
+		return checkAdmin("productAdd") ;
+	}
+	
+	@GetMapping ("tagProductUpdate")
+	public String showTagProductUpdate() {
+		return checkAdmin("tagProductUpdate") ;
+	}
+	
+	@GetMapping ("tagProductAdd")
+	public String showTagProductAdd() {
+		return checkAdmin("tagProductAdd") ;
+	}
+	
+	
+	public String checkAdmin(String path) {
 		StaffModel account = session.get("staff") ;
 		if(account == null) {
 			return "redirect:/login" ;
@@ -23,8 +48,9 @@ public class ProductController {
 		if (account.getRole().equals("USER") || account.getRole().equals("CASHIER")) {
 			return "redirect:/home" ;
 		}
-		
-		return "productManager" ;
+		return path;
 	}
+	
+	
 	
 }

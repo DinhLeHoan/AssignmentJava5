@@ -12,7 +12,7 @@ public class VoucherDetailModel {
 
     private int voucherDetailId;
 
-    private BillModel bill;
+    private Integer billID;
 
     private Voucher voucher;
 

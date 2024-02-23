@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -240,6 +242,12 @@ a.sidebar-link:hover {
 	font-size: 1.2rem;
 }
 
+.product-img img {
+	width: 60%; /* Adjust the width as needed */
+	height: auto; /* Maintain the aspect ratio */
+	border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
 /* Thêm lớp CSS mới */
 @media ( min-width : 992px) {
 	/* Màn hình lớn hơn hoặc bằng 992px */
@@ -352,109 +360,89 @@ a.sidebar-link:hover {
 							<div class="container">
 								<!-- Tabs Navigation -->
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="all-tab"
-											data-bs-toggle="tab" data-bs-target="#all" type="button"
-											role="tab" aria-controls="all" aria-selected="true">Tất
-											cả</button>
-									</li>
+									<li class="nav-item" role="presentation"><a type="button"
+										href="${pageContext.request.contextPath}/bill/menu/${billId}/0"
+										class="nav-link active" id="0" data-bs-target="#0"
+										type="button" role="tab" aria-controls="0"
+										aria-selected="true">Tất cả</a></li>
 									<c:forEach var="tag" items="${tagList}">
-										<li class="nav-item" role="presentation">
-											<button class="nav-link" id="${tag.tagId}-tab"
-												data-bs-toggle="tab" data-bs-target="#'${tag.tagId}'"
-												type="button" role="tab" aria-controls="${tag.tagId}"
-												aria-selected="false">${tag.name}</button>
+										<li class="nav-item" role="presentation"><a type="button"
+											href="${pageContext.request.contextPath}/bill/menu/${billId}/${tag.tagId}"
+											class="nav-link" id="${tag.tagId}-tab"
+											data-bs-target="#'${tag.tagId}'" role="tab"
+											aria-controls="${tag.tagId}" aria-selected="false">${tag.name}</a>
 										</li>
 									</c:forEach>
 								</ul>
 
 								<!-- Tabs Content -->
 								<div class="tab-content" id="myTabContent">
-									<!-- Tab: Súp -->
-									<div class="tab-pane fade show active" id="all" role="tabpanel"
-										aria-labelledby="all-tab">
-										<div class="row border product">
-											<div class="col-4">
-												<img
-													src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/428603185_430935795990313_6912678684582224430_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeGBSQd7V9XssIrkt76Z1y7GNm3XJEKq5IM2bdckQqrkg5LfvyPRPUWm2bJni2D6b3SHm1gSDW04Oax-i4UJDUx4&_nc_ohc=Ziod3x08f6YAX_e9Akw&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfC1ag--0SLI359ihHYCO9BH9r0c_fhcHuA7hgA9VA_szg&oe=65DAF35A"
-													alt="Product Image" class="img-fluid product-img">
-											</div>
-											<div class="col-8 product-info">
-												<div class="row">
-													<div class="col-12">
-														<h5 class="mb-0">Súp Trần Gia Đặc Biệt</h5>
-														<p class="text-muted mb-0">80.000 Đ</p>
-													</div>
-												</div>
-												<div class="row mt-3">
-													<div class="col-12">
-														<button class="btn btn-secondary me-2">
-															<i class="fas fa-minus"></i>
-														</button>
-														<span class="me-2">1</span>
-														<button class="btn btn-secondary me-2">
-															<i class="fas fa-plus"></i>
-														</button>
-														<button class="btn btn-danger me-2 mt-2">
-															<i class="fas fa-trash"></i> Xóa
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row border product">
-											<div class="col-4">
-												<img
-													src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/428603185_430935795990313_6912678684582224430_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeGBSQd7V9XssIrkt76Z1y7GNm3XJEKq5IM2bdckQqrkg5LfvyPRPUWm2bJni2D6b3SHm1gSDW04Oax-i4UJDUx4&_nc_ohc=Ziod3x08f6YAX_e9Akw&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfC1ag--0SLI359ihHYCO9BH9r0c_fhcHuA7hgA9VA_szg&oe=65DAF35A"
-													alt="Product Image" class="img-fluid product-img">
-											</div>
-											<div class="col-8 product-info">
-												<div class="row">
-													<div class="col-12">
-														<h5 class="mb-0">Súp Trần Gia Đặc Biệt</h5>
-														<p class="text-muted mb-0">80.000 Đ</p>
-													</div>
-												</div>
-												<div class="row mt-3">
-													<div class="col-12">
-														<button class="btn btn-secondary me-2">
-															<i class="fas fa-minus"></i>
-														</button>
-														<span class="me-2">1</span>
-														<button class="btn btn-secondary me-2">
-															<i class="fas fa-plus"></i>
-														</button>
-														<button class="btn btn-danger me-2 mt-2">
-															<i class="fas fa-trash"></i> Xóa
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 
-									<!-- Tab: Súp App -->
-									<!-- Add similar markup for other tabs (Súp App, Sâm, Topping) -->
+									<c:forEach var="product" items="${productList}">
+										<div class="row border product">
+											<!-- Product image and information -->
+											<div class="col-4 product-img">
+												<img
+													src="https://imagestrangia.blob.core.windows.net/image/${product.image}">
+											</div>
+											<div class="col-8 product-info">
+												<div class="row">
+													<div class="col-12">
+														<h5 class="mb-0">${product.name}</h5>
+														<p class="text-muted mb-0">${product.price}Đ</p>
+													</div>
+												</div>
+												<div class="row mt-3">
+													<div class="col-12">
+
+														<button class="btn btn-secondary me-2 quantity-btn"
+															data-operation="decrease">
+															<i class="fas fa-minus"></i>
+														</button>
+
+														<button class="btn btn-secondary me-2 quantity-btn"
+															data-operation="increase">
+															<i class="fas fa-plus"></i>
+														</button>
+														<form
+															action="${pageContext.request.contextPath}/addProductToBill/${billId}/${product.productId}"
+															method="post">
+															<input type="number" name="amount"
+																class="quantity-input form-control me-2" value="0"
+																min="0">
+															<button type="submit"
+																class="btn btn-primary me-2 mt-2 add-to-cart-btn">
+																<i class="bi bi-bag"></i> Thêm
+															</button>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
+
 								</div>
-							</div>
 
+
+							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="total-amount">
-			<div class="container text-center">
-				<div class="row">
-					<div class="col btn btn-secondary m-2">Ghim hóa đơn</div>
-					<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
-				</div>
-			</div>
-			<div class="d-flex justify-content-end align-items-center px-3 py-2">
-				<h5 class="me-3">Tổng tiền:</h5>
-				<span class="fw-bold">$100.00</span>
+	</div>
+	<div class="total-amount">
+		<div class="container text-center">
+			<div class="row">
+				<a href="${pageContext.request.contextPath}/bill/view/${billId}"><div class="col btn btn-secondary m-2">Ghim hóa đơn</div></a>
+				<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
 			</div>
 		</div>
+		<!--  <div class="d-flex justify-content-end align-items-center px-3 py-2">
+			<h5 class="me-3">Tổng tiền:</h5>
+			<span class="fw-bold">$100.00</span>
+		</div>-->
 	</div>
 
 	<script
@@ -463,13 +451,38 @@ a.sidebar-link:hover {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-	<script>
-		const hamBurger = document.querySelector(".toggle-btn");
 
-		hamBurger.addEventListener("click", function() {
-			document.querySelector("#sidebar").classList.toggle("expand");
-		});
-	</script>
+	<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quantityInputs = document.querySelectorAll('.quantity-input');
+        const quantityButtons = document.querySelectorAll('.quantity-btn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+        quantityButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const operation = this.getAttribute('data-operation');
+                const input = this.closest('.row').querySelector('.quantity-input');
+                let value = parseInt(input.value);
+
+                if (operation === 'increase') {
+                    value++;
+                } else if (operation === 'decrease' && value > 0) {
+                    value--;
+                }
+
+                input.value = value;
+            });
+        });
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const quantity = this.closest('.row').querySelector('.quantity-input').value;
+                // Add logic to handle adding to the cart with the selected quantity
+                console.log(`Adding to cart with quantity: ${quantity}`);
+            });
+        });
+    });
+</script>
 
 </body>
 

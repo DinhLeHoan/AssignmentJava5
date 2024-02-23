@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import pc05401.assignment.model.StaffModel;
+
 import jakarta.transaction.Transactional;
 import pc05401.assignment.entity.Bill;
 import pc05401.assignment.entity.BillDetail;
@@ -24,6 +27,7 @@ import pc05401.assignment.entity.Product;
 import pc05401.assignment.entity.TagProduct;
 import pc05401.assignment.model.ProductCountBill;
 import pc05401.assignment.repository.BillDetailRepository;
+
 import pc05401.assignment.repository.BillRepository;
 import pc05401.assignment.repository.ProductRepository;
 import pc05401.assignment.repository.TagProductRepository;
@@ -45,6 +49,10 @@ public class BillController {
 
 	@GetMapping("bill/view/{billId}")
 	public String viewBill(@PathVariable int billId, Model model) {
+		StaffModel account = session.get("staff") ;
+		if(account == null) {
+			return "redirect:/login" ;
+		}
 		model.addAttribute("staff", session.get("staff"));
 		// infor bill
 		List<BillDetail> billInfors = billDetailRepository.findByBill_BillId(billId);

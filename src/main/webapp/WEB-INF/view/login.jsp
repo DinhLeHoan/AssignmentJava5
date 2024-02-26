@@ -25,7 +25,7 @@
 				<div class="card border-0 p-4">
 					<div class="card-body">
 						<div class="mb-2 text-center">
-							<p class="text-muted">Đang xử lí thông tin...</p>
+							<!-- <p class="text-muted">Đang xử lí thông tin...</p> -->
 						</div>
 						<h3 class="h1 text-center mb-4" style="color: #264653;">Đăng
 							nhập</h3>

@@ -305,7 +305,7 @@
                 <img
                     src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
                     style="width: 50%; margin-left: 50px;" alt="">
-                <h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
+                <h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
             </div>
             <div class="sidebar-profile"></div>
             <ul class="sidebar-nav">
@@ -370,33 +370,12 @@
                                             phẩm</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="chinh-sua-tab" data-bs-toggle="tab"
-                                            data-bs-target="#chinh-sua" type="button" role="tab"
-                                            aria-controls="chinh-sua" aria-selected="false">Chỉnh sửa sản
-                                            phẩm</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="them-tab" data-bs-toggle="tab"
-                                            data-bs-target="#them" type="button" role="tab" aria-controls="them"
-                                            aria-selected="false">Thêm sản phẩm</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="loai-san-pham-tab" data-bs-toggle="tab"
                                             data-bs-target="#loai-san-pham" type="button" role="tab"
-                                            aria-controls="loai-san-pham" aria-selected="true">Bảng loại sản
+                                            aria-controls="loai-san-pham" aria-selected="true">Danh sách loại sản
                                             phẩm</button>
                                     </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="chinh-sua-tab" data-bs-toggle="tab"
-                                            data-bs-target="#chinh-sua" type="button" role="tab"
-                                            aria-controls="chinh-sua" aria-selected="false">Chỉnh sửa loại sản
-                                            phẩm</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="them-tab" data-bs-toggle="tab"
-                                            data-bs-target="#them" type="button" role="tab" aria-controls="them"
-                                            aria-selected="false">Thêm loại sản phẩm</button>
-                                    </li>
+                                   
                                 </ul>
 
                                 <!-- Tabs Content -->
@@ -420,199 +399,26 @@
                                                     <td>Súp</td>
                                                     <td>Súp bán trực tiếp tại quán</td>
                                                     <td>100000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
+                                                    <td>
+                                                        <a href="productUpdate" type="button" class="btn btn-success">Sửa</a>
+                                                        <a href="" type="button"  class="btn btn-danger">Xóa</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>2</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>200000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>3000000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>4000000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>500000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>6000000</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>Súp</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <td>Súp</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a href="productAdd" type="button" class="btn btn-primary">Thêm sản phẩm</a>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="tab-content mt-3" id="myTabContent">
-                                    <div class="tab-pane" id="chinh-sua" role="tabpanel"
-                                        aria-labelledby="chinh-sua-tab">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
-                                                <h1 class="my-3">
-                                                    Chỉnh sửa sản phẩm
-                                                </h1>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
-                                                        aria-label="productType" aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="country">
-                                                        <option selected>Tên loại sản phẩm</option>
-                                                        <option value="1">Súp</option>
-                                                        <option value="2">Súp App</option>
-                                                        <option value="3">Sâm</option>
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-currency-dollar"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Giá tiền"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="productImage"
-                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
-                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
-                                                        phẩm</label>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Chỉnh sửa</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="tab-content mt-3" id="myTabContent">
-                                    <div class="tab-pane" id="them" role="tabpanel" aria-labelledby="them-tab">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
-                                                <h1 class="my-3">
-                                                    Thêm sản phẩm
-                                                </h1>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
-                                                        aria-label="productType" aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="country">
-                                                        <option selected>Tên loại sản phẩm</option>
-                                                        <option value="1">Súp</option>
-                                                        <option value="2">Súp App</option>
-                                                        <option value="3">Sâm</option>
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-currency-dollar"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Giá tiền"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="productImage"
-                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
-                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
-                                                        phẩm</label>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Thêm Sản Phẩm</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="tab-content my-3" id="myTabContent">
                                     <div class="tab-pane fade show" id="loai-san-pham" role="tabpanel"
                                         aria-labelledby="loai-san-pham-tab" style="height: 450px;">
@@ -628,159 +434,29 @@
                                                     <td>1</td>
                                                     <td>Súp</td>
                                                     <td>Súp bán trực tiếp tại quán</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
+                                                    <td>
+                                                        <a href="tagProductUpdate" type="button" class="btn btn-success">Sửa</a>
+                                                        <a href="" type="button" class="btn btn-danger">Xóa</a>
+                                                    </td>
+                                                </tr>      
                                                 <tr>
-                                                    <td>2</td>
-                                                    <td>Súp App</td>
-                                                    <td>Súp bán thông qua các app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Sâm</td>
-                                                    <td>Sâm bán tại quán hoặc qua app</td>
-                                                    <th>
-                                                        <div class="btn btn-primary">Thêm</div>
-                                                        <div class="btn btn-success">Sửa</div>
-                                                        <div class="btn btn-danger">Xóa</div>
-                                                    </th>
-                                                </tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <a href="tagProductAdd" type="button" class="btn btn-primary">Thêm loại sản phẩm</a>
+                                                    </td>
+                                                </tr>                                   
                                             </table>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="tab-content mt-3" id="myTabContent">
-                                    <div class="tab-pane" id="chinh-sua" role="tabpanel"
-                                        aria-labelledby="chinh-sua-tab">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
-                                                <h1 class="my-3">
-                                                    Chỉnh sửa loại sản phẩm
-                                                </h1>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
-                                                        aria-label="productType" aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Chỉnh sửa</button>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="tab-content mt-3" id="myTabContent">
-                                    <div class="tab-pane" id="them" role="tabpanel" aria-labelledby="them-tab">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
-                                                <h1 class="my-3">
-                                                    Thêm loại sản phẩm
-                                                </h1>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Tên loại sản phẩm" aria-label="productType"
-                                                        aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Thêm Loại</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+        
+                                
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="total-amount">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col btn text-white m-2" style="background-color: #264653;">
-                            Quay về trang chủ
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end align-items-center px-3 py-2">
-                    <h5 class="me-3">Quyền truy cập: </h5>
-                    <span class="fw-bold">Admin</span>
                 </div>
             </div>
         </div>

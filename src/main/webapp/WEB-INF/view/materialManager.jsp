@@ -389,11 +389,11 @@ th, td {
 												<c:forEach var="item" items="${listItem}">
 
 													<tr>
-														<td>${item.ingredientId }</td>
-														<td>${item.name }</td>
-														<td>${item.unit }</td>
-														<td>${item.amount }</td>
-														<th><a href="/materialUpdate/${item.ingredientId}"
+														<td>${item.ingredientId}</td>
+														<td>${item.name}</td>
+														<td>${item.unit}</td>
+														<td>${item.amount}</td>
+														<th><a href="/materialUpdate?ingredientId=${item.ingredientId}"
 															type="button" class="btn btn-success">Sửa</a> <a
 															href="/deleteMaterial/${item.ingredientId}" type="button"
 															class="btn btn-danger">Xóa</a></th>

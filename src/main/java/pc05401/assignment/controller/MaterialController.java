@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.transaction.Transactional;
 import pc05401.assignment.entity.Ingredient;
@@ -81,8 +82,22 @@ public class MaterialController {
 	}
 
 	@GetMapping("materialUpdate")
-	public String showMaterialUpdate() {
+	public String showMaterialUpdate(@RequestParam("ingredientId") int ingredientId, Model model) {
+		model.addAttribute("ingredientEdit", ingredientRepository.findById(ingredientId).orElseThrow()) ;
+		return checkAdmin("materialUpdate");
+	}
+	
+	@PostMapping("materialUpdate")
+	public String updtMaterial(@RequestParam int ingredientId, @RequestParam String name, @RequestParam String unit, @RequestParam int amount, @RequestParam int minAmount, @RequestParam String note) {
+		Ingredient ingredientEdit = ingredientRepository.findById(ingredientId).orElseThrow() ;
 		
+		ingredientEdit.setName(name);
+		ingredientEdit.setUnit(unit);
+		ingredientEdit.setAmount(amount);
+		ingredientEdit.setMinAmount(minAmount);
+		ingredientEdit.setNote(note);
+		
+		ingredientRepository.save(ingredientEdit) ;
 		return checkAdmin("materialUpdate");
 	}
 

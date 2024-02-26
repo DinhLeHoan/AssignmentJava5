@@ -377,44 +377,43 @@
                             <div class="container">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form action="materialUpdate" class="col-lg-6 col-md-8" method="post">
+                                            <form action="materialAdd" class="col-lg-6 col-md-8" method="post">
                                                 <h1 class="my-3">
-                                                    Chỉnh sửa nguyên liệu
+                                                    Thêm nguyên liệu
                                                 </h1>
-                                                <input type="hidden" name="ingredientId" value="${ingredientEdit.ingredientId}">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
                                                     <input type="text" class="form-control" placeholder="Tên nguyên liệu"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="name" value="${ingredientEdit.name}">
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="name">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="unit" value="${ingredientEdit.unit}" >
-                                                        <option selected>Đơn vị</option>
-                                                        <option value="Kg">Kg</option>
-                                                        <option value="Cái">Cái</option>
-                                                        <option value="Quả">Quả</option>
+                                                    <select class="form-select" id="country" name="unit" >
+                                                        <option >Đơn vị</option>
+                                                        <option selected value="1">Kg</option>
+                                                        <option value="2">Cái</option>
+                                                        <option value="3">Quả</option>
                                                     </select>
                                                 </div>                                               
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
                                                     <input type="number" class="form-control" placeholder="Số lượng"
-                                                        aria-label="text" aria-describedby="basic-addon5" name="amount" value="${ingredientEdit.amount}">
+                                                        aria-label="text" aria-describedby="basic-addon5" name="amount">
                                                 </div>
-                                      
+
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
                                                     <input type="number" class="form-control" placeholder="Số lượng tối thiểu"
-                                                        aria-label="text" aria-describedby="basic-addon5" name="minAmount" value="${ingredientEdit.minAmount}">
+                                                        aria-label="text" aria-describedby="basic-addon5" name="minAmount">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-bookmark"></i></span>
                                                     <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="note" value="${ingredientEdit.note}">
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="note">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Chỉnh sửa</button>
+                                                    style="background-color: #264653;">Thêm nguyên liệu</button>
                                             </form>
                                         </div>
 

@@ -31,6 +31,9 @@ public class Product {
 
     @Column(name = "price", nullable = false)
     private double price;
+    
+    @Column(name = "active")
+    private boolean active ;
 
     @Column(name = "note")
     @Nationalized

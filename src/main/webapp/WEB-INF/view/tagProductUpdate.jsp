@@ -364,21 +364,16 @@
                                 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
+                                            <form action="tagProductUpdate" class="col-lg-6 col-md-8" method="post">
                                                 <h1 class="my-3">
                                                     Chỉnh sửa loại sản phẩm
                                                 </h1>
+                                                <input type="hidden" name="tagId" value="${tagProduct.tagId}">
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
+                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm" name="name" value="${tagProduct.name}"
                                                         aria-label="productType" aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
                                                     style="background-color: #264653;">Chỉnh sửa</button>

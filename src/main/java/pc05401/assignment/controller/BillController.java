@@ -124,7 +124,10 @@ public class BillController {
 	    Bill bill = billRepository.findById(billId).orElse(null);
 
 	    for (int i = 0; i < amount; i++) {
-	        billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
+//	        billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
+	    	
+	    	BillDetail detailDel = billDetailRepository.findFirstByBill_BillIdAndProduct_ProductId(billId, productId) ;
+	    	billDetailRepository.delete(detailDel) ;
 
 	        double productPrice = productRepository.findById(productId).orElse(null).getPrice();
 	        billRepository.updateTotalBySubtractingPrice(billId, productPrice);
@@ -138,9 +141,15 @@ public class BillController {
 	public String plusProduct(@PathVariable int billId, @PathVariable int productId) {
 		BillDetail billDetail = new BillDetail();
 		billDetail.setBill(billRepository.findById(billId).orElse(null));
+		System.out.println("Bill id: "+ billId);
 		billDetail.setProduct(productRepository.findById(productId).orElse(null));
+		System.out.println("Product id: "+ productId);
 
 		billDetailRepository.save(billDetail);
+		
+		double productPrice = billDetail.getProduct().getPrice();
+        billRepository.updateTotalByAddingPrice(billId, productPrice);
+        billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
 		return "redirect:/bill/view/" + billId;
 
 	}

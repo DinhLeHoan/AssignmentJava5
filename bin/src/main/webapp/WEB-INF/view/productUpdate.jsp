@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí nguyên liệu</title>
+    <title>Quản lí sản phẩm</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -163,14 +163,6 @@
         .main {
             margin-left: 40px;
         }
-
-        .square-box {
-            width: 100%;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.623);
-        }
-
         .title-box {
             top: 0;
             left: 0;
@@ -182,16 +174,6 @@
             padding: 10px;
             border-radius: 10px 10px 0 0;
         }
-
-        .square-content {
-            font-size: smaller;
-        }
-
-        .square-content-money {
-            height: 100px;
-            padding-top: 40px;
-        }
-
         .product-img {
             object-fit: cover;
             width: 100%;
@@ -244,6 +226,10 @@
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+        }
+
+        .input-group-text {
+            cursor: pointer;
         }
 
         /* Responsive styles for smaller screens */
@@ -369,49 +355,52 @@
         <div class="main p-3">
             <div class="text-center">
                 <h1 class="my-5">
-                    Quản lí nguyên liệu
+                    Quản lí sản phẩm
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
                         <div class="col-md-12 col-lg-10 col-xl-8">
                             <div class="container">
+                                
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form action="materialUpdate" class="col-lg-6 col-md-8" method="post">
+                                            <form action="productUpdate" method="post" class="col-lg-6 col-md-8">
                                                 <h1 class="my-3">
-                                                    Chỉnh sửa nguyên liệu
+                                                    Chỉnh sửa sản phẩm
                                                 </h1>
-                                                <input type="hidden" name="ingredientId" value="${ingredientEdit.ingredientId}">
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên nguyên liệu"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="name" value="${ingredientEdit.name}">
+                                                    <span class="input-group-text" id="basic-addon1"><i
+                                                            class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
+                                                        aria-label="productType" aria-describedby="basic-addon1">
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="unit" value="${ingredientEdit.unit}" >
-                                                        <option selected>Đơn vị</option>
-                                                        <option value="Kg">Kg</option>
-                                                        <option value="Cái">Cái</option>
-                                                        <option value="Quả">Quả</option>
+                                                    <select class="form-select" id="country" name="country">
+                                                        <option selected>Tên loại sản phẩm</option>
+                                                        <option value="1">Súp</option>
+                                                        <option value="2">Súp App</option>
+                                                        <option value="3">Sâm</option>
                                                     </select>
-                                                </div>                                               
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
-                                                    <input type="number" class="form-control" placeholder="Số lượng"
-                                                        aria-label="text" aria-describedby="basic-addon5" name="amount" value="${ingredientEdit.amount}">
-                                                </div>
-                                      
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i class="bi bi-123"></i></span>
-                                                    <input type="number" class="form-control" placeholder="Số lượng tối thiểu"
-                                                        aria-label="text" aria-describedby="basic-addon5" name="minAmount" value="${ingredientEdit.minAmount}">
                                                 </div>
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-journal-bookmark"></i></span>
+                                                    <span class="input-group-text" id="basic-addon5"><i
+                                                            class="bi bi-card-text"></i></span>
                                                     <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="note" value="${ingredientEdit.note}">
+                                                        aria-label="text" aria-describedby="basic-addon5">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon5"><i
+                                                            class="bi bi-currency-dollar"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Giá tiền"
+                                                        aria-label="text" aria-describedby="basic-addon5">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="productImage"
+                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
+                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
+                                                        phẩm</label>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
                                                     style="background-color: #264653;">Chỉnh sửa</button>
@@ -430,6 +419,12 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
         <script>
+            document.getElementById("productImage").addEventListener("change", function () {
+                // Lấy ra tên file đã chọn
+                var fileName = this.files[0].name;
+                // Hiển thị tên file lên label
+                this.nextElementSibling.innerText = fileName;
+            });
             const hamBurger = document.querySelector(".toggle-btn");
 
             hamBurger.addEventListener("click", function () {

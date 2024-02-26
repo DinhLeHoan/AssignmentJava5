@@ -16,6 +16,8 @@ public interface BillDetailRepository extends JpaRepository<BillDetail, Integer>
 
 	@Query("SELECT bd.product, COUNT(bd.product) FROM BillDetail bd WHERE bd.bill.billId = :billId GROUP BY bd.product")
 	List<Object[]> findProductCountsByBillId(@Param("billId") int billId);
+	
+	 BillDetail findFirstByBill_BillIdAndProduct_ProductId(int billId, int productId);
 
 	@Transactional
 	void deleteByBill_BillIdAndProduct_ProductId(int billId, int productId);

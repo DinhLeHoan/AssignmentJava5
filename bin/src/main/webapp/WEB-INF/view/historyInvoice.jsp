@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -365,7 +366,7 @@
                 <img
                     src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
                     style="width: 50%; margin-left: 50px;" alt="">
-                <h6 style="color: white; margin-left: 50px;">Võ Hữu Thành</h6>
+                <h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
             </div>
             <div class="sidebar-profile"></div>
             <ul class="sidebar-nav">

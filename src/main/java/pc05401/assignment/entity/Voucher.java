@@ -26,7 +26,7 @@ public class Voucher {
     @Column(name = "voucherId")
     private int voucherId;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     @Nationalized
     private String name;
 
@@ -45,5 +45,8 @@ public class Voucher {
     @Column(name = "description")
     @Nationalized
     private String description;
+    
+    @Column(name = "active")
+    private boolean active ;
     
 }

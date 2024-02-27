@@ -436,7 +436,7 @@ th, td {
 												    <tr>
                                                     <td>${tag.name}</td>
                                                     <td><a href="/tagProductUpdate?tagId=${tag.tagId}" type="button"
-                                                        class="btn btn-success">Sửa</a> <a href="" type="button"
+                                                        class="btn btn-success">Sửa</a> <a href="/tagProductDelete?tagId=${tag.tagId}" type="button"
                                                         class="btn btn-danger">Xóa</a></td>
                                                 </tr>
 												</c:forEach>

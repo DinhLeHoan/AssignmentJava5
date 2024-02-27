@@ -42,9 +42,9 @@ public class ProductController {
 
 	@GetMapping("productManager")
 	public String showProductManager(Model model) {
-		List<Product> listItem = productRepository.findByActiveTrue();
+		List<Product> listItem = productRepository.findActiveProductsWithActiveTag();
 		model.addAttribute("listItem", listItem);
-		model.addAttribute("tagList", tagProductRepository.findAll()) ;
+		model.addAttribute("tagList", tagProductRepository.findByActiveTrue()) ;
 		return checkAdmin("productManager");
 	}
 
@@ -153,6 +153,7 @@ public class ProductController {
 	public String tagProductAdd(@RequestParam("name") String name) {
 		TagProduct tagProduct = new TagProduct() ;
 		tagProduct.setName(name) ;
+		tagProduct.setActive(true) ;
 		tagProductRepository.save(tagProduct) ;
 		return checkAdmin("tagProductAdd");
 	}
@@ -164,6 +165,17 @@ public class ProductController {
 		
 		productDel.setActive(false) ;
 		productRepository.save(productDel) ;
+		
+		return "redirect:/productManager";
+	}
+	
+	@GetMapping("tagProductDelete")
+	public String deleteTagProduct(@RequestParam("tagId") Integer tagId) {
+		
+		TagProduct tagDel = tagProductRepository.findById(tagId).orElseThrow() ;
+		
+		tagDel.setActive(false) ;
+		tagProductRepository.save(tagDel) ;
 		
 		return "redirect:/productManager";
 	}

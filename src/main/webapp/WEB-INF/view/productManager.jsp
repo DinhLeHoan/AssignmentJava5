@@ -394,24 +394,26 @@ th, td {
 										<div class="table-responsive" style="height: 80%;">
 											<table>
 												<tr>
-													<th>STT</th>
 													<th>Tên sản phẩm</th>
 													<th>Loại sản phẩm</th>
 													<th>Ghi chú</th>
 													<th>Giá Tiền</th>
+													<th>Trạng thái</th>
 													<th></th>
 												</tr>
 												<c:forEach var="item" items="${listItem}">
 
 													<tr>
-														<td>${item.productId}</td>
 														<td>${item.name}</td>
 														<td>${item.tag.name}</td>
 														<td>${item.note}</td>
 														<td>${item.price}</td>
-														<td><a href="/productUpdate?productId=${item.productId}" type="button"
-															class="btn btn-success">Sửa</a> <a href="/deleteProduct?productId=${item.productId}" type="button"
-															class="btn btn-danger">Xóa</a></td>
+														<td>${item.active && item.tag.active ?'Đang bán':'Ngưng bán'}</td>
+														<td><a
+															href="/productUpdate?productId=${item.productId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="/deleteProduct?productId=${item.productId}"
+															type="button" class="btn btn-danger">Xóa</a></td>
 													</tr>
 												</c:forEach>
 												<tr>
@@ -437,16 +439,19 @@ th, td {
 												<tr>
 													<th>Tên loại sản phẩm</th>
 													<th></th>
+													<th></th>
 												</tr>
 												<c:forEach var="tag" items="${tagList}">
-												    <tr>
-                                                    <td>${tag.name}</td>
-                                                    <td><a href="/tagProductUpdate?tagId=${tag.tagId}" type="button"
-                                                        class="btn btn-success">Sửa</a> <a href="/tagProductDelete?tagId=${tag.tagId}" type="button"
-                                                        class="btn btn-danger">Xóa</a></td>
-                                                </tr>
+													<tr>
+														<td>${tag.name}</td>
+														<td>${tag.active?'Đang bán':'Ngưng bán'}</td>
+														<td><a href="/tagProductUpdate?tagId=${tag.tagId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="/tagProductDelete?tagId=${tag.tagId}" type="button"
+															class="btn btn-danger">Xóa</a></td>
+													</tr>
 												</c:forEach>
-												
+
 												<tr>
 													<td></td>
 													<td></td>

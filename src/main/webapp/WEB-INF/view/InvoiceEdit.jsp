@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c"%>
-
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiết hóa đơn</title>
+<title>Lịch sử hóa đơn</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -45,8 +44,7 @@ body {
 }
 
 .btn:hover {
-	/* transform: scale(1.2); */
-	
+	transform: scale(1.2);
 }
 
 .wrapper {
@@ -248,7 +246,7 @@ a.sidebar-link:hover {
 	/* Thêm transition để làm mịn việc hiển thị */
 	opacity: 1;
 	/* Mặc định hiển thị */
-	/* pointer-events: none; */
+	pointer-events: none;
 	/* Không tương tác */
 }
 
@@ -269,6 +267,47 @@ a.sidebar-link:hover {
 
 .product:hover {
 	box-shadow: 0 0 2rem rgba(0, 62, 11, 0.502);
+}
+
+.history-invoice {
+	margin-bottom: 20px;
+}
+
+.history-invoice .card-header {
+	background-color: #3b7ddd;
+	color: white;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 10px 10px 0 0;
+}
+
+.history-invoice .card-body {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 0 0 10px 10px;
+}
+
+.history-invoice .card-body .row {
+	align-items: center;
+}
+
+.history-invoice .card-body .col-2 {
+	font-size: 1.5rem;
+	color: #3b7ddd;
+}
+
+.history-invoice .card-body .col-8 {
+	font-size: 0.9rem;
+}
+
+.history-invoice .card-body .col-2:last-child {
+	font-size: 0.8rem;
+	color: #6c757d;
+	text-align: right;
+}
+
+.history-invoice:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Thêm lớp CSS mới */
@@ -300,11 +339,18 @@ a.sidebar-link:hover {
 		margin-top: -20px;
 		margin-bottom: -20%;
 	}
+	.bi-basket3-fill {
+		transform: scale(1.2);
+	}
+	.history-invoice .row .col-12 {
+		font-size: 10px;
+	}
 }
 </style>
 </head>
 
 <body>
+
 	<div class="wrapper">
 		<aside id="sidebar">
 			<div class="d-flex">
@@ -312,7 +358,7 @@ a.sidebar-link:hover {
 					<i class="lni lni-grid-alt"></i>
 				</button>
 				<div class="sidebar-logo">
-					<a href="#">Súp Trần Gia</a>
+					<a href="/home">Súp Trần Gia</a>
 				</div>
 			</div>
 			<div class="sidebar-logo">
@@ -322,171 +368,126 @@ a.sidebar-link:hover {
 				<h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
 			</div>
 			<div class="sidebar-profile"></div>
-			 <ul class="sidebar-nav">
-                <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
-                                lý kho</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
-                                lý nhân viên</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
-                        <span>Lịch làm việc</span>
-                </a></li>
-                <li class="sidebar-item"><a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/home" class="sidebar-link">
-                        <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
-                            sử hóa đơn</span>
-                </a></li>
-            </ul>
+			<ul class="sidebar-nav">
+				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
+					<li class="sidebar-item"><a href="/checkMaterials"
+						class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
+								lý kho</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/employeeManager"
+						class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
+								lý nhân viên</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý sản phẩm</span>
+					</a></li>
+				</c:if>
+				<li class="sidebar-item"><a href="/registerShift"
+					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
+						<span>Lịch làm việc</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-bell"></i> <span>Thông báo</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/home" class="sidebar-link">
+						<i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/historyInvoice"
+					class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
+							sử hóa đơn</span>
+				</a></li>
+			</ul>
 			<div class="sidebar-footer">
 
 
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
-				</a> <a href="#" class="sidebar-link"> <i class="lni lni-exit"></i>
+				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
 					<span>Logout</span>
 				</a>
 			</div>
 		</aside>
 		<div class="main p-3">
-			<div class="text-center">
-				<h1 class="my-5">Chi tiết hóa đơn</h1>
-				<div class="container-fluid d-flex flex-column mt-5">
-					<div class="row justify-content-center">
-						<div class="col-xl-5 col-10">
-							<table class="table table-borderless mt-5">
+			<h1 class="text-center my-5">Chỉnh sửa và Xóa Hóa đơn
+				${bill.billId}</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<form class="form">
+							<div class="mb-3">
+								<label for="invoiceNumber" class="form-label">Số hóa đơn</label>
+								<input type="text" class="form-control" id="invoiceNumber"
+									value="${bill.billId}" readonly>
+							</div>
+							<div class="mb-3">
+								<label for="customerName" class="form-label">Khách hàng</label>
+								<input type="text" class="form-control" id="customerName"
+									placeholder="Nhập loại khách hàng" value="${bill.customerType}">
+							</div>
+							<div class="mb-3">
+								<label for="amount" class="form-label">Tổng số tiền</label> <input
+									type="text" class="form-control" id="amount"
+									placeholder="Nhập tổng số tiền">
+							</div>
+							<button type="submit" class="btn btn-primary">Lưu chỉnh
+								sửa</button>
+						</form>
+					</div>
+					<div class="col-lg-6">
+						<form>
+							<div class="mb-3">
+								<label for="invoiceNumberDelete" class="form-label">Số
+									hóa đơn</label> <input type="text" class="form-control"
+									id="invoiceNumberDelete" placeholder="Nhập số hóa đơn">
+							</div>
+							<button type="submit" class="btn btn-danger">Xóa hóa đơn</button>
+						</form>
+					</div>
+					<!-- Bảng sản phẩm số lượng -->
+					<div class="row mt-5">
+						<div class="col-lg-12">
+							<h2 class="text-center">Danh sách sản phẩm và số lượng</h2>
+							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th scope="col"></th>
-										<th scope="col"></th>
-										<th scope="col"></th>
-										<th scope="col"></th>
+										<th scope="col">Mã sản phẩm</th>
+										<th scope="col">Số lượng</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Khách hàng:</th>
-										<td>${billInfors.bill.customerType}</td>
-										<td class="border border-radius"><i
-											class="bi bi-file-earmark-person-fill m-2"></i> sửa</td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Người bán:</th>
-										<td>${billInfors.bill.staff.name}</td>
-										<td></td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Thời gian:</th>
-										<td>${billInfors.bill.date}</td>
-										<td class="border border-radius"><i
-											class="bi bi-clock-fill m-2"></i> sửa</td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Tạm tính:</th>
-										<td>${billInfors.bill.total}VND</td>
-										<td></td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Voucher sử dụng:</th>
-										<td>0</td>
-										<td class="border border-radius"><i
-											class="bi bi-cash-stack"></i> chọn</td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Tổng tiền:</th>
-										<td>${billInfors.bill.totalWithVoucher}VND</td>
-										<td></td>
-									</tr>
+									<!-- Đổ dữ liệu từ danh sách sản phẩm và số lượng vào bảng -->
+									<c:forEach items="${productInfos}" var="productInfo">
+										<tr>
+											<td>${productInfo.productId}</td>
+											<td>${productInfo.count}</td>
+											<td>
+												<!-- Ô thay đổi số lượng --> <input type="number"
+												name="quantity_${productInfo.productId}"
+												value="${productInfo.count}" min="0">
+											</td>
+											<td>
+												<!-- Nút sửa -->
+												<button onclick="editProduct(${productInfo.productId})">Sửa</button>
+												<!-- Nút xóa -->
+												<button onclick="deleteProduct(${productInfo.productId})">Xóa</button>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-							<div class="row border product">
-								<c:forEach var="productCount" items="${productCounts}">
-									<div class="col-md-4">
-										<img
-											src="https://imagestrangia.blob.core.windows.net/image/${productCount.image}"
-											alt="Product Image" class="img-fluid product-img">
-									</div>
-									<div class="col-md-8 product-info">
-										<div class="row">
-											<div class="col-12">
-												<h5 class="mb-0">${productCount.name}</h5>
-												<p class="text-muted mb-0">${productCount.note}</p>
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-12">
-												<form
-													action="${pageContext.request.contextPath}/minusProduct/${billId}/${productCount.id}/1"
-													method="post">
-													<button class="btn btn-secondary me-2">
-														<i class="fas fa-minus"></i>
-													</button>
-												</form>
-												<span class="me-2">${productCount.count}</span>
-												<form
-													action="${pageContext.request.contextPath}/plusProduct/${billId}/${productCount.id}"
-													method="post">
-													<button class="btn btn-secondary me-2">
-														<i class="fas fa-plus"></i>
-													</button>
-												</form>
-												<form
-													action="${pageContext.request.contextPath}/minusProduct/${billId}/${productCount.id}/${productCount.count}"
-													method="post">
-													<button class="btn btn-danger me-2">
-														<i class="fas fa-trash"></i> Xóa
-													</button>
-												</form>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-
-
-							</div>
-
-							<a href="/bill/menu/${billId}/0">
-								<div class="row border product p-5 m-3">
-									<i class="bi bi-plus"></i>
-								</div>
-							</a>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="footSpace"></div>
-		<div class="total-amount" id="footer">
-			<div class="container text-center">
-				<div class="row">
-					<a href="/home" type="button"
-						class="col btn btn-secondary p-3 m-3"> Ghim hóa đơn </a>
-					<a href="/home/${billId}"><div class="col btn btn-success p-3 m-3">Thanh toán ngay</div></a>
-					<a href="/home/delete/${billId}"><div class="col btn btn-danger p-3 m-3">Hủy hóa đơn</div></a>
-				</div>
-			</div>
-		</div>
-	</div>
 
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 	<script
@@ -494,7 +495,6 @@ a.sidebar-link:hover {
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 	<script>
-
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function () {
@@ -526,6 +526,41 @@ a.sidebar-link:hover {
                 footer.classList.remove("hidden"); // Hiển thị lại phần total-amount
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const revenueData = [50000, 120000, 300000, 200000, 800000, 700000, 900000, 600000, 400000, 300000, 200000, 100000, 150000, 200000];
+
+    // Khởi tạo biểu đồ cột
+    const ctx = document.getElementById('hourlyRevenueChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['9h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h'],
+            datasets: [{
+                label: 'Doanh thu theo giờ',
+                data: revenueData,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1000000, // Giới hạn trục y tại 1 triệu đồng
+                    ticks: {
+                        stepSize: 100000 // Bước giá trị của trục y
+                    }
+                }
+            }
+        }
+    });
+
+    // Kích hoạt tab "Theo Giờ"
+    const hourlyTab = document.getElementById('hour-tab');
+    hourlyTab.click();
+});
     </script>
 </body>
 

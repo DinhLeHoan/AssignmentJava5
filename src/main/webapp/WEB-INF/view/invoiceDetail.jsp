@@ -322,40 +322,40 @@ a.sidebar-link:hover {
 				<h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
 			</div>
 			<div class="sidebar-profile"></div>
-			 <ul class="sidebar-nav">
-                <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
-                                lý kho</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
-                                lý nhân viên</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
-                        <span>Lịch làm việc</span>
-                </a></li>
-                <li class="sidebar-item"><a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/home" class="sidebar-link">
-                        <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
-                            sử hóa đơn</span>
-                </a></li>
-            </ul>
+			<ul class="sidebar-nav">
+				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
+					<li class="sidebar-item"><a href="/checkMaterials"
+						class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
+								lý kho</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/employeeManager"
+						class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
+								lý nhân viên</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý sản phẩm</span>
+					</a></li>
+				</c:if>
+				<li class="sidebar-item"><a href="/registerShift"
+					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
+						<span>Lịch làm việc</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-bell"></i> <span>Thông báo</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/home" class="sidebar-link">
+						<i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/historyInvoice"
+					class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
+							sử hóa đơn</span>
+				</a></li>
+			</ul>
 			<div class="sidebar-footer">
 
 
@@ -478,10 +478,14 @@ a.sidebar-link:hover {
 		<div class="total-amount" id="footer">
 			<div class="container text-center">
 				<div class="row">
-					<a href="/home" type="button"
-						class="col btn btn-secondary p-3 m-3"> Ghim hóa đơn </a>
-					<a href="/home/${billId}"><div class="col btn btn-success p-3 m-3">Thanh toán ngay</div></a>
-					<a href="/home/delete/${billId}"><div class="col btn btn-danger p-3 m-3">Hủy hóa đơn</div></a>
+					<a href="/home" type="button" class="col btn btn-secondary p-3 m-3">
+						Ghim hóa đơn </a> 
+					<a href="/home/${billId}" class="col btn btn-success p-3 m-3">
+						<div>Thanh toán ngay</div>
+					</a> 
+					<a href="/home/delete/${billId}" class="col btn btn-danger p-3 m-3">
+						<div>Hủy hóa đơn</div>
+					</a>
 				</div>
 			</div>
 		</div>

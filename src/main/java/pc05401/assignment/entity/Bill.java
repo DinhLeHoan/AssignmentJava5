@@ -50,4 +50,70 @@ public class Bill {
     
     @Column(name = "isPaid", nullable = false)
     private Boolean isPaid;
+
+	public int getBillId() {
+		return billId;
+	}
+
+	public void setBillId(int billId) {
+		this.billId = billId;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public double getTotalWithVoucher() {
+		return totalWithVoucher;
+	}
+
+	public void setTotalWithVoucher(double totalWithVoucher) {
+		this.totalWithVoucher = totalWithVoucher;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+	public Boolean getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(Boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+    
+    
 }

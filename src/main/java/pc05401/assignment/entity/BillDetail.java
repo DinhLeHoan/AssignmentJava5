@@ -30,4 +30,43 @@ public class BillDetail {
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
     private Product product ;
+
+    public BillDetail() {
+    	
+    }
+    
+	public BillDetail(int billDetailId, Bill bill, Product product) {
+		super();
+		this.billDetailId = billDetailId;
+		this.bill = bill;
+		this.product = product;
+	}
+
+	public int getBillDetailId() {
+		return billDetailId;
+	}
+
+	public void setBillDetailId(int billDetailId) {
+		this.billDetailId = billDetailId;
+	}
+
+	public Bill getBill() {
+		return bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	
+    
+    
 }

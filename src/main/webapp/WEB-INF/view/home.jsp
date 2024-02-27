@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang nhập hóa đơn</title>
+<title>Home _ Nhập Hóa Đơn</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -254,18 +254,18 @@ a.sidebar-link:hover {
 								lý nhân viên</span>
 					</a></li>
 				</c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/voucherManager"
-                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
-                            lý voucher</span>
-                </a></li>
-                </c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý sản phẩm</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -293,56 +293,53 @@ a.sidebar-link:hover {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1>Trang nhập hóa đơn</h1>
+				<h1 class="header-main mt-5">Trang Nhập Hóa Đơn</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<c:forEach var="bill" items="${billList}" varStatus="loop">
-
-							<div class="col-md-12 col-lg-4 mb-3">
+							<div class="col-md-6 col-lg-4 mb-3">
 								<div class="border-0 mt-5">
 									<div class="row">
 										<div class="col-12 custom-col-sm">
 											<div class="square-box">
-												<div class="title-box">Hóa đơn ${bill.billId}</div>
+												<div class="title-box">Hóa Đơn ${bill.billId}</div>
 												<div class="square-content p-3">
 													<div class="square-content-money text-center">
 														<h2>${bill.totalWithVoucher}VND</h2>
 													</div>
 													<div class="d-flex flex-row-reverse">
 														<form action="deleteBill/${bill.billId}" method="post">
-
 															<button type="submit"
 																class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
 														</form>
 														<form action="bill/view/${bill.billId}" method="get">
 															<button
-																class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
+																class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1">
+															</button>
 														</form>
 													</div>
 												</div>
 											</div>
 										</div>
-
 										<!-- Check if the current iteration is the third item in a row -->
 										<c:if test="${loop.index % 3 == 2 && !loop.last}">
 									</div>
 								</div>
 							</div>
-							<div class="col-md-12 col-lg-4 mb-3">
+							<div class="col-md-6 col-lg-4 mb-3">
 								<div class="border-0 mt-5">
 									<div class="row">
 										</c:if>
 									</div>
 								</div>
 							</div>
-
 						</c:forEach>
-						<div class="col-md-12 col-lg-4 mb-3">
+						<div class="col-md-6 col-lg-4 mb-3">
 							<div class="border-0 mt-5">
 								<div class="row">
 									<div class="col-12 custom-col-sm">
 										<div class="square-box">
-											<div class="title-box">Thêm hóa đơn</div>
+											<div class="title-box">Thêm Hóa Đơn</div>
 											<div class="square-content p-3">
 												<div class="square-content-money text-center">
 													<h1>
@@ -350,23 +347,20 @@ a.sidebar-link:hover {
 														</h2>
 												</div>
 												<div class="d-flex flex-row-reverse">
-
-
 													<form action="addNewBill" method="post">
 														<button type="submit"
-															class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1"></button>
+															class="btn btn-sm bi bi-bag-plus-fill text-success border border-success rounded mx-1">
+														</button>
 													</form>
 												</div>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí sản phẩm</title>
+<title>Quản Lí Sản Phẩm</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -295,6 +295,7 @@ th, td {
 <body>
 
 	<div class="wrapper">
+
 		<aside id="sidebar">
 			<div class="d-flex">
 				<button class="toggle-btn" type="button">
@@ -331,11 +332,11 @@ th, td {
 					</a></li>
 				</c:if>
 				<c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/voucherManager"
-                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
-                            lý voucher</span>
-                </a></li>
-                </c:if>
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -352,8 +353,6 @@ th, td {
 				</a></li>
 			</ul>
 			<div class="sidebar-footer">
-
-
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
 				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -363,7 +362,7 @@ th, td {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí sản phẩm</h1>
+				<h1 class="my-5">Quản Lí Sản Phẩm</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-md-12 col-lg-10 col-xl-8">
@@ -409,9 +408,11 @@ th, td {
 														<td>${item.tag.name}</td>
 														<td>${item.note}</td>
 														<td>${item.price}</td>
-														<td><a href="/productUpdate?productId=${item.productId}" type="button"
-															class="btn btn-success">Sửa</a> <a href="/deleteProduct?productId=${item.productId}" type="button"
-															class="btn btn-danger">Xóa</a></td>
+														<td><a
+															href="/productUpdate?productId=${item.productId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="/deleteProduct?productId=${item.productId}"
+															type="button" class="btn btn-danger">Xóa</a></td>
 													</tr>
 												</c:forEach>
 												<tr>
@@ -432,34 +433,33 @@ th, td {
 									<div class="tab-pane fade show" id="loai-san-pham"
 										role="tabpanel" aria-labelledby="loai-san-pham-tab"
 										style="height: 450px;">
-										<div class="table-responsive" style="height: 80%;">
-											<table>
-												<tr>
-													<th>Tên loại sản phẩm</th>
-													<th></th>
-												</tr>
-												<c:forEach var="tag" items="${tagList}">
-												    <tr>
-                                                    <td>${tag.name}</td>
-                                                    <td><a href="/tagProductUpdate?tagId=${tag.tagId}" type="button"
-                                                        class="btn btn-success">Sửa</a> <a href="" type="button"
-                                                        class="btn btn-danger">Xóa</a></td>
-                                                </tr>
-												</c:forEach>
-												
-												<tr>
-													<td></td>
-													<td></td>
-													<td><a href="tagProductAdd" type="button"
-														class="btn btn-primary">Thêm loại sản phẩm</a></td>
-												</tr>
-											</table>
+										<div class="row">
+											<div class="col-lg-3"></div>
+											<div class="col-lg-6">
+												<div class="table" style="height: 80%;">
+													<table>
+														<tr>
+															<th>Tên loại sản phẩm</th>
+															<th></th>
+														</tr>
+														<c:forEach var="tag" items="${tagList}">
+															<tr>
+																<td>${tag.name}</td>
+																<td><a href="/tagProductUpdate?tagId=${tag.tagId}"
+																	type="button" class="btn btn-success">Sửa</a> <a
+																	href="" type="button" class="btn btn-danger">Xóa</a></td>
+															</tr>
+														</c:forEach>												
+													</table>
+													<div class="d-flex flex-row-reverse mx-5">
+															<a href="tagProductAdd" type="button"
+																class="btn btn-primary">Thêm loại sản phẩm</a>
+														</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-
-
-
 							</div>
 						</div>
 					</div>
@@ -474,6 +474,12 @@ th, td {
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
 		<script>
+			const hamBurger = document.querySelector(".toggle-btn");
+
+			hamBurger.addEventListener("click", function() {
+				document.querySelector("#sidebar").classList.toggle("expand");
+			});
+
 			document.getElementById("productImage").addEventListener("change",
 					function() {
 						// Lấy ra tên file đã chọn
@@ -481,11 +487,6 @@ th, td {
 						// Hiển thị tên file lên label
 						this.nextElementSibling.innerText = fileName;
 					});
-			const hamBurger = document.querySelector(".toggle-btn");
-
-			hamBurger.addEventListener("click", function() {
-				document.querySelector("#sidebar").classList.toggle("expand");
-			});
 		</script>
 </body>
 

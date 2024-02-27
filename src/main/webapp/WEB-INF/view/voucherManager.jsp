@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-
+<%@ page import="java.util.Date" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí sản phẩm</title>
+<title>QUẢN LÝ VOUCHER</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -240,30 +241,6 @@ a.sidebar-link:hover {
 	font-size: 1.2rem;
 }
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
-	/* Adjust margin as needed */
-}
-
-th, td {
-	padding: 12px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-/* Responsive styles for smaller screens */
-@media ( max-width : 767.98px) {
-	table {
-		overflow-x: auto;
-		display: block;
-	}
-	th, td {
-		white-space: nowrap;
-	}
-}
-
 /* Thêm lớp CSS mới */
 @media ( min-width : 992px) {
 	/* Màn hình lớn hơn hoặc bằng 992px */
@@ -342,6 +319,12 @@ th, td {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
+				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -369,55 +352,56 @@ th, td {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí kho</h1>
+				<h1 class="my-5">QUẢN LÝ VOUCHER</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
-						<div class="col-lg-1"></div>
 						<div class="col-md-12 col-lg-10 col-xl-8">
-							<div class="card col-lg-10 mb-3" style="height: 85%;">
-								<div class="card-header">Danh sách nguyên liệu</div>
+							<div class="container">
 
-								<div>
-									<table class="table table-responsive">
-										<thead>
+								<!-- Tabs Content -->
+								
+										<table class="table table-0">
 											<tr>
-												<th>STT</th>
-												<th>Tên nguyên liệu</th>
-												<th>Đơn vị</th>
-												<th>Tăng</th>
-												<th>Số lượng</th>
-												<th>Giảm</th>
+												<th>Mã Voucher</th>
+												<th>Tên</th>
+												<th>Ngày tạo</th>												
+												<th>Giảm giá</th>
+												<th>Thời hạn</th>											
+												<th>Phần trăm</th>
+												<th>Mô tả</th>
+												<th></th>
 											</tr>
-										</thead>
-
-										<tbody>
 											<c:forEach var="item" items="${listItem}">
-
 												<tr>
-													<td>${item.ingredientId }</td>
-													<td>${item.name }</td>
-													<td>${item.unit }</td>
-													<td><a href="${pageContext.request.contextPath}/checkMaterials/add/${item.ingredientId}"
-														class="btn btn-primary mx-2">+</a></td>
-													<td>${item.amount}</td>
-													<td><a href="${pageContext.request.contextPath}/checkMaterials/minus/${item.ingredientId}" class="btn btn-danger mx-2">-</a>
+													<td>${item.voucherId}</td>
+													<td>${item.name}</td>
+													<td>
+													<fmt:formatDate value="${item.createDate}" pattern="dd-MM-yyyy" var="formattedDate" />
+													${formattedDate}
 													</td>
-												</tr>
+													<td>${item.discount}</td>
+													<td>
+													<fmt:formatDate value="${item.expiresAt}" pattern="dd-MM-yyyy" var="formattedDate" />
+													${formattedDate}</td>
+													<td>${item.percentage}</td>
+													<td>${item.description}</td>
+													<td><a href="${pageContext.request.contextPath}/voucherUpdate?voucherId=${item.voucherId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="${pageContext.request.contextPath}/deleteVoucher?voucherId=${item.voucherId}" type="button"
+															class="btn btn-danger">Xóa</a></th>
+												</td>
 											</c:forEach>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td><a
-													href="${pageContext.request.contextPath}/materialManager"
-													type="button" class="btn btn-primary">Chỉnh sửa nguyên
-														liệu</a></td>
+											      <td></td>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td></td>
+                                                  <td></td>
+											      <td><a href="/voucherAdd" type="button" class="btn btn-primary">Thêm voucher mới</a></td>   								      
 											</tr>
-										</tbody>
-									</table>
-								</div>
+										</table>			
 							</div>
 						</div>
 					</div>

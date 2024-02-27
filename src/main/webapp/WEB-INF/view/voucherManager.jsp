@@ -319,12 +319,12 @@ a.sidebar-link:hover {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
-				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-					<li class="sidebar-item"><a href="/productManager"
-						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-								lý voucher</span>
-					</a></li>
-				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+                    <li class="sidebar-item"><a href="/voucherManager"
+                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+                            lý voucher</span>
+                </a></li>
+                </c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>

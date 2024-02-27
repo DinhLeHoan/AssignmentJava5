@@ -10,5 +10,7 @@ import pc05401.assignment.entity.TagProduct;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findByTag(TagProduct tag);
+	
+	List<Product> findByActiveTrue() ;
 
 }

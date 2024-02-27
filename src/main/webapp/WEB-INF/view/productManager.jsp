@@ -403,8 +403,8 @@ th, td {
 														<td>${item.tag.name}</td>
 														<td>${item.note}</td>
 														<td>${item.price}</td>
-														<td><a href="productUpdate" type="button"
-															class="btn btn-success">Sửa</a> <a href="deleteProduct/${item.productId}" type="button"
+														<td><a href="/productUpdate?productId=${item.productId}" type="button"
+															class="btn btn-success">Sửa</a> <a href="/deleteProduct?productId=${item.productId}" type="button"
 															class="btn btn-danger">Xóa</a></td>
 													</tr>
 												</c:forEach>
@@ -429,21 +429,19 @@ th, td {
 										<div class="table-responsive" style="height: 80%;">
 											<table>
 												<tr>
-													<th>STT</th>
 													<th>Tên loại sản phẩm</th>
-													<th>Ghi chú</th>
 													<th></th>
 												</tr>
+												<c:forEach var="tag" items="${tagList}">
+												    <tr>
+                                                    <td>${tag.name}</td>
+                                                    <td><a href="/tagProductUpdate?tagId=${tag.tagId}" type="button"
+                                                        class="btn btn-success">Sửa</a> <a href="" type="button"
+                                                        class="btn btn-danger">Xóa</a></td>
+                                                </tr>
+												</c:forEach>
+												
 												<tr>
-													<td>1</td>
-													<td>Súp</td>
-													<td>Súp bán trực tiếp tại quán</td>
-													<td><a href="tagProductUpdate" type="button"
-														class="btn btn-success">Sửa</a> <a href="" type="button"
-														class="btn btn-danger">Xóa</a></td>
-												</tr>
-												<tr>
-													<td></td>
 													<td></td>
 													<td></td>
 													<td><a href="tagProductAdd" type="button"

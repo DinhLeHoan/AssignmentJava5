@@ -292,65 +292,65 @@ a.sidebar-link:hover {
 
 	<div class="wrapper">
 		<aside id="sidebar">
-            <div class="d-flex">
-                <button class="toggle-btn" type="button">
-                    <i class="lni lni-grid-alt"></i>
-                </button>
-                <div class="sidebar-logo">
-                    <a href="/home">Súp Trần Gia</a>
-                </div>
-            </div>
-            <div class="sidebar-logo">
-                <img
-                    src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
-                    style="width: 50%; margin-left: 50px;" alt="">
-                <h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
-            </div>
-            <div class="sidebar-profile"></div>
-            <ul class="sidebar-nav">
-                <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
-                                lý kho</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
-                                lý nhân viên</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
-                        <span>Lịch làm việc</span>
-                </a></li>
-                <li class="sidebar-item"><a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/home" class="sidebar-link">
-                        <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
-                            sử hóa đơn</span>
-                </a></li>
-            </ul>
-            <div class="sidebar-footer">
+			<div class="d-flex">
+				<button class="toggle-btn" type="button">
+					<i class="lni lni-grid-alt"></i>
+				</button>
+				<div class="sidebar-logo">
+					<a href="/home">Súp Trần Gia</a>
+				</div>
+			</div>
+			<div class="sidebar-logo">
+				<img
+					src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
+					style="width: 50%; margin-left: 50px;" alt="">
+				<h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
+			</div>
+			<div class="sidebar-profile"></div>
+			<ul class="sidebar-nav">
+				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
+					<li class="sidebar-item"><a href="/checkMaterials"
+						class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
+								lý kho</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/employeeManager"
+						class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
+								lý nhân viên</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý sản phẩm</span>
+					</a></li>
+				</c:if>
+				<li class="sidebar-item"><a href="/registerShift"
+					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
+						<span>Lịch làm việc</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-bell"></i> <span>Thông báo</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/home" class="sidebar-link">
+						<i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/historyInvoice"
+					class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
+							sử hóa đơn</span>
+				</a></li>
+			</ul>
+			<div class="sidebar-footer">
 
 
-                <a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
-                        đặt</span>
-                </a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
-        </aside>
+				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
+						đặt</span>
+				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
+					<span>Logout</span>
+				</a>
+			</div>
+		</aside>
 		<div class="main p-3">
 			<div class="text-center">
 				<h1 class="my-5">Sản phẩm</h1>
@@ -379,46 +379,49 @@ a.sidebar-link:hover {
 								<div class="tab-content" id="myTabContent">
 
 									<c:forEach var="product" items="${productList}">
-										<div class="row border product">
-											<!-- Product image and information -->
-											<div class="col-4 product-img">
-												<img
-													src="https://imagestrangia.blob.core.windows.net/image/${product.image}">
-											</div>
-											<div class="col-8 product-info">
-												<div class="row">
-													<div class="col-12">
-														<h5 class="mb-0">${product.name}</h5>
-														<p class="text-muted mb-0">${product.price}Đ</p>
-													</div>
+										<c:if test="${product.active}">
+											<div class="row border product">
+												<!-- Product image and information -->
+												<div class="col-4 product-img">
+													<img
+														src="https://imagestrangia.blob.core.windows.net/image/${product.image}">
 												</div>
-												<div class="row mt-3">
-													<div class="col-12">
+												<div class="col-8 product-info">
+													<div class="row">
+														<div class="col-12">
+															<h5 class="mb-0">${product.name}</h5>
+															<p class="text-muted mb-0">${product.price}Đ</p>
+														</div>
+													</div>
+													<div class="row mt-3">
+														<div class="col-12">
 
-														<button class="btn btn-secondary me-2 quantity-btn"
-															data-operation="decrease">
-															<i class="fas fa-minus"></i>
-														</button>
-
-														<button class="btn btn-secondary me-2 quantity-btn"
-															data-operation="increase">
-															<i class="fas fa-plus"></i>
-														</button>
-														<form
-															action="${pageContext.request.contextPath}/addProductToBill/${billId}/${product.productId}"
-															method="post">
-															<input type="number" name="amount"
-																class="quantity-input form-control me-2" value="0"
-																min="0">
-															<button type="submit"
-																class="btn btn-primary me-2 mt-2 add-to-cart-btn">
-																<i class="bi bi-bag"></i> Thêm
+															<button class="btn btn-secondary me-2 quantity-btn"
+																data-operation="decrease">
+																<i class="fas fa-minus"></i>
 															</button>
-														</form>
+
+															<button class="btn btn-secondary me-2 quantity-btn"
+																data-operation="increase">
+																<i class="fas fa-plus"></i>
+															</button>
+															<form
+																action="${pageContext.request.contextPath}/addProductToBill/${billId}/${product.productId}"
+																method="post">
+																<input type="number" name="amount"
+																	class="quantity-input form-control me-2" value="0"
+																	min="0">
+																<button type="submit"
+																	class="btn btn-primary me-2 mt-2 add-to-cart-btn">
+																	<i class="bi bi-bag"></i> Thêm
+																</button>
+															</form>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
+										</c:if>
+
 									</c:forEach>
 
 								</div>
@@ -435,7 +438,8 @@ a.sidebar-link:hover {
 	<div class="total-amount">
 		<div class="container text-center">
 			<div class="row">
-				<a href="${pageContext.request.contextPath}/bill/view/${billId}"><div class="col btn btn-secondary m-2">Ghim hóa đơn</div></a>
+				<a href="${pageContext.request.contextPath}/bill/view/${billId}"><div
+						class="col btn btn-secondary m-2">Ghim hóa đơn</div></a>
 				<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
 			</div>
 		</div>

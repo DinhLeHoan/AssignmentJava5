@@ -82,7 +82,7 @@ public class MaterialController {
 	}
 
 	@GetMapping("materialUpdate")
-	public String showMaterialUpdate(@RequestParam("ingredientId") int ingredientId, Model model) {
+	public String showMaterialUpdate(@RequestParam("ingredientId") Integer ingredientId, Model model) {
 		model.addAttribute("ingredientEdit", ingredientRepository.findById(ingredientId).orElseThrow()) ;
 		return checkAdmin("materialUpdate");
 	}

@@ -363,7 +363,7 @@
                             <div class="container">                             
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form class="col-lg-6 col-md-8">
+                                            <form action="tagProductAdd" method="post" class="col-lg-6 col-md-8">
                                                 <h1 class="my-3">
                                                     Thêm loại sản phẩm
                                                 </h1>
@@ -371,14 +371,8 @@
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Tên loại sản phẩm" aria-label="productType"
+                                                        placeholder="Tên loại sản phẩm" aria-label="productType" name="name"
                                                         aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
                                                     style="background-color: #264653;">Thêm Loại</button>

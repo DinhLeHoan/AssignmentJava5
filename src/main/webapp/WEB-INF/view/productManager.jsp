@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản Lí Sản Phẩm</title>
+<title>QUẢN LÝ SẢN PHẨM</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -388,10 +388,9 @@ th, td {
 								<div class="tab-content my-3" id="myTabContent">
 									<!-- Tab: Súp -->
 									<div class="tab-pane fade show active" id="san-pham"
-										role="tabpanel" aria-labelledby="san-pham-tab"
-										style="height: 450px;">
-										<div class="table-responsive" style="height: 80%;">
-											<table>
+										role="tabpanel" aria-labelledby="san-pham-tab">
+										<div class="table-responsive">
+											<table class="mb-3">
 												<tr>
 													<th>Tên sản phẩm</th>
 													<th>Loại sản phẩm</th>
@@ -417,29 +416,23 @@ th, td {
 															type="button" class="btn btn-danger">Xóa</a></td>
 													</tr>
 												</c:forEach>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><a href="productAdd" type="button"
-														class="btn btn-primary">Thêm sản phẩm</a></td>
-												</tr>
 											</table>
+											<div class="d-flex flex-row-reverse">
+												<a href="productAdd" type="button"
+														class="btn btn-primary">Thêm sản phẩm</a>
+											</div>
 										</div>
 									</div>
 								</div>
 
 								<div class="tab-content my-3" id="myTabContent">
 									<div class="tab-pane fade show" id="loai-san-pham"
-										role="tabpanel" aria-labelledby="loai-san-pham-tab"
-										style="height: 450px;">
-										<div class="table-responsive" style="height: 80%;">
-											<table>
+										role="tabpanel" aria-labelledby="loai-san-pham-tab">
+										<div class="table-responsive">
+											<table class="mb-3">
 												<tr>
-													<th>Tên loại sản phẩm</th>
-													<th></th>
+													<th>Tên Loại Sản Phẩm</th>
+													<th>Trạng Thái</th>
 													<th></th>
 												</tr>
 												<c:forEach var="tag" items="${tagList}">
@@ -451,17 +444,13 @@ th, td {
 															href="/tagProductDelete?tagId=${tag.tagId}" type="button"
 															class="btn btn-danger">Xóa</a></td>
 													</tr>
-												</c:forEach>
-
-												<tr>
-													<td></td>
-													<td></td>
-													<td><a href="tagProductAdd" type="button"
-														class="btn btn-primary">Thêm loại sản phẩm</a></td>
-												</tr>
+												</c:forEach>										
 											</table>
-
 										</div>
+										<div class="d-flex flex-row-reverse">
+												<a href="tagProductAdd" type="button"
+													class="btn btn-primary">Thêm loại sản phẩm</a>
+											</div>
 									</div>
 								</div>
 							</div>

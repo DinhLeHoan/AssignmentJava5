@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiết hóa đơn</title>
+<title>CHI TIẾT HÓA ĐƠN</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -311,7 +311,7 @@ a.sidebar-link:hover {
 					<i class="lni lni-grid-alt"></i>
 				</button>
 				<div class="sidebar-logo">
-					<a href="#">Súp Trần Gia</a>
+					<a href="/home">Súp Trần Gia</a>
 				</div>
 			</div>
 			<div class="sidebar-logo">
@@ -362,8 +362,6 @@ a.sidebar-link:hover {
 				</a></li>
 			</ul>
 			<div class="sidebar-footer">
-
-
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
 				</a> <a href="#" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -371,13 +369,13 @@ a.sidebar-link:hover {
 				</a>
 			</div>
 		</aside>
-		<div class="main p-3">
+		<div class="main p-2">
 			<div class="text-center">
-				<h1 class="my-5">Chi tiết hóa đơn</h1>
-				<div class="container-fluid d-flex flex-column mt-5">
+				<h1 class="my-5">CHI TIẾT HÓA ĐƠN</h1>
+				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-xl-5 col-10">
-							<table class="table table-borderless mt-5">
+							<table class="table table-borderless">
 								<thead>
 									<tr>
 										<th scope="col"></th>
@@ -413,15 +411,16 @@ a.sidebar-link:hover {
 													<option value="-1"></option>
 													<c:forEach var="voucher" items="${allVouchers}">
 														<option
-															${voucherSelected.voucher.voucherId == voucher.voucherId ? "selected":""}
+															${voucherSelected.voucher.voucherId==voucher.voucherId
+																	? "selected" :""}
 															value="${voucher.voucherId}">${voucher.name}-
 															<c:choose>
 																<c:when test="${voucher.discount == 0}">
-                                ${voucher.percentage}%
-                            </c:when>
+																			${voucher.percentage}%
+																		</c:when>
 																<c:otherwise>
-                                ${voucher.discount} VND
-                            </c:otherwise>
+																			${voucher.discount} VND
+																		</c:otherwise>
 															</c:choose>
 														</option>
 													</c:forEach>
@@ -441,35 +440,39 @@ a.sidebar-link:hover {
 							</table>
 							<div class="row border product">
 								<c:forEach var="productCount" items="${productCounts}">
-									<div class="col-md-4">
+									<div class="col-lg-6">
 										<img
 											src="https://imagestrangia.blob.core.windows.net/image/${productCount.image}"
 											alt="Product Image" class="img-fluid product-img">
 									</div>
-									<div class="col-md-8 product-info">
+									<div class="col-lg-6 product-info">
 										<div class="row">
 											<div class="col-12">
-												<h5 class="mb-0">${productCount.name}</h5>
+												<h3 class="mb-2">${productCount.name}</h3>
 												<p class="text-muted mb-0">${productCount.note}</p>
 											</div>
 										</div>
 										<div class="row mt-3">
 											<div class="col-12">
-												<form
-													action="${pageContext.request.contextPath}/minusProduct/${billId}/${productCount.id}/1"
-													method="post">
-													<button class="btn btn-secondary me-2">
-														<i class="fas fa-minus"></i>
-													</button>
-												</form>
-												<span class="me-2">${productCount.count}</span>
-												<form
-													action="${pageContext.request.contextPath}/plusProduct/${billId}/${productCount.id}"
-													method="post">
-													<button class="btn btn-secondary me-2">
-														<i class="fas fa-plus"></i>
-													</button>
-												</form>
+												<div class="row mb-3">
+													<div class="col-lg-2"></div>
+													<form class="col-lg-3 ps-4"
+														action="${pageContext.request.contextPath}/minusProduct/${billId}/${productCount.id}/1"
+														method="post">													
+														<button class="btn btn-secondary me-2">
+															<i class="fas fa-minus"></i>
+														</button>
+													</form>
+													<div  class="col-lg-2">${productCount.count}</div>
+													<form class="col-lg-3 pe-4"
+														action="${pageContext.request.contextPath}/plusProduct/${billId}/${productCount.id}"
+														method="post">
+														<button class="btn btn-secondary">
+															<i class="fas fa-plus"></i>
+														</button>
+													</form>
+													<div class="col-lg-2"></div>
+												</div>
 												<form
 													action="${pageContext.request.contextPath}/minusProduct/${billId}/${productCount.id}/${productCount.count}"
 													method="post">
@@ -512,40 +515,41 @@ a.sidebar-link:hover {
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 	<script>
-        const hamBurger = document.querySelector(".toggle-btn");
+				const hamBurger = document.querySelector(".toggle-btn");
 
-        hamBurger.addEventListener("click", function () {
-            document.querySelector("#sidebar").classList.toggle("expand");
-        });
-        const footer = document.getElementById("footer");
+				hamBurger.addEventListener("click", function () {
+					document.querySelector("#sidebar").classList.toggle("expand");
+				});
+				
+				const footer = document.getElementById("footer");
 
-        window.addEventListener("scroll", function () {
-            // Khoảng cách từ đỉnh trang đến cuối cùng của màn hình hiển thị
-            const windowHeight = window.innerHeight;
+				window.addEventListener("scroll", function () {
+					// Khoảng cách từ đỉnh trang đến cuối cùng của màn hình hiển thị
+					const windowHeight = window.innerHeight;
 
-            // Khoảng cách từ đỉnh trang đến phía dưới của phần total-amount
-            const footerDistance = footer.getBoundingClientRect().top;
+					// Khoảng cách từ đỉnh trang đến phía dưới của phần total-amount
+					const footerDistance = footer.getBoundingClientRect().top;
 
-            // Nếu phần total-amount hiển thị trong màn hình và không nằm ở đỉnh trang
-            if (footerDistance < windowHeight && footerDistance > 0) {
-                footer.classList.add("hidden"); // Thêm lớp hidden để ẩn phần total-amount
-            } else {
-                footer.classList.remove("hidden"); // Loại bỏ lớp hidden để hiển thị phần total-amount
-            }
+					// Nếu phần total-amount hiển thị trong màn hình và không nằm ở đỉnh trang
+					if (footerDistance < windowHeight && footerDistance > 0) {
+						footer.classList.add("hidden"); // Thêm lớp hidden để ẩn phần total-amount
+					} else {
+						footer.classList.remove("hidden"); // Loại bỏ lớp hidden để hiển thị phần total-amount
+					}
 
-            
-        });
 
-        // Xử lý khi cuộn lên
-        window.addEventListener("scroll", function () {
-            const scrollPosition = window.scrollY;
-            
-            // Nếu cuộn lên đến đỉnh trang
-            if (scrollPosition === 0) {
-                footer.classList.remove("hidden"); // Hiển thị lại phần total-amount
-            }
-        });
-    </script>
+				});
+
+				// Xử lý khi cuộn lên
+				window.addEventListener("scroll", function () {
+					const scrollPosition = window.scrollY;
+
+					// Nếu cuộn lên đến đỉnh trang
+					if (scrollPosition === 0) {
+						footer.classList.remove("hidden"); // Hiển thị lại phần total-amount
+					}
+				});
+			</script>
 </body>
 
 </html>

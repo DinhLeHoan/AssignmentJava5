@@ -373,8 +373,8 @@ a.sidebar-link:hover {
 						<span class="input-group-text" id="basic-addon5"><i
 							class="fas fa-lock" style="color: #264653;"></i></span> <input
 							type="password" class="form-control" placeholder="Mật khẩu"
-							value="${staffEdit.password}" aria-label="Password" name="password"
-							aria-describedby="basic-addon5">
+							value="${staffEdit.password}" aria-label="Password"
+							name="password" aria-describedby="basic-addon5">
 					</div>
 					<div class="input-group mb-3">
 						<span class="input-group-text" id="basic-addon5"><i
@@ -387,15 +387,16 @@ a.sidebar-link:hover {
 						<div class="col">
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="active"
-									id="activeOn" value="true" ${staff.active ? 'checked' : ''}>
+									id="activeOn" value="true" ${staffEdit.active ? 'checked' : ''}>
 								<label class="form-check-label" for="activeOn">Active</label>
 							</div>
 						</div>
 						<div class="col">
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="active"
-									id="activeOff" value="false" ${!staff.active ? 'checked' : ''}>
-								<label class="form-check-label" for="activeOff">Inactive</label>
+									id="activeOff" value="false"
+									${staffEdit.active ? '' : 'checked'}> <label
+									class="form-check-label" for="activeOff">Inactive</label>
 							</div>
 						</div>
 					</div>
@@ -403,11 +404,15 @@ a.sidebar-link:hover {
 					<div class="input-group mb-3">
 						<label for="role" class="input-group-text">Role</label> <select
 							class="form-select" id="role" name="role">
-							<option value="USER" ${staff.role == 'USER' ? 'selected' : ''}>User</option>
+							<option value="USER"
+								${staffEdit.role == 'USER' ? 'selected' : ''}>User</option>
 							<option value="CASHIER"
-								${staff.role == 'CASHIER' ? 'selected' : ''}>Cashier</option>
+								${staffEdit.role == 'CASHIER' ? 'selected' : ''}>Cashier</option>
 						</select>
 					</div>
+					<c:if test="${not empty error}">
+						<div style="color: red">${error}</div>
+					</c:if>
 					<button type="submit" class="btn btn-primary w-100 mb-3"
 						style="background-color: #264653;">Chỉnh sửa</button>
 				</form>

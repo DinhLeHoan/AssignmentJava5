@@ -19,7 +19,7 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
 	@Query("UPDATE Bill b SET b.isPaid = true WHERE b.billId = :billId")
 	void markBillAsPaid(@Param("billId") int billId);
 
-	@Transactional
+//	@Transactional
 	@Modifying
 	@Query("DELETE FROM Bill b WHERE b.billId = :billId")
 	void deleteBillById(@Param("billId") int billId);

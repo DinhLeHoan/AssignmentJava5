@@ -308,7 +308,10 @@ a.sidebar-link:hover {
 														<h2>${bill.totalWithVoucher}VND</h2>
 													</div>
 													<div class="d-flex flex-row-reverse">
-														<form action="deleteBill/${bill.billId}" method="post">
+
+														<form action="/home/delete/${bill.billId}" method="get">
+
+
 															<button type="submit"
 																class="btn btn-sm bi bi-trash text-success border border-success rounded mx-1"></button>
 														</form>

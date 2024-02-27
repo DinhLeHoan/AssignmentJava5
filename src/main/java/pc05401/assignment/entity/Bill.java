@@ -57,4 +57,8 @@ public class Bill {
     
     @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<VoucherDetail> voucherDetails = new HashSet<>();
+    
+    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BillDetail> billDetails = new HashSet<>();
+
 }

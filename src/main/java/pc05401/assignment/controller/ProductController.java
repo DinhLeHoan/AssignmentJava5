@@ -42,7 +42,7 @@ public class ProductController {
 
 	@GetMapping("productManager")
 	public String showProductManager(Model model) {
-		List<Product> listItem = productRepository.findByActiveTrue();
+		List<Product> listItem = productRepository.findAll();
 		model.addAttribute("listItem", listItem);
 		model.addAttribute("tagList", tagProductRepository.findAll()) ;
 		return checkAdmin("productManager");
@@ -59,7 +59,7 @@ public class ProductController {
 
 	@GetMapping("productAdd")
 	public String showProductAdd(Model model) {
-		model.addAttribute("tagList", tagProductRepository.findAll()) ;
+		model.addAttribute("tagList", tagProductRepository.findByActiveTrue()) ;
 		return checkAdmin("productAdd");
 	}
 	
@@ -71,6 +71,7 @@ public class ProductController {
 	                             @RequestParam("note") String note,
 	                             @RequestParam("price") Double price,
 	                             @RequestParam("tag") TagProduct tag,
+	                             @RequestParam("active") boolean active,
 	                             Model model) {
 
 	    try {
@@ -79,6 +80,8 @@ public class ProductController {
 	        
 	        if(file.getSize() != 0) {
 		        
+	        	client.blobName(productEdit.getImage()).buildClient().delete();
+	        	
 	        	System.out.println("filename: " + fileName);
 	        	
 		        client.blobName(fileName).buildClient().upload(file.getInputStream(), file.getSize());
@@ -90,6 +93,7 @@ public class ProductController {
 	        productEdit.setNote(note);
 	        productEdit.setPrice(price);
 	        productEdit.setTag(tag);
+	        productEdit.setActive(active) ;
 			productRepository.save(productEdit);
 	        model.addAttribute("message", "File uploaded successfully!");
 	    } catch (IOException e) {
@@ -136,13 +140,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("tagProductUpdate")
-	public String updateTagProduct(@RequestParam("tagId") Integer tagId, @RequestParam("name") String name) {
+	public String updateTagProduct(@RequestParam("tagId") Integer tagId, @RequestParam("name") String name, @RequestParam("active") boolean active) {
 		TagProduct tagProduct = tagProductRepository.findById(tagId).orElseThrow() ;
 		tagProduct.setName(name) ;
+		tagProduct.setActive(active) ;
 		tagProductRepository.save(tagProduct) ;
 		return "redirect:/productManager" ;
 	}
-
 	@GetMapping("tagProductAdd")
 	public String showTagProductAdd(Model model) {
 		
@@ -153,6 +157,7 @@ public class ProductController {
 	public String tagProductAdd(@RequestParam("name") String name) {
 		TagProduct tagProduct = new TagProduct() ;
 		tagProduct.setName(name) ;
+		tagProduct.setActive(true) ;
 		tagProductRepository.save(tagProduct) ;
 		return checkAdmin("tagProductAdd");
 	}
@@ -164,6 +169,17 @@ public class ProductController {
 		
 		productDel.setActive(false) ;
 		productRepository.save(productDel) ;
+		
+		return "redirect:/productManager";
+	}
+	
+	@GetMapping("tagProductDelete")
+	public String deleteTagProduct(@RequestParam("tagId") Integer tagId) {
+		
+		TagProduct tagDel = tagProductRepository.findById(tagId).orElseThrow() ;
+		
+		tagDel.setActive(false) ;
+		tagProductRepository.save(tagDel) ;
 		
 		return "redirect:/productManager";
 	}

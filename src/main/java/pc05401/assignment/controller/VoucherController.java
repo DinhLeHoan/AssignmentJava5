@@ -41,7 +41,7 @@ public class VoucherController {
 			return "redirect:/home" ;
 		}
 		
-		List<Voucher> listItem = voucherRepository.findAll();
+		List<Voucher> listItem = voucherRepository.findByActiveTrue();
 		System.out.println(listItem);
 		
 		model.addAttribute("listItem", listItem);
@@ -72,6 +72,7 @@ public class VoucherController {
 		voucher.setCreateDate(createDate);
 		voucher.setExpiresAt(expiresAt);
 		voucher.setDescription(description);
+		voucher.setActive(true);
 		voucherRepository.save(voucher); 
 
 	    return "redirect:/voucherManager";
@@ -111,7 +112,9 @@ public class VoucherController {
 	
 	@GetMapping("/deleteVoucher")
     public String deleteStaff(@RequestParam("voucherId") Integer voucherId) {
-        voucherRepository.deleteById(voucherId);
+        Voucher voucherDel = voucherRepository.findById(voucherId).orElseThrow() ;
+        voucherDel.setActive(false) ;
+        voucherRepository.save(voucherDel) ;
         return "redirect:/voucherManager" ;
     }
 	

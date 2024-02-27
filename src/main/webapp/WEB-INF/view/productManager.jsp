@@ -393,21 +393,23 @@ th, td {
 										<div class="table-responsive" style="height: 80%;">
 											<table>
 												<tr>
-													<th>STT</th>
 													<th>Tên sản phẩm</th>
 													<th>Loại sản phẩm</th>
 													<th>Ghi chú</th>
 													<th>Giá Tiền</th>
+													<th>Trạng thái</th>
 													<th></th>
 												</tr>
 												<c:forEach var="item" items="${listItem}">
 
 													<tr>
-														<td>${item.productId}</td>
 														<td>${item.name}</td>
 														<td>${item.tag.name}</td>
 														<td>${item.note}</td>
 														<td>${item.price}</td>
+
+														<td>${item.active && item.tag.active ?'Đang bán':'Ngưng bán'}</td>
+
 														<td><a
 															href="/productUpdate?productId=${item.productId}"
 															type="button" class="btn btn-success">Sửa</a> <a
@@ -433,30 +435,32 @@ th, td {
 									<div class="tab-pane fade show" id="loai-san-pham"
 										role="tabpanel" aria-labelledby="loai-san-pham-tab"
 										style="height: 450px;">
-										<div class="row">
-											<div class="col-lg-3"></div>
-											<div class="col-lg-6">
-												<div class="table" style="height: 80%;">
-													<table>
-														<tr>
-															<th>Tên loại sản phẩm</th>
-															<th></th>
-														</tr>
-														<c:forEach var="tag" items="${tagList}">
-															<tr>
-																<td>${tag.name}</td>
-																<td><a href="/tagProductUpdate?tagId=${tag.tagId}"
-																	type="button" class="btn btn-success">Sửa</a> <a
-																	href="" type="button" class="btn btn-danger">Xóa</a></td>
-															</tr>
-														</c:forEach>												
-													</table>
-													<div class="d-flex flex-row-reverse mx-5">
-															<a href="tagProductAdd" type="button"
-																class="btn btn-primary">Thêm loại sản phẩm</a>
-														</div>
-												</div>
-											</div>
+										<div class="table-responsive" style="height: 80%;">
+											<table>
+												<tr>
+													<th>Tên loại sản phẩm</th>
+													<th></th>
+													<th></th>
+												</tr>
+												<c:forEach var="tag" items="${tagList}">
+													<tr>
+														<td>${tag.name}</td>
+														<td>${tag.active?'Đang bán':'Ngưng bán'}</td>
+														<td><a href="/tagProductUpdate?tagId=${tag.tagId}"
+															type="button" class="btn btn-success">Sửa</a> <a
+															href="/tagProductDelete?tagId=${tag.tagId}" type="button"
+															class="btn btn-danger">Xóa</a></td>
+													</tr>
+												</c:forEach>
+
+												<tr>
+													<td></td>
+													<td></td>
+													<td><a href="tagProductAdd" type="button"
+														class="btn btn-primary">Thêm loại sản phẩm</a></td>
+												</tr>
+											</table>
+
 										</div>
 									</div>
 								</div>

@@ -17,4 +17,5 @@ public interface StaffRepository extends JpaRepository<Staff, Integer> {
 	Optional<Staff> findById(Integer staffId);
 	
 	List<Staff> findByRoleNot(String role);
+	
 }

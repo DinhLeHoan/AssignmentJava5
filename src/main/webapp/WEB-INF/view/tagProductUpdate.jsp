@@ -292,6 +292,7 @@ th, td {
 
 <body>
 
+
 	<div class="wrapper">
 		<aside id="sidebar">
 			<div class="d-flex">
@@ -420,6 +421,7 @@ th, td {
 				document.querySelector("#sidebar").classList.toggle("expand");
 			});
 		</script>
+
 </body>
 
 </html>

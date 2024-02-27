@@ -1,5 +1,6 @@
 package pc05401.assignment.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import pc05401.assignment.model.StaffModel;
 
 import jakarta.transaction.Transactional;
@@ -25,12 +25,16 @@ import pc05401.assignment.entity.Bill;
 import pc05401.assignment.entity.BillDetail;
 import pc05401.assignment.entity.Product;
 import pc05401.assignment.entity.TagProduct;
+import pc05401.assignment.entity.Voucher;
+import pc05401.assignment.entity.VoucherDetail;
 import pc05401.assignment.model.ProductCountBill;
 import pc05401.assignment.repository.BillDetailRepository;
 
 import pc05401.assignment.repository.BillRepository;
 import pc05401.assignment.repository.ProductRepository;
 import pc05401.assignment.repository.TagProductRepository;
+import pc05401.assignment.repository.VoucherDetailRepository;
+import pc05401.assignment.repository.VoucherRepository;
 import pc05401.assignment.service.SessionService;
 
 @Controller
@@ -46,15 +50,21 @@ public class BillController {
 	private TagProductRepository tagRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private VoucherRepository voucherRepository;
+	@Autowired
+	private VoucherDetailRepository voucherDetailRepository;
 
 	@GetMapping("bill/view/{billId}")
 	public String viewBill(@PathVariable int billId, Model model) {
-		StaffModel account = session.get("staff") ;
-		if(account == null) {
-			return "redirect:/login" ;
+		StaffModel account = session.get("staff");
+		if (account == null) {
+			return "redirect:/login";
 		}
+
 		model.addAttribute("staff", session.get("staff"));
-		// infor bill
+
+		// Information about the bill
 		List<BillDetail> billInfors = billDetailRepository.findByBill_BillId(billId);
 		if (!billInfors.isEmpty()) {
 			model.addAttribute("billInfors", billInfors.get(0));
@@ -62,14 +72,81 @@ public class BillController {
 
 		model.addAttribute("billId", billId);
 
-		// fill product
+		// Fill product
 		List<Object[]> productCounts = billDetailRepository.findProductCountsByBillId(billId);
 		List<ProductCountBill> productCountBills = productCounts.stream()
 				.map(arr -> new ProductCountBill((Product) arr[0], (Long) arr[1])).collect(Collectors.toList());
 
 		model.addAttribute("productCounts", productCountBills);
 
+		// Retrieve all vouchers and add them to the model
+		List<Voucher> allVouchers = voucherRepository.findAll();
+		allVouchers.removeIf(voucher -> !voucher.isActive());
+
+		allVouchers.removeIf(voucher -> voucher.getExpiresAt().before(new Date()));
+		model.addAttribute("allVouchers", allVouchers);
+
+		// default fill voucher
+		VoucherDetail voucherDetail = voucherDetailRepository.findByBillId(billId);
+		model.addAttribute("voucherSelected", voucherDetail);
+
 		return "invoiceDetail";
+	}
+
+	@PostMapping("bill/selectVoucher/{billId}")
+	@Transactional
+	public String selectVoucher(@PathVariable int billId,
+			@RequestParam(name = "selectedVoucher", required = false) Integer selectedVoucherId) {
+		if (selectedVoucherId != null) {
+			// Check if a special value is selected to indicate no voucher
+			if (selectedVoucherId == -1) {
+				Bill bill = billRepository.findById(billId).orElse(null);
+
+				voucherDetailRepository.deleteByBill(bill);
+
+				// Set totalWithVoucher to the original total
+				if (bill != null) {
+					bill.setTotalWithVoucher(bill.getTotal());
+					billRepository.save(bill);
+				}
+			} else {
+				// Voucher is selected
+				Bill bill = billRepository.findById(billId).orElse(null);
+				Voucher selectedVoucher = voucherRepository.findById(selectedVoucherId).orElse(null);
+
+				if (bill != null && selectedVoucher != null) {
+					double totalWithVoucher;
+
+					if (selectedVoucher.getDiscount() == 0) {
+						// Percentage-based discount
+						totalWithVoucher = bill.getTotal() * (selectedVoucher.getPercentage() / 100.0);
+					} else {
+						// Fixed amount discount
+						totalWithVoucher = bill.getTotal() - selectedVoucher.getDiscount();
+					}
+
+					// Check if a VoucherDetail already exists for the bill
+					VoucherDetail existingVoucherDetail = voucherDetailRepository.findByBillId(billId);
+
+					if (existingVoucherDetail != null) {
+						// Update the existing VoucherDetail
+						existingVoucherDetail.setVoucher(selectedVoucher);
+						voucherDetailRepository.save(existingVoucherDetail);
+					} else {
+						// Create a new VoucherDetail
+						VoucherDetail newVoucherDetail = new VoucherDetail();
+						newVoucherDetail.setBill(bill);
+						newVoucherDetail.setVoucher(selectedVoucher);
+						voucherDetailRepository.save(newVoucherDetail);
+					}
+
+					bill.setTotalWithVoucher(totalWithVoucher);
+					billRepository.save(bill);
+				}
+			}
+		}
+
+		return "redirect:/bill/view/" + billId;
 	}
 
 	@GetMapping("bill/menu/{billId}/{tagId}")
@@ -101,55 +178,55 @@ public class BillController {
 
 	@PostMapping("addProductToBill/{billId}/{productId}")
 	public String addProductToBill(@PathVariable int billId, @PathVariable int productId,
-	        @RequestParam Integer amount) {
-	    Bill bill = billRepository.findById(billId).orElse(null);
+			@RequestParam Integer amount) {
+		Bill bill = billRepository.findById(billId).orElse(null);
 
-	    for (int i = 0; i < amount; i++) {
-	        BillDetail billDetail = new BillDetail();
-	        billDetail.setBill(bill);
-	        billDetail.setProduct(productRepository.findById(productId).orElse(null));
+		for (int i = 0; i < amount; i++) {
+			BillDetail billDetail = new BillDetail();
+			billDetail.setBill(bill);
+			billDetail.setProduct(productRepository.findById(productId).orElse(null));
 
-	        billDetailRepository.save(billDetail);
+			billDetailRepository.save(billDetail);
 
-	        double productPrice = billDetail.getProduct().getPrice();
-	        billRepository.updateTotalByAddingPrice(billId, productPrice);
-	        billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
-	    }
+			double productPrice = billDetail.getProduct().getPrice();
+			billRepository.updateTotalByAddingPrice(billId, productPrice);
+			billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
+		}
 
-	    return "redirect:/bill/menu/" + billId + "/0";
+		return "redirect:/bill/menu/" + billId + "/0";
 	}
 
 	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
 	public String minusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
-	    Bill bill = billRepository.findById(billId).orElse(null);
+		Bill bill = billRepository.findById(billId).orElse(null);
 
-	    for (int i = 0; i < amount; i++) {
+		for (int i = 0; i < amount; i++) {
 //	        billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
-	    	
-	    	BillDetail detailDel = billDetailRepository.findFirstByBill_BillIdAndProduct_ProductId(billId, productId) ;
-	    	billDetailRepository.delete(detailDel) ;
 
-	        double productPrice = productRepository.findById(productId).orElse(null).getPrice();
-	        billRepository.updateTotalBySubtractingPrice(billId, productPrice);
-	        billRepository.updateTotalWithVoucherBySubtractingPrice(billId, productPrice);
-	    }
+			BillDetail detailDel = billDetailRepository.findFirstByBill_BillIdAndProduct_ProductId(billId, productId);
+			billDetailRepository.delete(detailDel);
 
-	    return "redirect:/bill/view/" + billId;
+			double productPrice = productRepository.findById(productId).orElse(null).getPrice();
+			billRepository.updateTotalBySubtractingPrice(billId, productPrice);
+			billRepository.updateTotalWithVoucherBySubtractingPrice(billId, productPrice);
+		}
+
+		return "redirect:/bill/view/" + billId;
 	}
 
 	@PostMapping("/plusProduct/{billId}/{productId}")
 	public String plusProduct(@PathVariable int billId, @PathVariable int productId) {
 		BillDetail billDetail = new BillDetail();
 		billDetail.setBill(billRepository.findById(billId).orElse(null));
-		System.out.println("Bill id: "+ billId);
+		System.out.println("Bill id: " + billId);
 		billDetail.setProduct(productRepository.findById(productId).orElse(null));
-		System.out.println("Product id: "+ productId);
+		System.out.println("Product id: " + productId);
 
 		billDetailRepository.save(billDetail);
-		
+
 		double productPrice = billDetail.getProduct().getPrice();
-        billRepository.updateTotalByAddingPrice(billId, productPrice);
-        billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
+		billRepository.updateTotalByAddingPrice(billId, productPrice);
+		billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
 		return "redirect:/bill/view/" + billId;
 
 	}

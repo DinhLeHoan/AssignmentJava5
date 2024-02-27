@@ -228,7 +228,6 @@ a.sidebar-link:hover {
 }
 
 .total-amount h5 {
-	font-weight: 600;
 	margin-bottom: 0;
 }
 
@@ -322,40 +321,46 @@ a.sidebar-link:hover {
 				<h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
 			</div>
 			<div class="sidebar-profile"></div>
-			 <ul class="sidebar-nav">
-                <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
-                                lý kho</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
-                                lý nhân viên</span>
-                    </a></li>
-                </c:if>
-                <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
-                </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
-                        <span>Lịch làm việc</span>
-                </a></li>
-                <li class="sidebar-item"><a href="#" class="sidebar-link">
-                        <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/home" class="sidebar-link">
-                        <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
-                            sử hóa đơn</span>
-                </a></li>
-            </ul>
+			<ul class="sidebar-nav">
+				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
+					<li class="sidebar-item"><a href="/checkMaterials"
+						class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
+								lý kho</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/employeeManager"
+						class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
+								lý nhân viên</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/productManager"
+						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+								lý sản phẩm</span>
+					</a></li>
+				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
+				<li class="sidebar-item"><a href="/registerShift"
+					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
+						<span>Lịch làm việc</span>
+				</a></li>
+				<li class="sidebar-item"><a href="#" class="sidebar-link">
+						<i class="bi bi-bell"></i> <span>Thông báo</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/home" class="sidebar-link">
+						<i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
+				</a></li>
+				<li class="sidebar-item"><a href="/historyInvoice"
+					class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
+							sử hóa đơn</span>
+				</a></li>
+			</ul>
 			<div class="sidebar-footer">
 
 
@@ -382,38 +387,55 @@ a.sidebar-link:hover {
 									</tr>
 								</thead>
 								<tbody>
-									<tr onclick="" class="bill-row-hover">
+									<tr class="bill-row-hover">
 										<th scope="row">Khách hàng:</th>
 										<td>${billInfors.bill.customerType}</td>
-										<td class="border border-radius"><i
-											class="bi bi-file-earmark-person-fill m-2"></i> sửa</td>
+
 									</tr>
-									<tr onclick="" class="bill-row-hover">
+									<tr class="bill-row-hover">
 										<th scope="row">Người bán:</th>
 										<td>${billInfors.bill.staff.name}</td>
-										<td></td>
 									</tr>
-									<tr onclick="" class="bill-row-hover">
+									<tr class="bill-row-hover">
 										<th scope="row">Thời gian:</th>
 										<td>${billInfors.bill.date}</td>
-										<td class="border border-radius"><i
-											class="bi bi-clock-fill m-2"></i> sửa</td>
 									</tr>
-									<tr onclick="" class="bill-row-hover">
+									<tr class="bill-row-hover">
 										<th scope="row">Tạm tính:</th>
 										<td>${billInfors.bill.total}VND</td>
-										<td></td>
 									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Voucher sử dụng:</th>
-										<td>0</td>
-										<td class="border border-radius"><i
-											class="bi bi-cash-stack"></i> chọn</td>
-									</tr>
-									<tr onclick="" class="bill-row-hover">
-										<th scope="row">Tổng tiền:</th>
-										<td>${billInfors.bill.totalWithVoucher}VND</td>
-										<td></td>
+									<form
+										action="${pageContext.request.contextPath}/bill/selectVoucher/${billId}"
+										method="post">
+										<tr class="bill-row-hover">
+											<th scope="row">Voucher sử dụng:</th>
+											<td><select name="selectedVoucher" id="selectedVoucher">
+													<option value="-1"></option>
+													<c:forEach var="voucher" items="${allVouchers}">
+														<option
+															${voucherSelected.voucher.voucherId == voucher.voucherId ? "selected":""}
+															value="${voucher.voucherId}">${voucher.name}-
+															<c:choose>
+																<c:when test="${voucher.discount == 0}">
+                                ${voucher.percentage}%
+                            </c:when>
+																<c:otherwise>
+                                ${voucher.discount} VND
+                            </c:otherwise>
+															</c:choose>
+														</option>
+													</c:forEach>
+
+											</select></td>
+											<td><button type="submit">Apply Voucher</button></td>
+										</tr>
+									</form>
+
+
+									<trclass="bill-row-hover">
+									<th scope="row">Tổng tiền:</th>
+									<td>${billInfors.bill.totalWithVoucher}VND</td>
+									<td></td>
 									</tr>
 								</tbody>
 							</table>
@@ -459,17 +481,13 @@ a.sidebar-link:hover {
 										</div>
 									</div>
 								</c:forEach>
-
-
 							</div>
-
 							<a href="/bill/menu/${billId}/0">
 								<div class="row border product p-5 m-3">
 									<i class="bi bi-plus"></i>
 								</div>
 							</a>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -477,12 +495,12 @@ a.sidebar-link:hover {
 		<div class="footSpace"></div>
 		<div class="total-amount" id="footer">
 			<div class="container text-center">
-				<div class="row">
-					<a href="/home" type="button"
-						class="col btn btn-secondary p-3 m-3"> Ghim hóa đơn </a>
-					<a href="/home/${billId}"><div class="col btn btn-success p-3 m-3">Thanh toán ngay</div></a>
-					<a href="/home/delete/${billId}"><div class="col btn btn-danger p-3 m-3">Hủy hóa đơn</div></a>
-				</div>
+				<a href="/home" type="button" class="btn btn-secondary p-3 m-3">
+					Ghim hóa đơn </a> <a href="/home/${billId}">
+					<div class="btn btn-success p-3 m-3">Thanh toán ngay</div>
+				</a> <a href="/home/delete/${billId}">
+					<div class="btn btn-danger p-3 m-3">Hủy hóa đơn</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -494,7 +512,6 @@ a.sidebar-link:hover {
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
 	<script>
-
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function () {
@@ -515,12 +532,14 @@ a.sidebar-link:hover {
             } else {
                 footer.classList.remove("hidden"); // Loại bỏ lớp hidden để hiển thị phần total-amount
             }
+
+            
         });
 
         // Xử lý khi cuộn lên
         window.addEventListener("scroll", function () {
             const scrollPosition = window.scrollY;
-
+            
             // Nếu cuộn lên đến đỉnh trang
             if (scrollPosition === 0) {
                 footer.classList.remove("hidden"); // Hiển thị lại phần total-amount

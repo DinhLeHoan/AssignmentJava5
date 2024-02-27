@@ -390,11 +390,11 @@
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="country" >
+                                                    <select class="form-select" id="country" name="unit" value="${ingredientEdit.unit}" >
                                                         <option selected>Đơn vị</option>
-                                                        <option value="1">Kg</option>
-                                                        <option value="2">Cái</option>
-                                                        <option value="3">Quả</option>
+                                                        <option value="Kg">Kg</option>
+                                                        <option value="Cái">Cái</option>
+                                                        <option value="Quả">Quả</option>
                                                     </select>
                                                 </div>                                               
                                                 <div class="input-group mb-3">

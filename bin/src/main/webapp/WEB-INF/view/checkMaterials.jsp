@@ -399,7 +399,7 @@ th, td {
 													<td>${item.unit }</td>
 													<td><a href="${pageContext.request.contextPath}/checkMaterials/add/${item.ingredientId}"
 														class="btn btn-primary mx-2">+</a></td>
-													<td>${item.amount }</td>
+													<td>${item.amount}</td>
 													<td><a href="${pageContext.request.contextPath}/checkMaterials/minus/${item.ingredientId}" class="btn btn-danger mx-2">-</a>
 													</td>
 												</tr>

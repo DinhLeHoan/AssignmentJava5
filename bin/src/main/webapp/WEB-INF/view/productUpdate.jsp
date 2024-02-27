@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -364,44 +365,46 @@
                                 
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form action="productUpdate" method="post" class="col-lg-6 col-md-8">
+                                            <form action="productUpdate" method="post" class="col-lg-6 col-md-8" enctype="multipart/form-data">
                                                 <h1 class="my-3">
                                                     Chỉnh sửa sản phẩm
                                                 </h1>
+                                                <input type="hidden" name="productId" value="${productEdit.productId}">
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm"
-                                                        aria-label="productType" aria-describedby="basic-addon1">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <select class="form-select" id="country" name="country">
-                                                        <option selected>Tên loại sản phẩm</option>
-                                                        <option value="1">Súp</option>
-                                                        <option value="2">Súp App</option>
-                                                        <option value="3">Sâm</option>
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Ghi chú"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon5"><i
-                                                            class="bi bi-currency-dollar"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Giá tiền"
-                                                        aria-label="text" aria-describedby="basic-addon5">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="file" class="form-control" id="productImage"
-                                                        accept="image/*" aria-label="Chọn ảnh sản phẩm">
-                                                    <label class="input-group-text" for="productImage">Chọn ảnh sản
-                                                        phẩm</label>
-                                                </div>
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi bi-bag"></i></span> <input type="text"
+                                                class="form-control" placeholder="Tên sản phẩm" name="name" value="${productEdit.name}"
+                                                aria-label="productType" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon1"><i
+                                                class="lni lni-agenda"></i></span>
+                                            
+                                                <select class="form-select" id="tag" name="tag">
+                                                    <c:forEach var="item" items="${tagList}">
+                                                        <option selected value="${item.tagId}">${item.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon5"><i
+                                                class="bi bi-card-text"></i></span> <input type="text" name="note" value="${productEdit.note}"
+                                                class="form-control" placeholder="Ghi chú" aria-label="text"
+                                                aria-describedby="basic-addon5">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon5"><i
+                                                class="bi bi-currency-dollar"></i></span> <input type="number"
+                                                class="form-control" placeholder="Giá tiền" name="price" value="${productEdit.price}"
+                                                aria-label="text" aria-describedby="basic-addon5">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" id="productImage"
+                                                accept="image/*" aria-label="Chọn ảnh sản phẩm" type="file" name="file"> <label
+                                                class="input-group-text" for="productImage">Chọn ảnh
+                                                sản phẩm</label>
+                                        </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
                                                     style="background-color: #264653;">Chỉnh sửa</button>
                                             </form>

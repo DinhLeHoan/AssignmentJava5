@@ -322,6 +322,12 @@
                     </a></li>
                 </c:if>
                 <c:if test="${staff.role eq 'ADMIN'}">
+                    <li class="sidebar-item"><a href="/voucherManager"
+                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+                            lý voucher</span>
+                </a></li>
+                </c:if>
+                <c:if test="${staff.role eq 'ADMIN'}">
                     <li class="sidebar-item"><a href="/productManager"
                     class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
                             lý sản phẩm</span>

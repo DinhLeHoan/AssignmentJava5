@@ -381,7 +381,6 @@ th, td {
 								<table class="table mb-3">
 									<thead>
 										<tr>
-											<th>STT</th>
 											<th>Tên nguyên liệu</th>
 											<th>Đơn vị</th>
 											<th>Tăng</th>
@@ -394,7 +393,6 @@ th, td {
 										<c:forEach var="item" items="${listItem}">
 
 											<tr>
-												<td>${item.ingredientId }</td>
 												<td>${item.name }</td>
 												<td>${item.unit }</td>
 												<td><a

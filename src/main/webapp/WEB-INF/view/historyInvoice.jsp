@@ -562,10 +562,8 @@ a.sidebar-link:hover {
 											<c:url var="billDetailUrl" value="/historyInvoice/${btoday}" />
 											<a href="${billDetailUrl}" class="col-2"><i
 												class="bi bi-basket3-fill"></i></a>
-											<div class="col-10 col-lg-6 align-self-center">Trần Gia
+											<div class="col-10 col-lg-10 align-self-center">Trần Gia
 												vừa bán đơn hàng với giá trị có mã là ${btoday}</div>
-											<div class="col-12 col-lg-3 align-self-center">${loop.index + 1}phút
-												trước</div>
 										</div>
 									</c:forEach>
 								</div>
@@ -593,8 +591,8 @@ a.sidebar-link:hover {
 		const dailyChart = new Chart(dailyCtx, {
 			type : 'bar',
 			data : {
-				labels : [ 'Hôm nay', 'Ngày 2', 'Ngày 3', 'Ngày 4', 'Ngày 5',
-						'Ngày 6', 'Ngày 7', 'Ngày 8', 'Ngày 9', 'Ngày 10' ],
+				labels : [ 'Hôm nay', 'Hôm qua', '3 Ngày trước', '4 Ngày trước', '5 Ngày trước',
+						'6 Ngày trước', '7 Ngày trước', '8 Ngày trước', '9 Ngày trước', '10 Ngày trước' ],
 				datasets : [ {
 					label : 'Doanh thu theo ngày',
 					data : dailyRevenueData,
@@ -667,6 +665,14 @@ a.sidebar-link:hover {
 
 		document.addEventListener('DOMContentLoaded', function() {
 		});
+		
+		 document.addEventListener('DOMContentLoaded', function() {
+		        // Kích hoạt tab "Theo Ngày"
+		        document.getElementById('day-tab').classList.add('active');
+
+		        // Hiển thị phần tử div chứa biểu đồ theo ngày
+		        document.getElementById('day').classList.add('show', 'active');
+		    });
 	</script>
 </body>
 

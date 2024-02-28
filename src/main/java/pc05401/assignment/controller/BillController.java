@@ -154,12 +154,12 @@ public class BillController {
 	public String viewMenu(@PathVariable int billId, @PathVariable int tagId, Model model) {
 		model.addAttribute("staff", session.get("staff"));
 
-		List<TagProduct> tagList = tagRepository.findAll();
+		List<TagProduct> tagList = tagRepository.findByActiveTrue();
 		model.addAttribute("tagList", tagList);
 		model.addAttribute("billId", billId);
 
 		if (tagId == 0) {
-			List<Product> productList = productRepository.findAll();
+			List<Product> productList = productRepository.findActiveProductsWithActiveTag();
 			model.addAttribute("productList", productList);
 
 		} else {

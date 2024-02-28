@@ -386,19 +386,19 @@ th, td {
 										<div>
 											<table class="table table-responsive">
 												<tr>
-													<th>STT</th>
 													<th>Tên nguyên liệu</th>
 													<th>Đơn vị</th>
 													<th>Số lượng</th>
+													<th>Số lượng tối thiểu</th>
 													<th></th>
 												</tr>
 												<c:forEach var="item" items="${listItem}">
 
-													<tr>
-														<td>${item.ingredientId}</td>
+													<tr>												
 														<td>${item.name}</td>
 														<td>${item.unit}</td>
 														<td>${item.amount}</td>
+														<td>${item.minAmount}</td>
 														<th><a
 															href="/materialUpdate?ingredientId=${item.ingredientId}"
 															type="button" class="btn btn-success">Sửa</a> <a

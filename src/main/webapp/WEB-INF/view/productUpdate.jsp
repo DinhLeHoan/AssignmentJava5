@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí sản phẩm</title>
+<title>QUẢN LÝ SẢN PHẨM</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -346,8 +346,6 @@ th, td {
 				</a></li>
 			</ul>
 			<div class="sidebar-footer">
-
-
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
 				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -355,19 +353,19 @@ th, td {
 				</a>
 			</div>
 		</aside>
-		<div class="main p-3">
+		<div class="main py-5">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí sản phẩm</h1>
+				<h1 class="header-main my-5">
+                    CHỈNH SỬA SẢN PHẨM
+                </h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-md-12 col-lg-10 col-xl-8">
 							<div class="container">
-
 								<div class="row">
 									<div class="col-lg-3 col-md-2"></div>
 									<form action="productUpdate" method="post"
 										class="col-lg-6 col-md-8" enctype="multipart/form-data">
-										<h1 class="my-3">Chỉnh sửa sản phẩm</h1>
 										<input type="hidden" name="productId"
 											value="${productEdit.productId}">
 										<div class="input-group mb-3">

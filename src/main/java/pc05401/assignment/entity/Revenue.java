@@ -1,5 +1,7 @@
 package pc05401.assignment.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,22 +16,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "billDetail")
-public class BillDetail {
-    @Id
+@AllArgsConstructor
+@Table(name = "revenue")
+public class Revenue {
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "billDetailId")
-    private int billDetailId;
+    @Column(name = "revenueId")
+    private int revenueId;
 
-    @ManyToOne
-    @JoinColumn(name = "billId", nullable = false)
-    private Bill bill;
+    @Column(name = "date", nullable = false)
+    private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Product product ;
-    
-    
+    @Column(name = "total", nullable = false)
+    private double total;
 }

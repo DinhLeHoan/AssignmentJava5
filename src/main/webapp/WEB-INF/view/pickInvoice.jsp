@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang nhập hóa đơn</title>
+<title>Sản Phẩm</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -46,7 +46,6 @@ h1 {
 
 body {
 	font-family: 'Poppins', sans-serif;
-	height: 200vh;
 }
 
 .wrapper {
@@ -202,22 +201,6 @@ a.sidebar-link:hover {
 	padding-top: 40px;
 }
 
-.product-img {
-	object-fit: cover;
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-}
-
-.product-info {
-	padding: 10px;
-}
-
-.product {
-	transform: scale(0.8);
-	padding: 5pt;
-}
-
 .nav-link {
 	border-radius: 10px 10px 0 0;
 	/* Sử dụng các giá trị tùy chỉnh của bạn cho viền góc */
@@ -233,7 +216,6 @@ a.sidebar-link:hover {
 }
 
 .total-amount h5 {
-	font-weight: 600;
 	margin-bottom: 0;
 }
 
@@ -243,9 +225,12 @@ a.sidebar-link:hover {
 }
 
 .product-img img {
-	width: 60%; /* Adjust the width as needed */
-	height: auto; /* Maintain the aspect ratio */
-	border-radius: 10px; /* Add border-radius for rounded corners */
+	width: 100%;
+	/* Adjust the width as needed */
+	heght: 100%;
+	/* Maintain the aspect ratio */
+	border-radius: 10px;
+	/* Add border-radius for rounded corners */
 }
 
 /* Thêm lớp CSS mới */
@@ -327,11 +312,11 @@ a.sidebar-link:hover {
 					</a></li>
 				</c:if>
 				<c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/voucherManager"
-                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
-                            lý voucher</span>
-                </a></li>
-                </c:if>
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -359,11 +344,11 @@ a.sidebar-link:hover {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1 class="my-5">Sản phẩm</h1>
+				<h1 class="header-main my-5">Sản Phẩm</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-md-12 col-lg-10 col-xl-8">
-							<div class="container">
+							<div class="container" style="margin-bottom: 60px">
 								<!-- Tabs Navigation -->
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
 									<li class="nav-item" role="presentation"><a type="button"
@@ -383,42 +368,47 @@ a.sidebar-link:hover {
 
 								<!-- Tabs Content -->
 								<div class="tab-content" id="myTabContent">
-
 									<c:forEach var="product" items="${productList}">
 										<c:if test="${product.active}">
-											<div class="row border product">
+											<div class="row border product mb-3">
 												<!-- Product image and information -->
-												<div class="col-4 product-img">
-													<img
-														src="https://imagestrangia.blob.core.windows.net/image/${product.image}">
-												</div>
-												<div class="col-8 product-info">
+												<div class="col-sm-12 col-md-6 col-lg-6 product-img p-1">
 													<div class="row">
-														<div class="col-12">
-															<h5 class="mb-0">${product.name}</h5>
-															<p class="text-muted mb-0">${product.price}Đ</p>
+														<div class="col-lg-2"></div>
+														<div class="col-lg-8">
+															<img
+																src="https://imagestrangia.blob.core.windows.net/image/${product.image}"
+																style="height: 200px">
 														</div>
 													</div>
-													<div class="row mt-3">
+
+												</div>
+												<div
+													class="col-sm-12 col-md-6 col-lg-6 product-info justify-content-center p-3">
+													<div class="row">
 														<div class="col-12">
-
-															<button class="btn btn-secondary me-2 quantity-btn"
-																data-operation="decrease">
-																<i class="fas fa-minus"></i>
-															</button>
-
-															<button class="btn btn-secondary me-2 quantity-btn"
-																data-operation="increase">
-																<i class="fas fa-plus"></i>
-															</button>
 															<form
 																action="${pageContext.request.contextPath}/addProductToBill/${billId}/${product.productId}"
 																method="post">
-																<input type="number" name="amount"
-																	class="quantity-input form-control me-2" value="0"
-																	min="0">
+																<h4 class="mb-3">${product.name}</h4>
+
+																<div class="row justify-content-center mb-3">
+																	<button class="btn btn-danger me-2 quantity-btn"
+																		data-operation="increase" style="width: 50px">
+																		<i class="fas fa-plus"></i>
+																	</button>
+																	<input class="text-center me-2" type="number"
+																		name="amount" class="quantity-input form-control me-2"
+																		value="0" min="0" style="width: 80px;">
+																	<button class="btn btn-secondary quantity-btn"
+																		data-operation="decrease" style="width: 50px">
+																		<i class="fas fa-minus"></i>
+																	</button>
+																</div>
+																<h3 class="text-muted mb-1">${product.price}Đ</h3>
 																<button type="submit"
-																	class="btn btn-primary me-2 mt-2 add-to-cart-btn">
+																	class="btn btn-primary me-2 mt-2 add-to-cart-btn"
+																	style="width: 100px">
 																	<i class="bi bi-bag"></i> Thêm
 																</button>
 															</form>
@@ -427,15 +417,10 @@ a.sidebar-link:hover {
 												</div>
 											</div>
 										</c:if>
-
 									</c:forEach>
-
 								</div>
-
-
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -443,11 +428,10 @@ a.sidebar-link:hover {
 	</div>
 	<div class="total-amount">
 		<div class="container text-center">
-			<div class="row">
-				<a href="${pageContext.request.contextPath}/bill/view/${billId}"><div
-						class="col btn btn-secondary m-2">Ghim hóa đơn</div></a>
-				<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
-			</div>
+			<a href="${pageContext.request.contextPath}/bill/view/${billId}">
+				<div class="col btn btn-secondary m-2">Ghim hóa đơn</div>
+			</a>
+			<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
 		</div>
 		<!--  <div class="d-flex justify-content-end align-items-center px-3 py-2">
 			<h5 class="me-3">Tổng tiền:</h5>
@@ -463,36 +447,42 @@ a.sidebar-link:hover {
 		crossorigin="anonymous"></script>
 
 	<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        const quantityButtons = document.querySelectorAll('.quantity-btn');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+	const hamBurger = document.querySelector(".toggle-btn");
 
-        quantityButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const operation = this.getAttribute('data-operation');
-                const input = this.closest('.row').querySelector('.quantity-input');
-                let value = parseInt(input.value);
+	hamBurger.addEventListener("click", function() {
+		document.querySelector("#sidebar").classList.toggle("expand");
+	});	
+	
+        document.addEventListener('DOMContentLoaded', function () {
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const quantityButtons = document.querySelectorAll('.quantity-btn');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
-                if (operation === 'increase') {
-                    value++;
-                } else if (operation === 'decrease' && value > 0) {
-                    value--;
-                }
+            quantityButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const operation = this.getAttribute('data-operation');
+                    const input = this.closest('.row').querySelector('.quantity-input');
+                    let value = parseInt(input.value);
 
-                input.value = value;
+                    if (operation === 'increase') {
+                        value++;
+                    } else if (operation === 'decrease' && value > 0) {
+                        value--;
+                    }
+
+                    input.value = value;
+                });
+            });
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const quantity = this.closest('.row').querySelector('.quantity-input').value;
+                    // Add logic to handle adding to the cart with the selected quantity
+                    console.log(`Adding to cart with quantity: ${quantity}`);
+                });
             });
         });
-
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const quantity = this.closest('.row').querySelector('.quantity-input').value;
-                // Add logic to handle adding to the cart with the selected quantity
-                console.log(`Adding to cart with quantity: ${quantity}`);
-            });
-        });
-    });
-</script>
+    </script>
 
 </body>
 

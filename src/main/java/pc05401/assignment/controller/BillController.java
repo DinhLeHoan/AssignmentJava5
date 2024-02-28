@@ -1,5 +1,6 @@
 package pc05401.assignment.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -181,35 +182,50 @@ public class BillController {
 			@RequestParam Integer amount) {
 		Bill bill = billRepository.findById(billId).orElse(null);
 
+		List<BillDetail> billDetails = new ArrayList<>();
+
 		for (int i = 0; i < amount; i++) {
 			BillDetail billDetail = new BillDetail();
 			billDetail.setBill(bill);
 			billDetail.setProduct(productRepository.findById(productId).orElse(null));
-
-			billDetailRepository.save(billDetail);
-
-			double productPrice = billDetail.getProduct().getPrice();
-			billRepository.updateTotalByAddingPrice(billId, productPrice);
-			billRepository.updateTotalWithVoucherByAddingPrice(billId, productPrice);
+			billDetails.add(billDetail);
 		}
+
+		// Save all bill details in a single batch
+		billDetailRepository.saveAll(billDetails);
+
+		// Calculate the total price for all added products
+		double totalPrice = billDetails.stream().mapToDouble(detail -> detail.getProduct().getPrice()).sum();
+
+		// Update the total and totalWithVoucher in a single transaction
+		billRepository.updateTotalByAddingPrice(billId, totalPrice);
+		billRepository.updateTotalWithVoucherByAddingPrice(billId, totalPrice);
 
 		return "redirect:/bill/menu/" + billId + "/0";
 	}
 
+	@Transactional
 	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
 	public String minusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
 		Bill bill = billRepository.findById(billId).orElse(null);
 
-		for (int i = 0; i < amount; i++) {
-//	        billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
+		List<BillDetail> detailsToDelete = new ArrayList<>();
+		double totalSubtractedPrice = 0;
 
+		for (int i = 0; i < amount; i++) {
 			BillDetail detailDel = billDetailRepository.findFirstByBill_BillIdAndProduct_ProductId(billId, productId);
-			billDetailRepository.delete(detailDel);
+			detailsToDelete.add(detailDel);
 
 			double productPrice = productRepository.findById(productId).orElse(null).getPrice();
-			billRepository.updateTotalBySubtractingPrice(billId, productPrice);
-			billRepository.updateTotalWithVoucherBySubtractingPrice(billId, productPrice);
+			totalSubtractedPrice += productPrice;
+			billDetailRepository.delete(detailDel);
 		}
+
+		// Update the total before updating the totalWithVoucher
+		billRepository.updateTotalBySubtractingPrice(billId, totalSubtractedPrice);
+
+		// Update the totalWithVoucher in a single transaction after updating the total
+		billRepository.updateTotalWithVoucherBySubtractingPrice(billId, totalSubtractedPrice);
 
 		return "redirect:/bill/view/" + billId;
 	}
@@ -231,17 +247,6 @@ public class BillController {
 
 	}
 
-//	@PostMapping("/minusProduct/{billId}/{productId}/{amount}")
-//	public String plusProduct(@PathVariable int billId, @PathVariable int productId, @PathVariable int amount) {
-//
-//		for (int i = 0; i < amount; i++) {
-//			billDetailRepository.deleteByBill_BillIdAndProduct_ProductId(billId, productId);
-//
-//		}
-//		return "redirect:/bill/view/" + billId;
-//
-//	}
-
 	@GetMapping("/home/{billId}")
 	public String paid(@PathVariable int billId) {
 		billRepository.markBillAsPaid(billId);
@@ -251,8 +256,16 @@ public class BillController {
 	@Transactional
 	@GetMapping("/home/delete/{billId}")
 	public String delete(@PathVariable int billId) {
-		billDetailRepository.deleteByBill_BillId(billId);
-		billRepository.deleteBillById(billId);
+
+		billDetailRepository.deleteByBill(billRepository.findById(billId).orElse(null));
+
+		// Delete associated voucherDetails
+		voucherDetailRepository.deleteByBill(billRepository.findById(billId).orElse(null));
+
+		// Delete the bill
+		billRepository.deleteById(billId);
+
 		return "redirect:/home";
 	}
+
 }

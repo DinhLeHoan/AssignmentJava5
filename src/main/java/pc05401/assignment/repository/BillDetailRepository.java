@@ -25,5 +25,6 @@ public interface BillDetailRepository extends JpaRepository<BillDetail, Integer>
 	void deleteByBill_BillId(int billId);
 
 	void deleteByBill(Bill bill);
+	
 
 }

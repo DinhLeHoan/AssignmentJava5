@@ -393,18 +393,19 @@ a.sidebar-link:hover {
 																<h4 class="mb-3">${product.name}</h4>
 
 																<div class="row justify-content-center mb-3">
-																	<button class="btn btn-danger me-2 quantity-btn"
-																		data-operation="increase" style="width: 50px">
-																		<i class="fas fa-plus"></i>
-																	</button>
-																	<input class="text-center me-2" type="number"
-																		name="amount" class="quantity-input form-control me-2"
-																		value="0" min="0" style="width: 80px;">
-																	<button class="btn btn-secondary quantity-btn"
-																		data-operation="decrease" style="width: 50px">
-																		<i class="fas fa-minus"></i>
-																	</button>
+																	<a class="btn btn-danger me-2 quantity-btn"
+																		data-operation="increase" style="width: 50px"> <i
+																		class="fas fa-plus"></i>
+																	</a> <input
+																		class="text-center me-2 quantity-input form-control me-2"
+																		type="number" name="amount" value="0" min="0"
+																		style="width: 80px;"> <a
+																		class="btn btn-secondary quantity-btn"
+																		data-operation="decrease" style="width: 50px"> <i
+																		class="fas fa-minus"></i>
+																	</a>
 																</div>
+
 																<h3 class="text-muted mb-1">${product.price}Đ</h3>
 																<button type="submit"
 																	class="btn btn-primary me-2 mt-2 add-to-cart-btn"

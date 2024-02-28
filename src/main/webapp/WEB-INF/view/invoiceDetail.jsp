@@ -381,26 +381,28 @@ a.sidebar-link:hover {
 										<th scope="col"></th>
 										<th scope="col"></th>
 										<th scope="col"></th>
-										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr class="bill-row-hover">
 										<th scope="row">Khách hàng:</th>
 										<td>${billInfors.bill.customerType}</td>
-
+										<td></td>
 									</tr>
 									<tr class="bill-row-hover">
 										<th scope="row">Người bán:</th>
 										<td>${billInfors.bill.staff.name}</td>
+										<td></td>
 									</tr>
 									<tr class="bill-row-hover">
 										<th scope="row">Thời gian:</th>
 										<td>${billInfors.bill.date}</td>
+										<td></td>
 									</tr>
 									<tr class="bill-row-hover">
 										<th scope="row">Tạm tính:</th>
 										<td>${billInfors.bill.total}VND</td>
+										<td></td>
 									</tr>
 									<form
 										action="${pageContext.request.contextPath}/bill/selectVoucher/${billId}"
@@ -426,7 +428,7 @@ a.sidebar-link:hover {
 													</c:forEach>
 
 											</select></td>
-											<td><button type="submit">Apply Voucher</button></td>
+											<td><button type="submit">Dùng Voucher</button></td>
 										</tr>
 									</form>
 

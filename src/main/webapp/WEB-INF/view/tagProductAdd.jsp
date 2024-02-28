@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí sản phẩm</title>
+    <title>QUẢN LÝ SẢN PHẨM</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -349,8 +349,6 @@
                 </a></li>
             </ul>
             <div class="sidebar-footer">
-
-
                 <a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
                         đặt</span>
                 </a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -358,10 +356,10 @@
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
+        <div class="main py-5">
             <div class="text-center">
-                <h1 class="my-5">
-                    Quản lí sản phẩm
+                <h1 class="header-main my-5">
+                    THÊM LOẠI SẢN PHẨM
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
@@ -370,9 +368,6 @@
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
                                             <form action="tagProductAdd" method="post" class="col-lg-6 col-md-8">
-                                                <h1 class="my-3">
-                                                    Thêm loại sản phẩm
-                                                </h1>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i
                                                             class="lni lni-agenda"></i></span>

@@ -43,20 +43,64 @@ public class ProductController {
 	@GetMapping("productManager")
 	public String showProductManager(Model model) {
 		List<Product> listItem = productRepository.findAll();
-		System.out.println(listItem);
 		model.addAttribute("listItem", listItem);
+		model.addAttribute("tagList", tagProductRepository.findAll()) ;
 		return checkAdmin("productManager");
 	}
 
 	@GetMapping("productUpdate")
-	public String showProductUpdate() {
+	public String showProductUpdate(@RequestParam("productId") Integer productId, Model model) {
+		model.addAttribute("tagList", tagProductRepository.findAll()) ;
+		
+		Product productEdit  = productRepository.findById(productId).orElseThrow() ;	
+		model.addAttribute("productEdit", productEdit) ;	
 		return checkAdmin("productUpdate");
 	}
 
 	@GetMapping("productAdd")
 	public String showProductAdd(Model model) {
-		model.addAttribute("tagList", tagProductRepository.findAll()) ;
+		model.addAttribute("tagList", tagProductRepository.findByActiveTrue()) ;
 		return checkAdmin("productAdd");
+	}
+	
+	@PostMapping("productUpdate")
+	public String updateProduct(@RequestParam("productId") Integer productId,
+								@RequestParam("file") MultipartFile file,
+	                             @RequestParam("name") String productName,
+	       
+	                             @RequestParam("note") String note,
+	                             @RequestParam("price") Double price,
+	                             @RequestParam("tag") TagProduct tag,
+	                             @RequestParam("active") boolean active,
+	                             Model model) {
+
+	    try {
+	    	Product productEdit  = productRepository.findById(productId).orElseThrow() ;	
+	        String fileName = UUID.randomUUID().toString().split("-")[0] + file.getOriginalFilename();
+	        
+	        if(file.getSize() != 0) {
+		        
+	        	client.blobName(productEdit.getImage()).buildClient().delete();
+	        	
+	        	System.out.println("filename: " + fileName);
+	        	
+		        client.blobName(fileName).buildClient().upload(file.getInputStream(), file.getSize());
+		        
+		        productEdit.setImage(fileName);
+	        }
+
+	        productEdit.setName(productName);
+	        productEdit.setNote(note);
+	        productEdit.setPrice(price);
+	        productEdit.setTag(tag);
+	        productEdit.setActive(active) ;
+			productRepository.save(productEdit);
+	        model.addAttribute("message", "File uploaded successfully!");
+	    } catch (IOException e) {
+	        model.addAttribute("message", "Failed to upload file: " + e.getMessage());
+	    }  
+
+	    return checkAdmin("redirect:/productManager");
 	}
 	
 	@PostMapping("productAdd")
@@ -75,7 +119,8 @@ public class ProductController {
 	        Product product = new Product();
 			product.setImage(fileName);
 			product.setName(productName);
-			product.setNote(note);
+			product.setNote(note) ;
+			product.setActive(true) ;
 			product.setPrice(price);
 			product.setTag(tag);
 			productRepository.save(product);
@@ -84,21 +129,58 @@ public class ProductController {
 	        model.addAttribute("message", "Failed to upload file: " + e.getMessage());
 	    }  
 
-	    return checkAdmin("productAdd");
+	    return checkAdmin("redirect:/productAdd");
 	}
 
 	@GetMapping("tagProductUpdate")
-	public String showTagProductUpdate() {
+	public String showTagProductUpdate(@RequestParam("tagId") Integer tagId, Model model) {
+		TagProduct tagProduct = tagProductRepository.findById(tagId).orElseThrow() ;
+		model.addAttribute("tagProduct", tagProduct) ;
 		return checkAdmin("tagProductUpdate");
 	}
-
+	
+	@PostMapping("tagProductUpdate")
+	public String updateTagProduct(@RequestParam("tagId") Integer tagId, @RequestParam("name") String name, @RequestParam("active") boolean active) {
+		TagProduct tagProduct = tagProductRepository.findById(tagId).orElseThrow() ;
+		tagProduct.setName(name) ;
+		tagProduct.setActive(active) ;
+		tagProductRepository.save(tagProduct) ;
+		return "redirect:/productManager" ;
+	}
 	@GetMapping("tagProductAdd")
-	public String showTagProductAdd() {
+	public String showTagProductAdd(Model model) {
+		
 		return checkAdmin("tagProductAdd");
 	}
 	
-	@GetMapping("deleteProduct/{productId}")
-	public String deleteProduct(@PathVariable int productId) {
+	@PostMapping("tagProductAdd")
+	public String tagProductAdd(@RequestParam("name") String name) {
+		TagProduct tagProduct = new TagProduct() ;
+		tagProduct.setName(name) ;
+		tagProduct.setActive(true) ;
+		tagProductRepository.save(tagProduct) ;
+		return checkAdmin("tagProductAdd");
+	}
+	
+	@GetMapping("deleteProduct")
+	public String deleteProduct(@RequestParam("productId") Integer productId) {
+		
+		Product productDel = productRepository.findById(productId).orElseThrow() ;
+		
+		productDel.setActive(false) ;
+		productRepository.save(productDel) ;
+		
+		return "redirect:/productManager";
+	}
+	
+	@GetMapping("tagProductDelete")
+	public String deleteTagProduct(@RequestParam("tagId") Integer tagId) {
+		
+		TagProduct tagDel = tagProductRepository.findById(tagId).orElseThrow() ;
+		
+		tagDel.setActive(false) ;
+		tagProductRepository.save(tagDel) ;
+		
 		return "redirect:/productManager";
 	}
 

@@ -30,4 +30,6 @@ public class BillDetail {
     @ManyToOne
     @JoinColumn(name = "productId", nullable = false)
     private Product product ;
+    
+    
 }

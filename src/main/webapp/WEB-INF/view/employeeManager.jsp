@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí nhân viên</title>
+<title>QUẢN LÝ NHÂN VIÊN</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -317,6 +317,12 @@ a.sidebar-link:hover {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -333,8 +339,6 @@ a.sidebar-link:hover {
 				</a></li>
 			</ul>
 			<div class="sidebar-footer">
-
-
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
 				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -342,55 +346,48 @@ a.sidebar-link:hover {
 				</a>
 			</div>
 		</aside>
-		<div class="main p-3">
+		<div class="main py-5">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí nhân viên</h1>
+				<h1 class="header-main my-5">QUẢN LÝ NHÂN VIÊN</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-md-12 col-lg-10 col-xl-8">
 							<div class="container">
-
 								<!-- Tabs Content -->
-								
-										<table class="table table-0">
+								<div class="table-responsive">
+									<table class="table mb-3">
+										<tr>
+											<th>Tên nhân viên</th>
+											<th>Tài khoản đăng nhập</th>
+											<th>Số điện thoại</th>
+											<th>Lương</th>
+											<th>Trạng thái</th>
+											<th>Loại tài khoản</th>
+											<th></th>
+											<th></th>
+										</tr>
+										<c:forEach var="staff" items="${staffList}">
 											<tr>
-												<th>Tên nhân viên</th>
-												<th>Tài khoản đăng nhập</th>
-												<th>Số điện thoại</th>
-												<th>Lương</th>
-												<th>Trạng thái</th>
-												<th>Loại tài khoản</th>
-												<th></th>
-												<th></th>
+												<td>${staff.name}</td>
+												<td>${staff.username}</td>
+												<td>${staff.phone}</td>
+												<td>${staff.salary}</td>
+												<td>${staff.active?'On':'Off'}</td>
+												<td>${staff.role}</td>
+												<td><a
+													href="${pageContext.request.contextPath}/employeeUpdate?staffId=${staff.staffId}"
+													type="button" class="btn btn-sm btn-secondary">Sửa</a></td>
+												<td><a
+													href="${pageContext.request.contextPath}/deleteStaff?id=${staff.staffId}"
+													type="button" class="btn btn-sm btn-danger">Xóa</a></td>
 											</tr>
-											<c:forEach var="staff" items="${staffList}">
-												<tr>
-													<td>${staff.name}</td>
-													<td>${staff.username}</td>
-													<td>${staff.phone}</td>
-													<td>${staff.salary}</td>
-													<td>${staff.active?'On':'Off'}</td>
-													<td>${staff.role}</td>
-													<td>
-														<a href="${pageContext.request.contextPath}/employeeUpdate?staffId=${staff.staffId}" type="button" class="btn btn-sm btn-secondary">Sửa</a>
-													</td>
-													<td>
-                                                        <a href="${pageContext.request.contextPath}/deleteStaff?id=${staff.staffId}" type="button" class="btn btn-sm btn-danger">Xóa</a>
-                                                    </td>
-												</tr>
-											</c:forEach>
-											<tr>
-											      <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-											      <td><a href="${pageContext.request.contextPath}/register" type="button" class="btn btn-primary">Thêm nhân viên mới</a></td>   
-											      
-											</tr>
-										</table>			
+										</c:forEach>
+									</table>
+								</div>
+								<div class="d-flex flex-row-reverse">
+									<a href="${pageContext.request.contextPath}/register"
+										type="button" class="btn btn-primary">Thêm nhân viên mới</a>
+								</div>
 							</div>
 						</div>
 					</div>

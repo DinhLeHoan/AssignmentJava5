@@ -25,12 +25,15 @@ public class Product {
     @Column(name = "productId")
     private int productId;
 	
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     @Nationalized
     private String name;
 
     @Column(name = "price", nullable = false)
     private double price;
+    
+    @Column(name = "active")
+    private boolean active ;
 
     @Column(name = "note")
     @Nationalized

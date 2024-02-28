@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang nhập hóa đơn</title>
+<title>QUẢN LÝ NHÂN VIÊN</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -261,6 +261,12 @@ a.sidebar-link:hover {
                             lý sản phẩm</span>
                 </a></li>
                 </c:if>
+                <c:if test="${staff.role eq 'ADMIN'}">
+                    <li class="sidebar-item"><a href="/voucherManager"
+                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+                            lý voucher</span>
+                </a></li>
+                </c:if>
                 <li class="sidebar-item"><a href="/registerShift"
                     class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
                         <span>Lịch làm việc</span>
@@ -277,8 +283,6 @@ a.sidebar-link:hover {
                 </a></li>
             </ul>
             <div class="sidebar-footer">
-
-
                 <a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
                         đặt</span>
                 </a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -286,9 +290,9 @@ a.sidebar-link:hover {
                 </a>
             </div>
         </aside>
-		<div class="main p-3">
+		<div class="main py-5">
 			<div class="text-center">
-				<h1>Đăng ký</h1>
+				<h1 class="header-main my-5">ĐĂNG KÝ</h1>
 				<div
 					class="container-fluid full-height d-flex flex-column justify-content-between">
 					<div class="row justify-content-center align-items-center">

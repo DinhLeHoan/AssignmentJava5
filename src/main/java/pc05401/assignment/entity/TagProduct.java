@@ -23,8 +23,12 @@ public class TagProduct {
     @Column(name = "tagId")
     private int tagId;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     @Nationalized
     private String name;
+    
+    @Column(name = "active")
+    private boolean active ;
+
 
 }

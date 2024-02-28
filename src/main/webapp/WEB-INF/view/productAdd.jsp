@@ -383,7 +383,7 @@ th, td {
 											
 												<select class="form-select" id="tag" name="tag">
 													<c:forEach var="item" items="${tagList}">
-														<option selected value="${item.tagId}">${item.name}</option>
+														<option value="${item.tagId}">${item.name}</option>
 													</c:forEach>
 												</select>
 											
@@ -398,7 +398,7 @@ th, td {
 											<span class="input-group-text" id="basic-addon5"><i
 												class="bi bi-currency-dollar"></i></span> <input type="number"
 												class="form-control" placeholder="Giá tiền" name="price"
-												aria-label="text" aria-describedby="basic-addon5">
+												aria-label="text" aria-describedby="basic-addon5" required>
 										</div>
 										<div class="input-group mb-3">
 											<input class="form-control" id="productImage"
@@ -406,6 +406,9 @@ th, td {
 												class="input-group-text" for="productImage">Chọn ảnh
 												sản phẩm</label>
 										</div>
+										<c:if test="${not empty error}">
+                                            <div style="color: red">${error}</div>
+                                        </c:if>
 										<button type="submit" class="btn btn-primary mb-3"
 											style="background-color: #264653;">Thêm Sản Phẩm</button>
 									</form>

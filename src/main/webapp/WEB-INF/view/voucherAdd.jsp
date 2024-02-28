@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí Voucher</title>
+    <title>Quản Lí VOUCHER</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -316,49 +317,52 @@
                 </div>
             </div>
             <div class="sidebar-logo">
-                <img
-                    src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
+                <img src="https://trangiafnb.com/wp-content/uploads/2023/07/sup-tran-gia.png"
                     style="width: 50%; margin-left: 50px;" alt="">
                 <h6 style="color: white; margin-left: 50px;">${staff.name}</h6>
             </div>
             <div class="sidebar-profile"></div>
             <ul class="sidebar-nav">
                 <c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-                    <li class="sidebar-item"><a href="/checkMaterials"
-                        class="sidebar-link"> <i class="bi bi-house-lock"></i> <span>Quản
+                    <li class="sidebar-item"><a href="/checkMaterials" class="sidebar-link"> <i
+                                class="bi bi-house-lock"></i> <span>Quản
                                 lý kho</span>
-                    </a></li>
+                        </a></li>
                 </c:if>
                 <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/employeeManager"
-                        class="sidebar-link"> <i class="bi bi-people"></i> <span>Quản
+                    <li class="sidebar-item"><a href="/employeeManager" class="sidebar-link"> <i
+                                class="bi bi-people"></i> <span>Quản
                                 lý nhân viên</span>
-                    </a></li>
+                        </a></li>
                 </c:if>
                 <c:if test="${staff.role eq 'ADMIN'}">
-                    <li class="sidebar-item"><a href="/productManager"
-                    class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
-                            lý sản phẩm</span>
-                </a></li>
+                    <li class="sidebar-item"><a href="/productManager" class="sidebar-link"> <i
+                                class="lni lni-agenda"></i> <span>Quản
+                                lý sản phẩm</span>
+                        </a></li>
                 </c:if>
-                <li class="sidebar-item"><a href="/registerShift"
-                    class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
+                <c:if test="${staff.role eq 'ADMIN'}">
+                    <li class="sidebar-item"><a href="/voucherManager" class="sidebar-link"> <i
+                                class="bi bi-database-down"></i> <span>Quản
+                                lý voucher</span>
+                        </a></li>
+                </c:if>
+                <li class="sidebar-item"><a href="/registerShift" class="sidebar-link"> <i
+                            class="bi bi-calendar-check-fill"></i>
                         <span>Lịch làm việc</span>
-                </a></li>
+                    </a></li>
                 <li class="sidebar-item"><a href="#" class="sidebar-link">
                         <i class="bi bi-bell"></i> <span>Thông báo</span>
-                </a></li>
+                    </a></li>
                 <li class="sidebar-item"><a href="/home" class="sidebar-link">
                         <i class="bi bi-receipt-cutoff"></i> <span>Hóa đơn</span>
-                </a></li>
-                <li class="sidebar-item"><a href="/historyInvoice"
-                    class="sidebar-link"> <i class="bi bi-clock-history"></i> <span>Lịch
+                    </a></li>
+                <li class="sidebar-item"><a href="/historyInvoice" class="sidebar-link"> <i
+                            class="bi bi-clock-history"></i> <span>Lịch
                             sử hóa đơn</span>
-                </a></li>
+                    </a></li>
             </ul>
             <div class="sidebar-footer">
-
-
                 <a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
                         đặt</span>
                 </a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -366,55 +370,54 @@
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
+        <div class="main py-5">
             <div class="text-center">
-                <h1 class="my-5">
-                    Quản lí Voucher
+                <h1 class="header-main my-5">
+                    Thêm Voucher
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
-                        <div class="col-md-12 col-lg-10 col-xl-8">
+                        <div class="col-sm-12 col-md-12 col-lg-10 col-xl-8">
                             <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-2"></div>
-                                            <form action="voucherAdd" class="col-lg-6 col-md-8" method="post">
-                                                <h1 class="my-3">
-                                                    Thêm Voucher
-                                                </h1>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên Voucher"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="name">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Giảm Giá"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="discount">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Phần Trăm"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="percentage">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="date" class="form-control" placeholder="Ngày Tạo"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="createDate">
-                                                </div>
-                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="date" class="form-control" placeholder="Ngày Hết Hạn"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="expiresAt">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Mô Tả"
-                                                        aria-label="productType" aria-describedby="basic-addon1" name="description">
-                                                </div>
-                                                <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Thêm voucher</button>
-                                            </form>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-2 col-sm-1"></div>
+                                    <form class="col-lg-6 col-md-8 col-sm-10" action="voucherAdd" method="post">
+                                        <div class="input-group mb-3">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Tên</div>
+                                            <input type="text" class="form-control" aria-label="productType"
+                                                aria-describedby="basic-addon1" name="name">
                                         </div>
+                                        <div class="input-group mb-3">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Giảm Giá</div>
+                                            <input type="number" value="0" class="form-control" aria-label="productType"
+                                                aria-describedby="basic-addon1" name="discount">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Phần Trăm</div>
+                                            <input type="number" value="0" class="form-control" placeholder="Phần Trăm"
+                                                aria-label="productType" aria-describedby="basic-addon1"
+                                                name="percentage">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Ngày Tạo</div>
+                                            <input type="date" class="form-control" aria-label="productType"
+                                                aria-describedby="basic-addon1" name="createDate">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Hết Hạn</div>
+                                            <input type="date" class="form-control" aria-label="productType"
+                                                aria-describedby="basic-addon1" name="expiresAt">
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <div class="d-flex flex-row py-2" style="width: 95px">Mô Tả</div>
+                                            <input type="text" class="form-control" placeholder="Mô Tả"
+                                                aria-label="productType" aria-describedby="basic-addon1"
+                                                name="description">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mb-3"
+                                            style="background-color: #264653;">Thêm voucher</button>
+                                    </form>
+                                </div>
 
                             </div>
                         </div>

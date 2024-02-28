@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí nguyên liệu</title>
+    <title>Quản Lí Nguyên Liệu</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -301,10 +303,10 @@
             }
         }
     </style>
+
 </head>
 
 <body>
-
     <div class="wrapper">
         <aside id="sidebar">
             <div class="d-flex">
@@ -341,6 +343,12 @@
                             lý sản phẩm</span>
                 </a></li>
                 </c:if>
+                <c:if test="${staff.role eq 'ADMIN'}">
+                    <li class="sidebar-item"><a href="/voucherManager"
+                    class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+                            lý voucher</span>
+                </a></li>
+                </c:if>
                 <li class="sidebar-item"><a href="/registerShift"
                     class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
                         <span>Lịch làm việc</span>
@@ -366,21 +374,18 @@
                 </a>
             </div>
         </aside>
-        <div class="main p-3">
+        <div class="main py-5">
             <div class="text-center">
-                <h1 class="my-5">
-                    Quản lí nguyên liệu
+                <h1 class="header-main my-5">
+                    THÊM NGUYÊN LIỆU
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
                         <div class="col-md-12 col-lg-10 col-xl-8">
-                            <div class="container">
+                            <div class="container my-3">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
                                             <form action="materialAdd" class="col-lg-6 col-md-8" method="post">
-                                                <h1 class="my-3">
-                                                    Thêm nguyên liệu
-                                                </h1>
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
                                                     <input type="text" class="form-control" placeholder="Tên nguyên liệu"

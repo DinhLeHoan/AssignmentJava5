@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ page import="java.util.Date" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.Date"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -319,9 +319,9 @@ a.sidebar-link:hover {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
-				<c:if test="${staff.role eq 'ADMIN' || staff.role eq 'CASHIER'}">
-					<li class="sidebar-item"><a href="/productManager"
-						class="sidebar-link"> <i class="lni lni-agenda"></i> <span>Quản
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
 								lý voucher</span>
 					</a></li>
 				</c:if>
@@ -353,55 +353,51 @@ a.sidebar-link:hover {
 		<div class="main p-3">
 			<div class="text-center">
 				<h1 class="my-5">QUẢN LÝ VOUCHER</h1>
-				<div class="container-fluid d-flex flex-column">
-					<div class="row justify-content-center">
-						<div class="col-md-12 col-lg-10 col-xl-8">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-2"></div>
+						<div class="col-lg-8">
 							<div class="container">
-
-								<!-- Tabs Content -->
-								
-										<table class="table table-0">
+								<div class="table-responsive">
+									<table class="mb-3">
+										<tr>
+											<th>Mã Voucher</th>
+											<th>Tên</th>
+											<th>Ngày tạo</th>
+											<th>Giảm giá</th>
+											<th>Thời hạn</th>
+											<th>Phần trăm</th>
+											<th>Mô tả</th>
+											<th></th>
+										</tr>
+										<c:forEach var="item" items="${listItem}">
 											<tr>
-												<th>Mã Voucher</th>
-												<th>Tên</th>
-												<th>Ngày tạo</th>												
-												<th>Giảm giá</th>
-												<th>Thời hạn</th>											
-												<th>Phần trăm</th>
-												<th>Mô tả</th>
-												<th></th>
-											</tr>
-											<c:forEach var="item" items="${listItem}">
-												<tr>
-													<td>${item.voucherId}</td>
-													<td>${item.name}</td>
-													<td>
-													<fmt:formatDate value="${item.createDate}" pattern="dd-MM-yyyy" var="formattedDate" />
-													${formattedDate}
-													</td>
-													<td>${item.discount}</td>
-													<td>
-													<fmt:formatDate value="${item.expiresAt}" pattern="dd-MM-yyyy" var="formattedDate" />
+												<td>${item.voucherId}</td>
+												<td>${item.name}</td>
+												<td><fmt:formatDate value="${item.createDate}"
+														pattern="dd-MM-yyyy" var="formattedDate" />
 													${formattedDate}</td>
-													<td>${item.percentage}</td>
-													<td>${item.description}</td>
-													<td><a href="${pageContext.request.contextPath}/voucherUpdate?voucherId=${item.voucherId}"
-															type="button" class="btn btn-success">Sửa</a> <a
-															href="${pageContext.request.contextPath}/deleteVoucher?voucherId=${item.voucherId}" type="button"
-															class="btn btn-danger">Xóa</a></th>
-												</td>
-											</c:forEach>
-											<tr>
-											      <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-                                                  <td></td>
-											      <td><a href="/voucherAdd" type="button" class="btn btn-primary">Thêm voucher mới</a></td>   								      
+												<td>${item.discount}</td>
+												<td><fmt:formatDate value="${item.expiresAt}"
+														pattern="dd-MM-yyyy" var="formattedDate" />
+													${formattedDate}</td>
+												<td>${item.percentage}</td>
+												<td>${item.description}</td>
+												<td class=""><a
+													href="${pageContext.request.contextPath}/voucherUpdate?voucherId=${item.voucherId}"
+													type="button" class="btn btn-success ms-4">Sửa</a> <a
+													href="${pageContext.request.contextPath}/deleteVoucher?voucherId=${item.voucherId}"
+													type="button" class="btn btn-danger ms-4">Xóa</a></td>
 											</tr>
-										</table>			
+										</c:forEach>
+
+									</table>
+
+								</div>
+								<div class="d-flex flex-row-reverse mx-3">
+									<a href="/voucherAdd" type="button" class="btn btn-primary">Thêm
+										voucher mới</a>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí sản phẩm</title>
+<title>QUẢN LÝ KHO</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -342,6 +342,12 @@ th, td {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -358,8 +364,6 @@ th, td {
 				</a></li>
 			</ul>
 			<div class="sidebar-footer">
-
-
 				<a href="#" class="sidebar-link"> <i class="bi bi-gear"></i> <span>Cài
 						đặt</span>
 				</a> <a href="/logout" class="sidebar-link"> <i class="lni lni-exit"></i>
@@ -367,56 +371,47 @@ th, td {
 				</a>
 			</div>
 		</aside>
-		<div class="main p-3">
+		<div class="main py-5">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí kho</h1>
+				<h1 class="header-main my-5">QUẢN LÝ KHO</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
-						<div class="col-lg-1"></div>
-						<div class="col-md-12 col-lg-10 col-xl-8">
-							<div class="card col-lg-10 mb-3" style="height: 85%;">
-								<div class="card-header">Danh sách nguyên liệu</div>
+						<div class="col-md-12 col-lg-12 col-xl-8">
+							<div class="table-responsive">
+								<table class="table mb-3">
+									<thead>
+										<tr>
+											<th>STT</th>
+											<th>Tên nguyên liệu</th>
+											<th>Đơn vị</th>
+											<th>Tăng</th>
+											<th>Số lượng</th>
+											<th>Giảm</th>
+										</tr>
+									</thead>
 
-								<div>
-									<table class="table table-responsive">
-										<thead>
+									<tbody>
+										<c:forEach var="item" items="${listItem}">
+
 											<tr>
-												<th>STT</th>
-												<th>Tên nguyên liệu</th>
-												<th>Đơn vị</th>
-												<th>Tăng</th>
-												<th>Số lượng</th>
-												<th>Giảm</th>
-											</tr>
-										</thead>
-
-										<tbody>
-											<c:forEach var="item" items="${listItem}">
-
-												<tr>
-													<td>${item.ingredientId }</td>
-													<td>${item.name }</td>
-													<td>${item.unit }</td>
-													<td><a href="${pageContext.request.contextPath}/checkMaterials/add/${item.ingredientId}"
-														class="btn btn-primary mx-2">+</a></td>
-													<td>${item.amount}</td>
-													<td><a href="${pageContext.request.contextPath}/checkMaterials/minus/${item.ingredientId}" class="btn btn-danger mx-2">-</a>
-													</td>
-												</tr>
-											</c:forEach>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${item.ingredientId }</td>
+												<td>${item.name }</td>
+												<td>${item.unit }</td>
 												<td><a
-													href="${pageContext.request.contextPath}/materialManager"
-													type="button" class="btn btn-primary">Chỉnh sửa nguyên
-														liệu</a></td>
+													href="${pageContext.request.contextPath}/checkMaterials/add/${item.ingredientId}"
+													class="btn btn-primary mx-2">+</a></td>
+												<td>${item.amount}</td>
+												<td><a
+													href="${pageContext.request.contextPath}/checkMaterials/minus/${item.ingredientId}"
+													class="btn btn-danger mx-2">-</a></td>
 											</tr>
-										</tbody>
-									</table>
+										</c:forEach>
+									</tbody>
+								</table>
+								<div class="d-flex flex-row-reverse">
+									<a href="${pageContext.request.contextPath}/materialManager"
+										type="button" class="btn btn-primary">Chỉnh sửa nguyên
+										liệu</a>
 								</div>
 							</div>
 						</div>
@@ -424,20 +419,21 @@ th, td {
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
-		<script>
-			const hamBurger = document.querySelector(".toggle-btn");
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+		crossorigin="anonymous"></script>
+	<script>
+		const hamBurger = document.querySelector(".toggle-btn");
 
-			hamBurger.addEventListener("click", function() {
-				document.querySelector("#sidebar").classList.toggle("expand");
-			});
-		</script>
+		hamBurger.addEventListener("click", function() {
+			document.querySelector("#sidebar").classList.toggle("expand");
+		});
+	</script>
 </body>
 
 </html>

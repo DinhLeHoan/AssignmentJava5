@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quản lí nguyên liệu</title>
+<title>Quản Lý Nguyên Liệu</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
@@ -342,6 +342,12 @@ th, td {
 								lý sản phẩm</span>
 					</a></li>
 				</c:if>
+				<c:if test="${staff.role eq 'ADMIN'}">
+					<li class="sidebar-item"><a href="/voucherManager"
+						class="sidebar-link"> <i class="bi bi-database-down"></i> <span>Quản
+								lý voucher</span>
+					</a></li>
+				</c:if>
 				<li class="sidebar-item"><a href="/registerShift"
 					class="sidebar-link"> <i class="bi bi-calendar-check-fill"></i>
 						<span>Lịch làm việc</span>
@@ -369,7 +375,7 @@ th, td {
 		</aside>
 		<div class="main p-3">
 			<div class="text-center">
-				<h1 class="my-5">Quản lí nguyên liệu</h1>
+				<h1 class="my-5">QUẢN LÝ NGUYÊN LIỆU</h1>
 				<div class="container-fluid d-flex flex-column">
 					<div class="row justify-content-center">
 						<div class="col-md-12 col-lg-10 col-xl-8">
@@ -393,23 +399,19 @@ th, td {
 														<td>${item.name}</td>
 														<td>${item.unit}</td>
 														<td>${item.amount}</td>
-														<th><a href="/materialUpdate?ingredientId=${item.ingredientId}"
+														<th><a
+															href="/materialUpdate?ingredientId=${item.ingredientId}"
 															type="button" class="btn btn-success">Sửa</a> <a
 															href="/deleteMaterial/${item.ingredientId}" type="button"
 															class="btn btn-danger">Xóa</a></th>
 													</tr>
 												</c:forEach>
-												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td><a
-														href="${pageContext.request.contextPath}/materialAdd"
-														type="button" class="btn btn-primary">Thêm loại nguyên
-															liệu</a></td>
-												</tr>
 											</table>
+											<div class="d-flex flex-row-reverse">
+												<a href="${pageContext.request.contextPath}/materialAdd"
+													type="button" class="btn btn-primary">Thêm loại nguyên
+													liệu</a>
+											</div>
 										</div>
 									</div>
 								</div>

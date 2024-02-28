@@ -1,25 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang nhập hóa đơn</title>
+<title>Lịch sử hóa đơn</title>
 <link href="https://cdn.lineicons.com/4.0/lineicons.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap')
@@ -46,7 +40,11 @@ h1 {
 
 body {
 	font-family: 'Poppins', sans-serif;
-	height: 200vh;
+	max-height: 100%;
+}
+
+.btn:hover {
+	transform: scale(1.2);
 }
 
 .wrapper {
@@ -54,7 +52,6 @@ body {
 }
 
 .main {
-	min-height: 100vh;
 	width: 100%;
 	overflow: hidden;
 	transition: all 0.35s ease-in-out;
@@ -216,11 +213,7 @@ a.sidebar-link:hover {
 .product {
 	transform: scale(0.8);
 	padding: 5pt;
-}
-
-.nav-link {
-	border-radius: 10px 10px 0 0;
-	/* Sử dụng các giá trị tùy chỉnh của bạn cho viền góc */
+	box-shadow: 0 0 2rem rgba(0, 0, 0, 0.215);
 }
 
 .total-amount {
@@ -242,10 +235,79 @@ a.sidebar-link:hover {
 	font-size: 1.2rem;
 }
 
-.product-img img {
-	width: 60%; /* Adjust the width as needed */
-	height: auto; /* Maintain the aspect ratio */
-	border-radius: 10px; /* Add border-radius for rounded corners */
+.total-amount {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	left: 40px;
+	/* Width of the sidebar */
+	background-color: #ffffff;
+	transition: opacity 0.3s ease-in-out;
+	/* Thêm transition để làm mịn việc hiển thị */
+	opacity: 1;
+	/* Mặc định hiển thị */
+	pointer-events: none;
+	/* Không tương tác */
+}
+
+.total-amount.hidden {
+	opacity: 0;
+	/* Khi ẩn, làm mờ */
+	pointer-events: none;
+	/* Không tương tác */
+}
+
+.bill-row-hover:hover {
+	cursor: pointer;
+}
+
+.bi-plus {
+	font-size: 60px;
+}
+
+.product:hover {
+	box-shadow: 0 0 2rem rgba(0, 62, 11, 0.502);
+}
+
+.history-invoice {
+	margin-bottom: 20px;
+}
+
+.history-invoice .card-header {
+	background-color: #3b7ddd;
+	color: white;
+	font-weight: bold;
+	padding: 10px 20px;
+	border-radius: 10px 10px 0 0;
+}
+
+.history-invoice .card-body {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 0 0 10px 10px;
+}
+
+.history-invoice .card-body .row {
+	align-items: center;
+}
+
+.history-invoice .card-body .col-2 {
+	font-size: 1.5rem;
+	color: #3b7ddd;
+}
+
+.history-invoice .card-body .col-8 {
+	font-size: 0.9rem;
+}
+
+.history-invoice .card-body .col-2:last-child {
+	font-size: 0.8rem;
+	color: #6c757d;
+	text-align: right;
+}
+
+.history-invoice:hover {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Thêm lớp CSS mới */
@@ -266,23 +328,22 @@ a.sidebar-link:hover {
 }
 
 @media ( max-width : 767.98px) {
-	.nav-tabs {
-		display: flex;
-		flex-wrap: nowrap;
-		/* Ngăn các phần tử xuống dòng */
-		overflow-x: auto;
-		/* Cho phép kéo từ phải sang trái */
-		-webkit-overflow-scrolling: touch;
-		/* Hỗ trợ cuộn mượt trên các thiết bị cảm ứng */
-	}
-	.nav-item {
-		flex: none;
-		/* Không sử dụng flexbox trên giao diện điện thoại */
-		display: inline-block;
-		/* Hiển thị các mục trên cùng một hàng */
+	/* Màn hình nhỏ hơn 768px */
+	.custom-col-sm {
+		max-width: 100%;
+		/* Hiển thị 1 cột */
 	}
 	.product {
-		margin: -10px;
+		transform: scale(0.8);
+		padding: 5pt;
+		margin-top: -20px;
+		margin-bottom: -20%;
+	}
+	.bi-basket3-fill {
+		transform: scale(1.2);
+	}
+	.history-invoice .row .col-12 {
+		font-size: 10px;
 	}
 }
 </style>
@@ -352,142 +413,143 @@ a.sidebar-link:hover {
 			</div>
 		</aside>
 		<div class="main p-3">
-			<div class="text-center">
-				<h1 class="my-5">Sản phẩm</h1>
-				<div class="container-fluid d-flex flex-column">
-					<div class="row justify-content-center">
-						<div class="col-md-12 col-lg-10 col-xl-8">
-							<div class="container">
-								<!-- Tabs Navigation -->
-								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item" role="presentation"><a type="button"
-										href="${pageContext.request.contextPath}/bill/menu/${billId}/0"
-										class="nav-link active" id="0" data-bs-target="#0"
-										type="button" role="tab" aria-controls="0"
-										aria-selected="true">Tất cả</a></li>
-									<c:forEach var="tag" items="${tagList}">
-										<li class="nav-item" role="presentation"><a type="button"
-											href="${pageContext.request.contextPath}/bill/menu/${billId}/${tag.tagId}"
-											class="nav-link" id="${tag.tagId}-tab"
-											data-bs-target="#'${tag.tagId}'" role="tab"
-											aria-controls="${tag.tagId}" aria-selected="false">${tag.name}</a>
-										</li>
-									</c:forEach>
-								</ul>
-
-								<!-- Tabs Content -->
-								<div class="tab-content" id="myTabContent">
-
-									<c:forEach var="product" items="${productList}">
-										<c:if test="${product.active}">
-											<div class="row border product">
-												<!-- Product image and information -->
-												<div class="col-4 product-img">
-													<img
-														src="https://imagestrangia.blob.core.windows.net/image/${product.image}">
-												</div>
-												<div class="col-8 product-info">
-													<div class="row">
-														<div class="col-12">
-															<h5 class="mb-0">${product.name}</h5>
-															<p class="text-muted mb-0">${product.price}Đ</p>
-														</div>
-													</div>
-													<div class="row mt-3">
-														<div class="col-12">
-
-															<button class="btn btn-secondary me-2 quantity-btn"
-																data-operation="decrease">
-																<i class="fas fa-minus"></i>
-															</button>
-
-															<button class="btn btn-secondary me-2 quantity-btn"
-																data-operation="increase">
-																<i class="fas fa-plus"></i>
-															</button>
-															<form
-																action="${pageContext.request.contextPath}/addProductToBill/${billId}/${product.productId}"
-																method="post">
-																<input type="number" name="amount"
-																	class="quantity-input form-control me-2" value="0"
-																	min="0">
-																<button type="submit"
-																	class="btn btn-primary me-2 mt-2 add-to-cart-btn">
-																	<i class="bi bi-bag"></i> Thêm
-																</button>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-										</c:if>
-
-									</c:forEach>
-
-								</div>
-
-
+			<h1 class="text-center my-5">Chỉnh sửa và Xóa Hóa đơn
+				${bill.billId}</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<form class="form">
+							<div class="mb-3">
+								<label for="invoiceNumber" class="form-label">Số hóa đơn</label>
+								<input type="text" class="form-control" id="invoiceNumber"
+									value="${bill.billId}" readonly>
 							</div>
-						</div>
+							<div class="mb-3">
+								<label for="customerName" class="form-label">Khách hàng</label>
+								<input type="text" class="form-control" id="customerName"
+									placeholder="Nhập loại khách hàng" value="${bill.customerType}">
+							</div>
+							<div class="mb-3">
+								<label for="amount" class="form-label">Tổng số tiền</label> <input
+									type="text" class="form-control" id="amount"
+									placeholder="Nhập tổng số tiền">
+							</div>
+							<button type="submit" class="btn btn-primary">Lưu chỉnh
+								sửa</button>
+							<button href="http://localhost:8080/historyInvoice/${bill.billId}/delete/${productInfo.productId}" class="btn btn-danger">Xóa hóa đơn</button>
+						</form>
+					</div>
 
+							
+					</div>
+					<!-- Bảng sản phẩm số lượng -->
+					<div class="row mt-5">
+						<div class="col-lg-12">
+							<h2 class="text-center">Danh sách sản phẩm và số lượng</h2>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col">Mã sản phẩm</th>
+										<th scope="col">Số lượng ban đầu</th>
+										<th scope="col">Chỉnh sửa</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- Đổ dữ liệu từ danh sách sản phẩm và số lượng vào bảng -->
+									<c:forEach items="${productInfos}" var="productInfo">
+										<tr>
+											<td>${productInfo.productId}</td>
+											<td>${productInfo.count}</td>			
+											<td>
+												<!-- Nút xóa --> <a class="btn btn-danger"
+												href="http://localhost:8080/historyInvoice/${bill.billId}/delete/${productInfo.productId}">Xóa</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="total-amount">
-		<div class="container text-center">
-			<div class="row">
-				<a href="${pageContext.request.contextPath}/bill/view/${billId}"><div
-						class="col btn btn-secondary m-2">Ghim hóa đơn</div></a>
-				<div class="col btn btn-danger m-2">Hủy hóa đơn</div>
-			</div>
-		</div>
-		<!--  <div class="d-flex justify-content-end align-items-center px-3 py-2">
-			<h5 class="me-3">Tổng tiền:</h5>
-			<span class="fw-bold">$100.00</span>
-		</div>-->
-	</div>
 
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-
 	<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        const quantityButtons = document.querySelectorAll('.quantity-btn');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const hamBurger = document.querySelector(".toggle-btn");
 
-        quantityButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const operation = this.getAttribute('data-operation');
-                const input = this.closest('.row').querySelector('.quantity-input');
-                let value = parseInt(input.value);
+        hamBurger.addEventListener("click", function () {
+            document.querySelector("#sidebar").classList.toggle("expand");
+        });
+        const footer = document.getElementById("footer");
 
-                if (operation === 'increase') {
-                    value++;
-                } else if (operation === 'decrease' && value > 0) {
-                    value--;
+        window.addEventListener("scroll", function () {
+            // Khoảng cách từ đỉnh trang đến cuối cùng của màn hình hiển thị
+            const windowHeight = window.innerHeight;
+
+            // Khoảng cách từ đỉnh trang đến phía dưới của phần total-amount
+            const footerDistance = footer.getBoundingClientRect().top;
+
+            // Nếu phần total-amount hiển thị trong màn hình và không nằm ở đỉnh trang
+            if (footerDistance < windowHeight && footerDistance > 0) {
+                footer.classList.add("hidden"); // Thêm lớp hidden để ẩn phần total-amount
+            } else {
+                footer.classList.remove("hidden"); // Loại bỏ lớp hidden để hiển thị phần total-amount
+            }
+        });
+
+        // Xử lý khi cuộn lên
+        window.addEventListener("scroll", function () {
+            const scrollPosition = window.scrollY;
+
+            // Nếu cuộn lên đến đỉnh trang
+            if (scrollPosition === 0) {
+                footer.classList.remove("hidden"); // Hiển thị lại phần total-amount
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const revenueData = [50000, 120000, 300000, 200000, 800000, 700000, 900000, 600000, 400000, 300000, 200000, 100000, 150000, 200000];
+
+    // Khởi tạo biểu đồ cột
+    const ctx = document.getElementById('hourlyRevenueChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['9h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h'],
+            datasets: [{
+                label: 'Doanh thu theo giờ',
+                data: revenueData,
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1000000, // Giới hạn trục y tại 1 triệu đồng
+                    ticks: {
+                        stepSize: 100000 // Bước giá trị của trục y
+                    }
                 }
-
-                input.value = value;
-            });
-        });
-
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const quantity = this.closest('.row').querySelector('.quantity-input').value;
-                // Add logic to handle adding to the cart with the selected quantity
-                console.log(`Adding to cart with quantity: ${quantity}`);
-            });
-        });
+            }
+        }
     });
-</script>
 
+    // Kích hoạt tab "Theo Giờ"
+    const hourlyTab = document.getElementById('hour-tab');
+    hourlyTab.click();
+});
+    </script>
 </body>
 
 </html>

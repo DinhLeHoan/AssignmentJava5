@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lí sản phẩm</title>
+    <title>Quản lí Voucher</title>
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -163,6 +163,14 @@
         .main {
             margin-left: 40px;
         }
+
+        .square-box {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.623);
+        }
+
         .title-box {
             top: 0;
             left: 0;
@@ -174,6 +182,16 @@
             padding: 10px;
             border-radius: 10px 10px 0 0;
         }
+
+        .square-content {
+            font-size: smaller;
+        }
+
+        .square-content-money {
+            height: 100px;
+            padding-top: 40px;
+        }
+
         .product-img {
             object-fit: cover;
             width: 100%;
@@ -226,10 +244,6 @@
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-        }
-
-        .input-group-text {
-            cursor: pointer;
         }
 
         /* Responsive styles for smaller screens */
@@ -355,28 +369,50 @@
         <div class="main p-3">
             <div class="text-center">
                 <h1 class="my-5">
-                    Quản lí sản phẩm
+                    Quản lí Voucher
                 </h1>
                 <div class="container-fluid d-flex flex-column">
                     <div class="row justify-content-center">
                         <div class="col-md-12 col-lg-10 col-xl-8">
                             <div class="container">
-                                
                                         <div class="row">
                                             <div class="col-lg-3 col-md-2"></div>
-                                            <form action="tagProductUpdate" class="col-lg-6 col-md-8" method="post">
+                                            <form action="voucherAdd" class="col-lg-6 col-md-8" method="post">
                                                 <h1 class="my-3">
-                                                    Chỉnh sửa loại sản phẩm
+                                                    Thêm Voucher
                                                 </h1>
-                                                <input type="hidden" name="tagId" value="${tagProduct.tagId}">
                                                 <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"><i
-                                                            class="lni lni-agenda"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Tên sản phẩm" name="name" value="${tagProduct.name}"
-                                                        aria-label="productType" aria-describedby="basic-addon1">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Tên Voucher"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="name">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Giảm Giá"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="discount">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Phần Trăm"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="percentage">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="date" class="form-control" placeholder="Ngày Tạo"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="createDate">
+                                                </div>
+                                                 <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="date" class="form-control" placeholder="Ngày Hết Hạn"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="expiresAt">
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-bag"></i></span>
+                                                    <input type="text" class="form-control" placeholder="Mô Tả"
+                                                        aria-label="productType" aria-describedby="basic-addon1" name="description">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3"
-                                                    style="background-color: #264653;">Chỉnh sửa</button>
+                                                    style="background-color: #264653;">Thêm voucher</button>
                                             </form>
                                         </div>
 
@@ -392,12 +428,6 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
         <script>
-            document.getElementById("productImage").addEventListener("change", function () {
-                // Lấy ra tên file đã chọn
-                var fileName = this.files[0].name;
-                // Hiển thị tên file lên label
-                this.nextElementSibling.innerText = fileName;
-            });
             const hamBurger = document.querySelector(".toggle-btn");
 
             hamBurger.addEventListener("click", function () {

@@ -358,7 +358,7 @@ a.sidebar-link:hover {
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
 							<div class="container">
-								<div class="table-responsive">
+								<div class="table table-responsive">
 									<table class="mb-3">
 										<tr>
 											<th>Mã Voucher</th>

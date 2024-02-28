@@ -98,6 +98,9 @@ public class EmployeeController {
 		case 8:
 			error = "Lương phải là số dương !" ;
 			return "redirect:/employeeUpdate?staffId="+staffEdit.getStaffId();
+		case 9:
+			error = "Không được nhập quá 250 ký tự !" ;
+			return "redirect:/employeeUpdate?staffId="+staffEdit.getStaffId();
 		default:
 			staffRepository.save(staffEdit);
 			return "redirect:/employeeManager";
@@ -141,6 +144,10 @@ public class EmployeeController {
 		}
 		if (staffEdit.getSalary() <= 0) {
 			return 8;
+		}
+		if (staffEdit.getUsername().length() > 250 || staffEdit.getPassword().length() > 250
+				|| staffEdit.getName().length() > 250) {
+			return 9;
 		}
 
 		return -1;

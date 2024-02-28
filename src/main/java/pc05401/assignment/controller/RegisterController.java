@@ -66,6 +66,9 @@ public class RegisterController {
 		case 7:
 			model.addAttribute("error", "Số điện thoại chưa hợp lệ !");
 			return "register";
+		case 8:
+			model.addAttribute("error", "Không được nhập quá 250 ký tự !");
+			return "register";
 		default:
 			try {
 				if (staffRepository.findByUsername(username) != null) {
@@ -119,6 +122,9 @@ public class RegisterController {
 		}
 		if (!phone.matches(regexPhone)) {
 			return 7;
+		}
+		if (username.length() > 250 || password.length() > 250 || name.length() > 250) {
+			return 8 ;
 		}
 		
 		return -1;

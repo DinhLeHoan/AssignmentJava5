@@ -390,23 +390,23 @@
                                         <div class="input-group mb-3">
                                             <div class="d-flex flex-row py-2" style="width: 95px">Giảm Giá</div>
                                             <input type="number" value="0" class="form-control" aria-label="productType"
-                                                aria-describedby="basic-addon1" name="discount">
+                                                aria-describedby="basic-addon1" name="discount" required>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="d-flex flex-row py-2" style="width: 95px">Phần Trăm</div>
                                             <input type="number" value="0" class="form-control" placeholder="Phần Trăm"
                                                 aria-label="productType" aria-describedby="basic-addon1"
-                                                name="percentage">
+                                                name="percentage" required>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="d-flex flex-row py-2" style="width: 95px">Ngày Tạo</div>
                                             <input type="date" class="form-control" aria-label="productType"
-                                                aria-describedby="basic-addon1" name="createDate">
+                                                aria-describedby="basic-addon1" name="createDate" required>
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="d-flex flex-row py-2" style="width: 95px">Hết Hạn</div>
                                             <input type="date" class="form-control" aria-label="productType"
-                                                aria-describedby="basic-addon1" name="expiresAt">
+                                                aria-describedby="basic-addon1" name="expiresAt" required>
                                         </div>
                                         <div class="input-group mb-4">
                                             <div class="d-flex flex-row py-2" style="width: 95px">Mô Tả</div>
@@ -414,6 +414,9 @@
                                                 aria-label="productType" aria-describedby="basic-addon1"
                                                 name="description">
                                         </div>
+                                        <c:if test="${not empty error}">
+                                            <div style="color: red">${error}</div>
+                                        </c:if>
                                         <button type="submit" class="btn btn-primary mb-3"
                                             style="background-color: #264653;">Thêm voucher</button>
                                     </form>

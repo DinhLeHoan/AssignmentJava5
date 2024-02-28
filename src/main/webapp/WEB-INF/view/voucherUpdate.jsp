@@ -399,6 +399,9 @@
                                                 aria-label="productType" aria-describedby="basic-addon1"
                                                 name="description" value="${voucherEdit.description}">
                                         </div>
+                                        <c:if test="${not empty error}">
+                                            <div style="color: red">${error}</div>
+                                        </c:if>
                                         <button type="submit" class="btn btn-primary w-100 mb-3"
                                             style="background-color: #264653;">Chỉnh
                                             sửa</button>

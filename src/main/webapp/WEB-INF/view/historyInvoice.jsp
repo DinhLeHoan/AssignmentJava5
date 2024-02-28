@@ -665,6 +665,14 @@ a.sidebar-link:hover {
 
 		document.addEventListener('DOMContentLoaded', function() {
 		});
+		
+		 document.addEventListener('DOMContentLoaded', function() {
+		        // Kích hoạt tab "Theo Ngày"
+		        document.getElementById('day-tab').classList.add('active');
+
+		        // Hiển thị phần tử div chứa biểu đồ theo ngày
+		        document.getElementById('day').classList.add('show', 'active');
+		    });
 	</script>
 </body>
 

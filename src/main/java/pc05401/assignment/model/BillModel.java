@@ -1,6 +1,6 @@
 package pc05401.assignment.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

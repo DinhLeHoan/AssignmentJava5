@@ -67,7 +67,7 @@ public class InvoiceController {
 		// Tạo một đối tượng Calendar và thiết lập ngày tháng năm hiện tại
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(currentDate);
-
+		
 		// Khởi tạo danh sách id của ngày hiện tại
 		List<Integer> billIdsToday = new ArrayList<>();
 		
@@ -87,10 +87,11 @@ public class InvoiceController {
 			countBill++;
 		}
 		
+		
 		model.addAttribute("billIdsToday",billIdsToday);
 		model.addAttribute("countBill",countBill);
 		model.addAttribute("totalBillToday",totalToday);
-		System.out.println();
+
 
 		//Tính ngày hôm qua:
 		// Tính ngày hôm qua bằng cách trừ 1 ngày từ ngày hiện tại
@@ -126,19 +127,19 @@ public class InvoiceController {
 		}
 		List<String> dateStrings = new ArrayList<>();
 		
+		calendar = Calendar.getInstance();
 		// Lặp qua 10 ngày trước từ ngày hiện tại
 		for (int i = 0; i < 10; i++) {
 		    // Lấy ngày trong vòng lặp
 		    Date currentDateMinusI = calendar.getTime();
 		    String dateString = formatter.format(currentDateMinusI);
-
-		    // Kiểm tra nếu là ngày hôm nay thì thêm "Hôm nay", ngược lại thêm chuỗi ngày tháng năm
-		    if (i == 0) {
-		        dateStrings.add("Hôm nay");
-		    } else {
-		        dateStrings.add(dateString);
-		    }
 		    
+		    // Kiểm tra nếu là ngày hôm nay thì thêm "Hôm nay", ngược lại thêm chuỗi ngày tháng năm
+
+		        dateStrings.add(dateString);
+
+		    
+		    System.out.println(dateString);
 		    // Gán lại giá trị cho biến date trong vòng lặp
 		    try {
 		        // Gán lại giá trị cho biến date trong vòng lặp
@@ -157,8 +158,8 @@ public class InvoiceController {
 		        billIds.add(bill.getBillId());
 		        // Tính tổng số tiền của các hóa đơn trong ngày
 		        total += bill.getTotalWithVoucher();
+		        
 		    }
-
 		    // Thêm danh sách id của ngày hiện tại vào Map
 		    billIdsByDay.put(dateString, billIds);
 		    // Thêm tổng số tiền của ngày hiện tại vào danh sách tổng số tiền

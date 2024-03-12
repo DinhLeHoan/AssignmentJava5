@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -387,6 +388,9 @@ th, td {
 													class="form-check-label" for="inactive">Inactive</label>
 											</div>
 										</div>
+										<c:if test="${not empty error}">
+                                            <div style="color: red">${error}</div>
+                                        </c:if>
 										<button type="submit" class="btn btn-primary mb-3"
 											style="background-color: #264653;">Chỉnh sửa</button>
 									</form>

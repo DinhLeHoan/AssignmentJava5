@@ -88,7 +88,7 @@ public class MaterialController {
 			model.addAttribute("error", "Tên chưa hợp lệ !");
 			return "materialAdd";
 		case 2:
-			model.addAttribute("error", "Tên phải ít hơn 50 ký tự !");
+			model.addAttribute("error", "Tên phải ít hơn 250 ký tự !");
 			return "materialAdd";
 		case 3:
 			model.addAttribute("error", "Ghi chú phải ít hơn 250 ký tự !");
@@ -135,7 +135,7 @@ public class MaterialController {
 			error = "Tên chưa hợp lệ !" ;
 			return "redirect:/materialUpdate?ingredientId=" + ingredientEdit.getIngredientId();
 		case 2:
-			error = "Tên phải ít hơn 50 ký tự !" ;
+			error = "Tên phải ít hơn 250 ký tự !" ;
 			return "redirect:/materialUpdate?ingredientId=" + ingredientEdit.getIngredientId();
 		case 3:
 			error = "Ghi chú phải ít hơn 250 ký tự !" ;
@@ -180,7 +180,7 @@ public class MaterialController {
 		if (!ingredient.getName().matches(regexName)) {
 			return 1;
 		}
-		if (ingredient.getName().length() > 50) {
+		if (ingredient.getName().length() > 250) {
 			return 2;
 		}
 		if (ingredient.getNote().length() > 250) {
@@ -195,7 +195,6 @@ public class MaterialController {
 		if (ingredient.getAmount() <= ingredient.getMinAmount()) {
 			return 6;
 		}
-
 		return -1;
 	}
 }

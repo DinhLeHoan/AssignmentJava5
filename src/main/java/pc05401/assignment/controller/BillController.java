@@ -83,6 +83,7 @@ public class BillController {
 		// Retrieve all vouchers and add them to the model
 		List<Voucher> allVouchers = voucherRepository.findAll();
 		allVouchers.removeIf(voucher -> !voucher.isActive());
+		allVouchers.removeIf(voucher -> voucher.getCreateDate().after(new Date()));
 
 		allVouchers.removeIf(voucher -> voucher.getExpiresAt().before(new Date()));
 		model.addAttribute("allVouchers", allVouchers);
